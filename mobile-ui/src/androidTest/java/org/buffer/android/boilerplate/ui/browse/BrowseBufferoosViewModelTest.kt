@@ -1,10 +1,9 @@
 package org.buffer.android.boilerplate.ui.browse
 
-import android.arch.core.executor.testing.InstantTaskExecutorRule
-import android.support.test.runner.AndroidJUnit4
-import com.nhaarman.mockito_kotlin.any
-import com.nhaarman.mockito_kotlin.mock
-import com.nhaarman.mockito_kotlin.whenever
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import com.nhaarman.mockitokotlin2.any
+import com.nhaarman.mockitokotlin2.mock
+import com.nhaarman.mockitokotlin2.whenever
 import io.reactivex.Flowable
 import org.buffer.android.boilerplate.data.browse.Bufferoo
 import org.buffer.android.boilerplate.data.browse.interactor.GetBufferoos
@@ -12,7 +11,6 @@ import org.buffer.android.boilerplate.ui.test.util.BufferooFactory
 import org.buffer.android.boilerplate.ui.test.util.DataFactory
 import org.junit.Rule
 import org.junit.Test
-import org.junit.runner.RunWith
 
 class BrowseBufferoosViewModelTest {
 
