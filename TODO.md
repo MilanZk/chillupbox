@@ -2,7 +2,7 @@
 
 ### Setup documentation
 
-- [ ] Add code style.
+- [x] Add code style.
 - [x] Add TODO file.
 - [x] Add CHANGELOG file.
 
