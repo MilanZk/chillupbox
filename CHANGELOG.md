@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - This change log file.
 - [Gradle Versions Plugin](https://github.com/ben-manes/gradle-versions-plugin) to check for dependency updates.
+- [grandcentrix GmbH Android Code Style](https://github.com/grandcentrix/AndroidCodeStyle) with minor modifications.
 
 ### Changed
 - Git ignore file was updated with default template.
