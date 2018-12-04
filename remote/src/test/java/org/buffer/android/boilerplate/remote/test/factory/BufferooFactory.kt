@@ -29,7 +29,5 @@ class BufferooFactory {
         fun makeBufferooModel(): BufferooModel {
             return BufferooModel(randomLong(), randomUuid(), randomUuid(), randomUuid())
         }
-
     }
-
 }

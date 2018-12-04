@@ -9,8 +9,9 @@ import org.buffer.android.boilerplate.data.executor.ThreadExecutor
  * Abstract class for a UseCase that returns an instance of a [Flowable].
  */
 abstract class FlowableUseCase<T, in Params> constructor(
-        private val threadExecutor: ThreadExecutor,
-        private val postExecutionThread: PostExecutionThread) {
+    private val threadExecutor: ThreadExecutor,
+    private val postExecutionThread: PostExecutionThread
+) {
 
     /**
      * Builds a [Flowable] which will be used when the current [FlowableUseCase] is executed.
@@ -20,9 +21,9 @@ abstract class FlowableUseCase<T, in Params> constructor(
     /**
      * Executes the current use case.
      */
-    open fun execute(params: Params? = null): Flowable<T> {
+    fun execute(params: Params? = null): Flowable<T> {
         return this.buildUseCaseObservable(params)
-                .subscribeOn(Schedulers.from(threadExecutor))
-                .observeOn(postExecutionThread.scheduler)
+            .subscribeOn(Schedulers.from(threadExecutor))
+            .observeOn(postExecutionThread.scheduler)
     }
 }

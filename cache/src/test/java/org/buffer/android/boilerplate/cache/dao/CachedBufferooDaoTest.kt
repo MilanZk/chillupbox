@@ -5,10 +5,8 @@ import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.buffer.android.boilerplate.cache.db.BufferoosDatabase
 import org.buffer.android.boilerplate.cache.test.factory.BufferooFactory
-import org.junit.After
-import org.junit.Before
-import org.junit.Test
-import org.junit.runner.RunWith
+import org.junit.*
+import org.junit.runner.*
 
 @RunWith(AndroidJUnit4::class)
 open class CachedBufferooDaoTest {
@@ -18,10 +16,11 @@ open class CachedBufferooDaoTest {
     @Before
     fun initDb() {
         bufferoosDatabase = Room.inMemoryDatabaseBuilder(
-                ApplicationProvider.getApplicationContext(),
-                BufferoosDatabase::class.java)
-                .allowMainThreadQueries()
-                .build()
+            ApplicationProvider.getApplicationContext(),
+            BufferoosDatabase::class.java
+        )
+            .allowMainThreadQueries()
+            .build()
     }
 
     @After
@@ -43,10 +42,10 @@ open class CachedBufferooDaoTest {
         val cachedBufferoos = BufferooFactory.makeCachedBufferooList(5)
 
         cachedBufferoos.forEach {
-            bufferoosDatabase.cachedBufferooDao().insertBufferoo(it) }
+            bufferoosDatabase.cachedBufferooDao().insertBufferoo(it)
+        }
 
         val retrievedBufferoos = bufferoosDatabase.cachedBufferooDao().getBufferoos()
         assert(retrievedBufferoos == cachedBufferoos.sortedWith(compareBy({ it.id }, { it.id })))
     }
-
 }

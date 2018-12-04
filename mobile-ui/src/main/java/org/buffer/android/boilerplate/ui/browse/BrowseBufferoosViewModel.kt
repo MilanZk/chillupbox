@@ -23,10 +23,10 @@ class BrowseBufferoosViewModel(val getBufferoos: GetBufferoos) : ViewModel() {
     fun fetchBufferoos() {
         bufferoosLiveData.postValue(BrowseState.Loading)
         disposable = getBufferoos.execute()
-                .subscribe({
-                    bufferoosLiveData.postValue(BrowseState.Success(it))
-                }, {
-                    bufferoosLiveData.postValue(BrowseState.Error (it.message))
-                })
+            .subscribe({
+                bufferoosLiveData.postValue(BrowseState.Success(it))
+            }, {
+                bufferoosLiveData.postValue(BrowseState.Error(it.message))
+            })
     }
 }

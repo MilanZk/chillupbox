@@ -7,8 +7,7 @@ import org.buffer.android.boilerplate.data.browse.Bufferoo
  * Map a [CachedBufferoo] instance to and from a [Bufferoo] instance when data is moving between
  * this later and the Data layer
  */
-open class BufferooEntityMapper :
-        EntityMapper<CachedBufferoo, Bufferoo> {
+open class BufferooEntityMapper : EntityMapper<CachedBufferoo, Bufferoo> {
 
     /**
      * Map a [Bufferoo] instance to a [CachedBufferoo] instance
@@ -23,5 +22,4 @@ open class BufferooEntityMapper :
     override fun mapFromCached(type: CachedBufferoo): Bufferoo {
         return Bufferoo(type.id, type.name, type.title, type.avatar)
     }
-
 }

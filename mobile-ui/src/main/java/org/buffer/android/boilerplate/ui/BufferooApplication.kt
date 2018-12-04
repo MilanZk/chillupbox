@@ -19,5 +19,4 @@ class BufferooApplication : Application() {
             Timber.plant(Timber.DebugTree())
         }
     }
-
 }

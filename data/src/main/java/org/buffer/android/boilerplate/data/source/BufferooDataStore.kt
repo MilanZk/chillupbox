@@ -1,7 +1,6 @@
 package org.buffer.android.boilerplate.data.source
 
 import io.reactivex.Completable
-import io.reactivex.Flowable
 import io.reactivex.Single
 import org.buffer.android.boilerplate.data.browse.Bufferoo
 
@@ -16,12 +15,9 @@ interface BufferooDataStore {
 
     fun saveBufferoos(bufferoos: List<Bufferoo>): Completable
 
-    fun getBufferoos(): Flowable<List<Bufferoo>>
+    fun getBufferoos(): Single<List<Bufferoo>>
 
-    fun isCached(): Single<Boolean>
+    fun isValidCache(): Single<Boolean>
 
     fun setLastCacheTime(lastCache: Long)
-
-    fun isExpired(): Boolean
-
 }

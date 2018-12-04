@@ -1,10 +1,10 @@
 package org.buffer.android.boilerplate.ui.browse
 
-import androidx.lifecycle.Observer
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_browse.progress
 import kotlinx.android.synthetic.main.activity_browse.recycler_browse
 import kotlinx.android.synthetic.main.activity_browse.view_empty
@@ -18,12 +18,11 @@ import org.koin.androidx.scope.ext.android.bindScope
 import org.koin.androidx.scope.ext.android.getOrCreateScope
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class BrowseActivity: AppCompatActivity() {
+class BrowseActivity : AppCompatActivity() {
 
     private val SCOPE_NAME = (this::class.java.canonicalName ?: "BrowseActivity") + hashCode()
 
-    val browseAdapter: BrowseAdapter by inject()
-
+    private val browseAdapter: BrowseAdapter by inject()
     val browseBufferoosViewModel: BrowseBufferoosViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,8 +34,9 @@ class BrowseActivity: AppCompatActivity() {
         setupViewListeners()
 
         browseBufferoosViewModel.getBufferoos().observe(this,
-                Observer<BrowseState> {
-                    if (it != null) this.handleDataState(it) })
+            Observer<BrowseState> {
+                if (it != null) this.handleDataState(it)
+            })
         browseBufferoosViewModel.fetchBufferoos()
     }
 
@@ -63,7 +63,7 @@ class BrowseActivity: AppCompatActivity() {
     private fun setupScreenForSuccess(data: List<Bufferoo>?) {
         view_error.visibility = View.GONE
         progress.visibility = View.GONE
-        if (data!= null && data.isNotEmpty()) {
+        if (data != null && data.isNotEmpty()) {
             updateListView(data)
             recycler_browse.visibility = View.VISIBLE
         } else {
@@ -99,5 +99,4 @@ class BrowseActivity: AppCompatActivity() {
             browseBufferoosViewModel.fetchBufferoos()
         }
     }
-
 }

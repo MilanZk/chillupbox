@@ -4,13 +4,13 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.RelativeLayout
-import kotlinx.android.synthetic.main.view_empty.view.*
+import kotlinx.android.synthetic.main.view_empty.view.button_check_again
 import org.buffer.android.boilerplate.ui.R
 
 /**
  * Widget used to display an empty state to the user
  */
-class EmptyView: RelativeLayout {
+class EmptyView : RelativeLayout {
 
     var emptyListener: EmptyListener? = null
 
@@ -31,5 +31,4 @@ class EmptyView: RelativeLayout {
         LayoutInflater.from(context).inflate(R.layout.view_empty, this)
         button_check_again.setOnClickListener { emptyListener?.onCheckAgainClicked() }
     }
-
 }

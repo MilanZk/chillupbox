@@ -10,5 +10,4 @@ package org.buffer.android.boilerplate.remote.mapper
 interface EntityMapper<in M, out E> {
 
     fun mapFromRemote(type: M): E
-
 }

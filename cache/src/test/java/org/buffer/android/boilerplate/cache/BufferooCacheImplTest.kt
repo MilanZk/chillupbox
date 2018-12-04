@@ -7,21 +7,24 @@ import org.buffer.android.boilerplate.cache.db.BufferoosDatabase
 import org.buffer.android.boilerplate.cache.mapper.BufferooEntityMapper
 import org.buffer.android.boilerplate.cache.model.CachedBufferoo
 import org.buffer.android.boilerplate.cache.test.factory.BufferooFactory
-import org.junit.Test
-import org.junit.runner.RunWith
+import org.junit.*
+import org.junit.runner.*
 import kotlin.test.assertEquals
 
 @RunWith(AndroidJUnit4::class)
 class BufferooCacheImplTest {
 
-    private var bufferoosDatabase = Room.inMemoryDatabaseBuilder(ApplicationProvider.getApplicationContext(),
-            BufferoosDatabase::class.java).allowMainThreadQueries().build()
+    private var bufferoosDatabase = Room.inMemoryDatabaseBuilder(
+        ApplicationProvider.getApplicationContext(),
+        BufferoosDatabase::class.java
+    ).allowMainThreadQueries().build()
     private var entityMapper = BufferooEntityMapper()
     private var preferencesHelper = PreferencesHelper(ApplicationProvider.getApplicationContext())
 
-
-    private val databaseHelper = BufferooCacheImpl(bufferoosDatabase,
-            entityMapper, preferencesHelper)
+    private val databaseHelper = BufferooCacheImpl(
+        bufferoosDatabase,
+        entityMapper, preferencesHelper
+    )
 
     @Test
     fun clearTablesCompletes() {
@@ -65,7 +68,7 @@ class BufferooCacheImplTest {
         insertBufferoos(cachedBufferoos)
 
         val testObserver = databaseHelper.getBufferoos().test()
-      //  testObserver.assertValue(bufferooEntities)
+        //  testObserver.assertValue(bufferooEntities)
     }
     //</editor-fold>
 

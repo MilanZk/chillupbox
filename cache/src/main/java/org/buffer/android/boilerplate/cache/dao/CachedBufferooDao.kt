@@ -18,5 +18,4 @@ abstract class CachedBufferooDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract fun insertBufferoo(cachedBufferoo: CachedBufferoo)
-
 }

@@ -6,12 +6,11 @@ import android.content.SharedPreferences
 /**
  * General Preferences Helper class, used for storing preference values using the Preference API
  */
-open class PreferencesHelper(context: Context) {
+class PreferencesHelper(context: Context) {
 
     companion object {
-        private val PREF_BUFFER_PACKAGE_NAME = "org.buffer.android.boilerplate.preferences"
-
-        private val PREF_KEY_LAST_CACHE = "last_cache"
+        private const val PREF_BUFFER_PACKAGE_NAME = "org.buffer.android.boilerplate.preferences"
+        private const val PREF_KEY_LAST_CACHE = "last_cache"
     }
 
     private val bufferPref: SharedPreferences
@@ -26,5 +25,4 @@ open class PreferencesHelper(context: Context) {
     var lastCacheTime: Long
         get() = bufferPref.getLong(PREF_KEY_LAST_CACHE, 0)
         set(lastCache) = bufferPref.edit().putLong(PREF_KEY_LAST_CACHE, lastCache).apply()
-
 }

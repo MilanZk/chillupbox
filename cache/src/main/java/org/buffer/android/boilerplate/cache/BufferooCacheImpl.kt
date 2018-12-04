@@ -1,7 +1,6 @@
 package org.buffer.android.boilerplate.cache
 
 import io.reactivex.Completable
-import io.reactivex.Flowable
 import io.reactivex.Single
 import org.buffer.android.boilerplate.cache.db.BufferoosDatabase
 import org.buffer.android.boilerplate.cache.mapper.BufferooEntityMapper
@@ -14,12 +13,15 @@ import org.buffer.android.boilerplate.data.source.BufferooDataStore
  * [BufferooCache] from the Data layer as it is that layers responsibility for defining the
  * operations in which data store implementation layers can carry out.
  */
-class BufferooCacheImpl constructor(val bufferoosDatabase: BufferoosDatabase,
-                                    private val entityMapper: BufferooEntityMapper,
-                                    private val preferencesHelper: PreferencesHelper)
-    : BufferooDataStore {
+class BufferooCacheImpl constructor(
+    val bufferoosDatabase: BufferoosDatabase,
+    private val entityMapper: BufferooEntityMapper,
+    private val preferencesHelper: PreferencesHelper
+) : BufferooDataStore {
 
-    private val EXPIRATION_TIME = (60 * 10 * 1000).toLong()
+    companion object {
+        private const val EXPIRATION_TIME = (60 * 10 * 1000).toLong()
+    }
 
     /**
      * Retrieve an instance from the database, used for tests.
@@ -45,7 +47,8 @@ class BufferooCacheImpl constructor(val bufferoosDatabase: BufferoosDatabase,
         return Completable.defer {
             bufferoos.forEach {
                 bufferoosDatabase.cachedBufferooDao().insertBufferoo(
-                        entityMapper.mapToCached(it))
+                    entityMapper.mapToCached(it)
+                )
             }
             this.setLastCacheTime(System.currentTimeMillis())
             Completable.complete()
@@ -55,9 +58,9 @@ class BufferooCacheImpl constructor(val bufferoosDatabase: BufferoosDatabase,
     /**
      * Retrieve a list of [Bufferoo] instances from the database.
      */
-    override fun getBufferoos(): Flowable<List<Bufferoo>> {
-        return Flowable.defer {
-            Flowable.just(bufferoosDatabase.cachedBufferooDao().getBufferoos())
+    override fun getBufferoos(): Single<List<Bufferoo>> {
+        return Single.defer {
+            Single.just(bufferoosDatabase.cachedBufferooDao().getBufferoos())
         }.map {
             it.map { entityMapper.mapFromCached(it) }
         }
@@ -66,9 +69,12 @@ class BufferooCacheImpl constructor(val bufferoosDatabase: BufferoosDatabase,
     /**
      * Check whether there are instances of [CachedBufferoo] stored in the cache.
      */
-    override fun isCached(): Single<Boolean> {
+    override fun isValidCache(): Single<Boolean> {
         return Single.defer {
-            Single.just(bufferoosDatabase.cachedBufferooDao().getBufferoos().isNotEmpty())
+            val currentTime = System.currentTimeMillis()
+            val lastUpdateTime = this.getLastCacheUpdateTimeMillis()
+            val expired = currentTime - lastUpdateTime > EXPIRATION_TIME
+            Single.just(bufferoosDatabase.cachedBufferooDao().getBufferoos().isNotEmpty() && !expired)
         }
     }
 
@@ -80,19 +86,9 @@ class BufferooCacheImpl constructor(val bufferoosDatabase: BufferoosDatabase,
     }
 
     /**
-     * Check whether the current cached data exceeds the defined [EXPIRATION_TIME] time.
-     */
-    override fun isExpired(): Boolean {
-        val currentTime = System.currentTimeMillis()
-        val lastUpdateTime = this.getLastCacheUpdateTimeMillis()
-        return currentTime - lastUpdateTime > EXPIRATION_TIME
-    }
-
-    /**
      * Get in millis, the last time the cache was accessed.
      */
     private fun getLastCacheUpdateTimeMillis(): Long {
         return preferencesHelper.lastCacheTime
     }
-
 }
