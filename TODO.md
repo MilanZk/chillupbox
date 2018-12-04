@@ -2,6 +2,7 @@
 
 ### General
 
+- [x] Convert remote Java library into Android Java library.
 - [x] Fix use cases implementation.
 - [x] Fix cache behavior.
 

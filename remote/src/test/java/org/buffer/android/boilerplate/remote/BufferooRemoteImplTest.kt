@@ -1,5 +1,6 @@
 package org.buffer.android.boilerplate.remote
 
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
 import io.reactivex.Single
@@ -8,9 +9,8 @@ import org.buffer.android.boilerplate.remote.mapper.BufferooEntityMapper
 import org.buffer.android.boilerplate.remote.test.factory.BufferooFactory
 import org.junit.*
 import org.junit.runner.*
-import org.junit.runners.*
 
-@RunWith(JUnit4::class)
+@RunWith(AndroidJUnit4::class)
 class BufferooRemoteImplTest {
 
     private val entityMapper = mock<BufferooEntityMapper>()

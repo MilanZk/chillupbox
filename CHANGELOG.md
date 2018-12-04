@@ -22,6 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [grandcentrix GmbH Android Code Style](https://github.com/grandcentrix/AndroidCodeStyle) with minor modifications.
 
 ### Changed
+- Remote Java library was converted to Android library (since shared preference may be needed to store login information).
 - Git ignore file was updated with default template.
 - Kotlin Gradle plugin version was updated.
 - Android Gradle plugin version was updated and Android build tools version, too.

@@ -85,7 +85,8 @@ ext {
             okHttpLogger     : "com.squareup.okhttp3:logging-interceptor:${okHttpVersion}",
             gson             : "com.google.code.gson:gson:${gsonVersion}",
             rxJava           : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
-            rxKotlin         : "io.reactivex.rxjava2:rxkotlin:${rxKotlinVersion}"
+            rxKotlin         : "io.reactivex.rxjava2:rxkotlin:${rxKotlinVersion}",
+            timber           : "com.jakewharton.timber:timber:${timberVersion}"
     ]
 
     remoteTestDependencies = [
@@ -93,6 +94,10 @@ ext {
             kotlinJUnit  : "org.jetbrains.kotlin:kotlin-test-junit:${kotlin_version}",
             mockitoKotlin: "com.nhaarman.mockitokotlin2:mockito-kotlin:${mockitoKotlinVersion}",
             assertj      : "org.assertj:assertj-core:${assertJVersion}",
+            testCore     : "androidx.test:core:${testCoreVersion}",
+            androidRunner: "androidx.test:runner:${runnerVersion}",
+            androidJUnit : "androidx.test.ext:junit:${androidJUnitVersion}",
+            robolectric  : "org.robolectric:robolectric:${robolectricVersion}"
     ]
 
     mobileUiDependencies = [
