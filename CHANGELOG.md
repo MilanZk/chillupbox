@@ -33,6 +33,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 - Unused definitions for a presentation layer that does not exist anymore.
 - Unused dependencies were cleaned.
+- Unused interactor package observers, since the use cases return a reactive element and use case caller must take care of subscription handling.
+
+### Fixed
+- Last cache time was not called, so cache was always expired and never used.
 
 ## 0.0.0 - 2018-11-28
 ### Added
