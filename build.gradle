@@ -27,8 +27,8 @@ allprojects {
 
     ext {
         androidApplicationId = 'org.buffer.android.boilerplate'
-        androidVersionCode = 1
-        androidVersionName = "0.0.1"
+        androidVersionCode = 2
+        androidVersionName = "0.1.0"
     }
 }
 
