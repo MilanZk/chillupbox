@@ -15,7 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [//]: # (### Fixed)
 [//]: # (- Add fixes.)
 
-## [Unreleased]
+## [0.1.0] - 2018-11-28
 ### Added
 - This change log file.
 - [Gradle Versions Plugin](https://github.com/ben-manes/gradle-versions-plugin) to check for dependency updates.
