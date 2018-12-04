@@ -6,19 +6,17 @@ import com.nhaarman.mockitokotlin2.never
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
 import io.reactivex.Completable
-import io.reactivex.Flowable
 import io.reactivex.Single
 import org.buffer.android.boilerplate.data.browse.Bufferoo
 import org.buffer.android.boilerplate.data.source.BufferooDataStore
 import org.buffer.android.boilerplate.data.source.BufferooDataStoreFactory
 import org.buffer.android.boilerplate.data.test.factory.BufferooFactory
-import org.junit.Before
-import org.junit.Test
-import org.junit.runner.RunWith
-import org.junit.runners.JUnit4
+import org.junit.*
+import org.junit.runner.*
+import org.junit.runners.*
 
 @RunWith(JUnit4::class)
-class BufferooDataRepositoryTest {
+open class BufferooDataRepositoryTest {
 
     private val bufferooDataStoreFactory = mock<BufferooDataStoreFactory>()
     private val bufferooCacheDataStore = mock<BufferooDataStore>()
@@ -60,7 +58,8 @@ class BufferooDataRepositoryTest {
     fun saveBufferoosCompletes() {
         stubBufferooCacheSaveBufferoos(Completable.complete())
         val testObserver = bufferooDataRepository.saveBufferoos(
-                BufferooFactory.makeBufferooList(2)).test()
+            BufferooFactory.makeBufferooList(2)
+        ).test()
         testObserver.assertComplete()
     }
 
@@ -84,8 +83,11 @@ class BufferooDataRepositoryTest {
     fun getBufferoosCompletes() {
         stubBufferooCacheDataStoreIsCached(Single.just(true))
         stubBufferooDataStoreFactoryRetrieveDataStore(bufferooCacheDataStore)
-        stubBufferooCacheDataStoreGetBufferoos(Flowable.just(
-                BufferooFactory.makeBufferooList(2)))
+        stubBufferooCacheDataStoreGetBufferoos(
+            Single.just(
+                BufferooFactory.makeBufferooList(2)
+            )
+        )
         stubBufferooCacheSaveBufferoos(Completable.complete())
         val testObserver = bufferooDataRepository.getBufferoos().test()
         testObserver.assertComplete()
@@ -97,7 +99,7 @@ class BufferooDataRepositoryTest {
         stubBufferooDataStoreFactoryRetrieveDataStore(bufferooCacheDataStore)
         stubBufferooCacheSaveBufferoos(Completable.complete())
         val bufferoos = BufferooFactory.makeBufferooList(2)
-        stubBufferooCacheDataStoreGetBufferoos(Flowable.just(bufferoos))
+        stubBufferooCacheDataStoreGetBufferoos(Single.just(bufferoos))
 
         val testObserver = bufferooDataRepository.getBufferoos().test()
         testObserver.assertValue(bufferoos)
@@ -123,37 +125,37 @@ class BufferooDataRepositoryTest {
     //<editor-fold desc="Stub helper methods">
     private fun stubBufferooCacheSaveBufferoos(completable: Completable) {
         whenever(bufferooCacheDataStore.saveBufferoos(any()))
-                .thenReturn(completable)
+            .thenReturn(completable)
     }
 
     private fun stubBufferooCacheDataStoreIsCached(single: Single<Boolean>) {
-        whenever(bufferooCacheDataStore.isCached())
-                .thenReturn(single)
+        whenever(bufferooCacheDataStore.isValidCache())
+            .thenReturn(single)
     }
 
-    private fun stubBufferooCacheDataStoreGetBufferoos(single: Flowable<List<Bufferoo>>) {
+    private fun stubBufferooCacheDataStoreGetBufferoos(single: Single<List<Bufferoo>>) {
         whenever(bufferooCacheDataStore.getBufferoos())
-                .thenReturn(single)
+            .thenReturn(single)
     }
 
     private fun stubBufferooCacheClearBufferoos(completable: Completable) {
         whenever(bufferooCacheDataStore.clearBufferoos())
-                .thenReturn(completable)
+            .thenReturn(completable)
     }
 
     private fun stubBufferooDataStoreFactoryRetrieveCacheDataStore() {
         whenever(bufferooDataStoreFactory.retrieveCacheDataStore())
-                .thenReturn(bufferooCacheDataStore)
+            .thenReturn(bufferooCacheDataStore)
     }
 
     private fun stubBufferooDataStoreFactoryRetrieveRemoteDataStore() {
         whenever(bufferooDataStoreFactory.retrieveRemoteDataStore())
-                .thenReturn(bufferooCacheDataStore)
+            .thenReturn(bufferooCacheDataStore)
     }
 
     private fun stubBufferooDataStoreFactoryRetrieveDataStore(dataStore: BufferooDataStore) {
         whenever(bufferooDataStoreFactory.retrieveDataStore(any()))
-                .thenReturn(dataStore)
+            .thenReturn(dataStore)
     }
     //</editor-fold>
 

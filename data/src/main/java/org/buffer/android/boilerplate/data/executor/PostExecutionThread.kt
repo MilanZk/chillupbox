@@ -8,5 +8,6 @@ import io.reactivex.Scheduler
  * implementation of this interface will change context and update the UI.
  */
 interface PostExecutionThread {
+
     val scheduler: Scheduler
 }

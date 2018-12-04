@@ -9,8 +9,9 @@ import org.buffer.android.boilerplate.data.executor.ThreadExecutor
  * Abstract class for a UseCase that returns an instance of a [Completable].
  */
 abstract class CompletableUseCase<in Params> protected constructor(
-        private val threadExecutor: ThreadExecutor,
-        private val postExecutionThread: PostExecutionThread) {
+    private val threadExecutor: ThreadExecutor,
+    private val postExecutionThread: PostExecutionThread
+) {
 
     /**
      * Builds a [Completable] which will be used when the current [CompletableUseCase] is executed.
@@ -22,7 +23,7 @@ abstract class CompletableUseCase<in Params> protected constructor(
      */
     fun execute(params: Params): Completable {
         return this.buildUseCaseObservable(params)
-                .subscribeOn(Schedulers.from(threadExecutor))
-                .observeOn(postExecutionThread.scheduler)
+            .subscribeOn(Schedulers.from(threadExecutor))
+            .observeOn(postExecutionThread.scheduler)
     }
 }

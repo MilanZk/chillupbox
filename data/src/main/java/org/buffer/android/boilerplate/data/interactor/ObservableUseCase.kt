@@ -9,8 +9,9 @@ import org.buffer.android.boilerplate.data.executor.ThreadExecutor
  * Abstract class for a UseCase that returns an instance of a [Observable].
  */
 abstract class ObservableUseCase<T, in Params> constructor(
-        private val threadExecutor: ThreadExecutor,
-        private val postExecutionThread: PostExecutionThread) {
+    private val threadExecutor: ThreadExecutor,
+    private val postExecutionThread: PostExecutionThread
+) {
 
     /**
      * Builds a [Observable] which will be used when the current [ObservableUseCase] is executed.
@@ -20,9 +21,9 @@ abstract class ObservableUseCase<T, in Params> constructor(
     /**
      * Executes the current use case.
      */
-    open fun execute(params: Params? = null): Observable<T> {
+    fun execute(params: Params? = null): Observable<T> {
         return this.buildUseCaseObservable(params)
-                .subscribeOn(Schedulers.from(threadExecutor))
-                .observeOn(postExecutionThread.scheduler)
+            .subscribeOn(Schedulers.from(threadExecutor))
+            .observeOn(postExecutionThread.scheduler)
     }
 }

@@ -12,5 +12,4 @@ class UiThread : PostExecutionThread {
 
     override val scheduler: Scheduler
         get() = AndroidSchedulers.mainThread()
-
 }

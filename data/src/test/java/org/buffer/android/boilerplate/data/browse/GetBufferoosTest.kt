@@ -3,13 +3,13 @@ package org.buffer.android.boilerplate.data.browse
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
-import io.reactivex.Flowable
+import io.reactivex.Single
 import org.buffer.android.boilerplate.data.browse.interactor.GetBufferoos
 import org.buffer.android.boilerplate.data.executor.PostExecutionThread
 import org.buffer.android.boilerplate.data.executor.ThreadExecutor
 import org.buffer.android.boilerplate.data.repository.BufferooRepository
 import org.buffer.android.boilerplate.data.test.factory.BufferooFactory
-import org.junit.Test
+import org.junit.*
 
 class GetBufferoosTest {
 
@@ -17,8 +17,10 @@ class GetBufferoosTest {
     private val mockPostExecutionThread = mock<PostExecutionThread>()
     private val mockBufferooRepository = mock<BufferooRepository>()
 
-    private val getBufferoos = GetBufferoos(mockBufferooRepository, mockThreadExecutor,
-            mockPostExecutionThread)
+    private val getBufferoos = GetBufferoos(
+        mockBufferooRepository, mockThreadExecutor,
+        mockPostExecutionThread
+    )
 
     @Test
     fun buildUseCaseObservableCallsRepository() {
@@ -28,7 +30,7 @@ class GetBufferoosTest {
 
     @Test
     fun buildUseCaseObservableCompletes() {
-        stubBufferooRepositoryGetBufferoos(Flowable.just(BufferooFactory.makeBufferooList(2)))
+        stubBufferooRepositoryGetBufferoos(Single.just(BufferooFactory.makeBufferooList(2)))
         val testObserver = getBufferoos.buildUseCaseObservable(null).test()
         testObserver.assertComplete()
     }
@@ -36,14 +38,13 @@ class GetBufferoosTest {
     @Test
     fun buildUseCaseObservableReturnsData() {
         val bufferoos = BufferooFactory.makeBufferooList(2)
-        stubBufferooRepositoryGetBufferoos(Flowable.just(bufferoos))
+        stubBufferooRepositoryGetBufferoos(Single.just(bufferoos))
         val testObserver = getBufferoos.buildUseCaseObservable(null).test()
         testObserver.assertValue(bufferoos)
     }
 
-    private fun stubBufferooRepositoryGetBufferoos(single: Flowable<List<Bufferoo>>) {
+    private fun stubBufferooRepositoryGetBufferoos(single: Single<List<Bufferoo>>) {
         whenever(mockBufferooRepository.getBufferoos())
-                .thenReturn(single)
+            .thenReturn(single)
     }
-
 }

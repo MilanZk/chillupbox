@@ -2,13 +2,13 @@ package org.buffer.android.boilerplate.remote
 
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
-import io.reactivex.Flowable
+import io.reactivex.Single
 import org.buffer.android.boilerplate.data.browse.Bufferoo
 import org.buffer.android.boilerplate.remote.mapper.BufferooEntityMapper
 import org.buffer.android.boilerplate.remote.test.factory.BufferooFactory
-import org.junit.Test
-import org.junit.runner.RunWith
-import org.junit.runners.JUnit4
+import org.junit.*
+import org.junit.runner.*
+import org.junit.runners.*
 
 @RunWith(JUnit4::class)
 class BufferooRemoteImplTest {
@@ -21,7 +21,7 @@ class BufferooRemoteImplTest {
     //<editor-fold desc="Get Bufferoos">
     @Test
     fun getBufferoosCompletes() {
-        stubBufferooServiceGetBufferoos(Flowable.just(BufferooFactory.makeBufferooResponse()))
+        stubBufferooServiceGetBufferoos(Single.just(BufferooFactory.makeBufferooResponse()))
         val testObserver = bufferooRemoteImpl.getBufferoos().test()
         testObserver.assertComplete()
     }
@@ -29,7 +29,7 @@ class BufferooRemoteImplTest {
     @Test
     fun getBufferoosReturnsData() {
         val bufferooResponse = BufferooFactory.makeBufferooResponse()
-        stubBufferooServiceGetBufferoos(Flowable.just(bufferooResponse))
+        stubBufferooServiceGetBufferoos(Single.just(bufferooResponse))
         val bufferooEntities = mutableListOf<Bufferoo>()
         bufferooResponse.team.forEach {
             bufferooEntities.add(entityMapper.mapFromRemote(it))
@@ -40,9 +40,11 @@ class BufferooRemoteImplTest {
     }
     //</editor-fold>
 
-    private fun stubBufferooServiceGetBufferoos(observable:
-                                                Flowable<BufferooService.BufferooResponse>) {
+    private fun stubBufferooServiceGetBufferoos(
+        observable:
+        Single<BufferooService.BufferooResponse>
+    ) {
         whenever(bufferooService.getBufferoos())
-                .thenReturn(observable)
+            .thenReturn(observable)
     }
 }

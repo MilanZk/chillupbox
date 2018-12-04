@@ -15,5 +15,4 @@ open class BufferooEntityMapper : EntityMapper<BufferooModel, Bufferoo> {
     override fun mapFromRemote(type: BufferooModel): Bufferoo {
         return Bufferoo(type.id, type.name, type.title, type.avatar)
     }
-
 }

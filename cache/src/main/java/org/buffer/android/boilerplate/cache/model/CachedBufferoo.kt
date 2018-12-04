@@ -9,11 +9,9 @@ import org.buffer.android.boilerplate.cache.db.constants.BufferooConstants
  */
 @Entity(tableName = BufferooConstants.TABLE_NAME)
 data class CachedBufferoo(
-
-        @PrimaryKey
-        var id: Long,
-        val name: String,
-        val title: String,
-        val avatar: String
-
+    @PrimaryKey
+    var id: Long,
+    val name: String,
+    val title: String,
+    val avatar: String
 )

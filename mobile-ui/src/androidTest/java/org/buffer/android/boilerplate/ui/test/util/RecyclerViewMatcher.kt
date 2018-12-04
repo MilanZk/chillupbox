@@ -1,20 +1,17 @@
 package org.buffer.android.boilerplate.ui.test.util
 
 import android.content.res.Resources
-import androidx.recyclerview.widget.RecyclerView
 import android.view.View
-import org.hamcrest.Description
-import org.hamcrest.Matcher
-import org.hamcrest.TypeSafeMatcher
+import androidx.recyclerview.widget.RecyclerView
+import org.hamcrest.*
 
-
-open class RecyclerViewMatcher constructor(var recyclerViewId: Int) {
+class RecyclerViewMatcher constructor(private val recyclerViewId: Int) {
 
     fun atPosition(position: Int): Matcher<View> {
         return atPositionOnView(position, -1)
     }
 
-    fun atPositionOnView(position: Int, targetViewId: Int): Matcher<View> {
+    private fun atPositionOnView(position: Int, targetViewId: Int): Matcher<View> {
 
         return object : TypeSafeMatcher<View>() {
             var resources: Resources? = null
@@ -26,10 +23,11 @@ open class RecyclerViewMatcher constructor(var recyclerViewId: Int) {
                     idDescription = try {
                         this.resources!!.getResourceName(recyclerViewId)
                     } catch (var4: Resources.NotFoundException) {
-                        String.format("%s (resource name not found)",
-                                Integer.valueOf(recyclerViewId))
+                        String.format(
+                            "%s (resource name not found)",
+                            Integer.valueOf(recyclerViewId)
+                        )
                     }
-
                 }
 
                 description.appendText("with id: $idDescription")
@@ -44,7 +42,7 @@ open class RecyclerViewMatcher constructor(var recyclerViewId: Int) {
                             as RecyclerView
                     if (recyclerView != null && recyclerView.id == recyclerViewId) {
                         childView = recyclerView
-                                .findViewHolderForAdapterPosition(position)?.itemView
+                            .findViewHolderForAdapterPosition(position)?.itemView
                     } else {
                         return false
                     }
@@ -56,7 +54,6 @@ open class RecyclerViewMatcher constructor(var recyclerViewId: Int) {
                     val targetView = childView?.findViewById<View>(targetViewId)
                     view === targetView
                 }
-
             }
         }
     }
@@ -66,7 +63,5 @@ open class RecyclerViewMatcher constructor(var recyclerViewId: Int) {
         fun withRecyclerView(recyclerViewId: Int): RecyclerViewMatcher {
             return RecyclerViewMatcher(recyclerViewId)
         }
-
     }
-
 }

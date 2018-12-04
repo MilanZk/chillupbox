@@ -36,6 +36,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Unused interactor package observers, since the use cases return a reactive element and use case caller must take care of subscription handling.
 
 ### Fixed
+- Android Studio and lint warnings were fixed.
+- New code style was applied to sources.
+- Flowable use case was exchanged for single use case, because flowables use more space since they implement backpressure.
 - Last cache time was not called, so cache was always expired and never used.
 
 ## 0.0.0 - 2018-11-28

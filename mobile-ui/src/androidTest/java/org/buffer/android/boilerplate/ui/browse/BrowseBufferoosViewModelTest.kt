@@ -4,17 +4,17 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
-import io.reactivex.Flowable
+import io.reactivex.Single
 import org.buffer.android.boilerplate.data.browse.Bufferoo
 import org.buffer.android.boilerplate.data.browse.interactor.GetBufferoos
 import org.buffer.android.boilerplate.ui.test.util.BufferooFactory
 import org.buffer.android.boilerplate.ui.test.util.DataFactory
-import org.junit.Rule
-import org.junit.Test
+import org.junit.*
 
 class BrowseBufferoosViewModelTest {
 
-    @get:Rule var instantTaskExecutorRule = InstantTaskExecutorRule()
+    @get:Rule
+    var instantTaskExecutorRule = InstantTaskExecutorRule()
     val mockGetBufferoos = mock<GetBufferoos>()
 
     private val bufferoosViewModel = BrowseBufferoosViewModel(mockGetBufferoos)
@@ -23,7 +23,7 @@ class BrowseBufferoosViewModelTest {
     @Test
     fun getBufferoosReturnsSuccess() {
         val list = BufferooFactory.makeBufferooList(2)
-        stubGetBufferoos(Flowable.just(list))
+        stubGetBufferoos(Single.just(list))
         bufferoosViewModel.getBufferoos()
 
         assert(bufferoosViewModel.getBufferoos().value is BrowseState.Success)
@@ -32,7 +32,7 @@ class BrowseBufferoosViewModelTest {
     @Test
     fun getBufferoosReturnsDataOnSuccess() {
         val list = BufferooFactory.makeBufferooList(2)
-        stubGetBufferoos(Flowable.just(list))
+        stubGetBufferoos(Single.just(list))
         bufferoosViewModel.getBufferoos()
 
         assert(bufferoosViewModel.getBufferoos().value?.data == list)
@@ -41,7 +41,7 @@ class BrowseBufferoosViewModelTest {
     @Test
     fun getBufferoosReturnsNoMessageOnSuccess() {
         val list = BufferooFactory.makeBufferooList(2)
-        stubGetBufferoos(Flowable.just(list))
+        stubGetBufferoos(Single.just(list))
 
         bufferoosViewModel.getBufferoos()
 
@@ -53,7 +53,7 @@ class BrowseBufferoosViewModelTest {
     @Test
     fun getBufferoosReturnsError() {
         bufferoosViewModel.getBufferoos()
-        stubGetBufferoos(Flowable.error(RuntimeException()))
+        stubGetBufferoos(Single.error(RuntimeException()))
 
         assert(bufferoosViewModel.getBufferoos().value is BrowseState.Error)
     }
@@ -61,7 +61,7 @@ class BrowseBufferoosViewModelTest {
     @Test
     fun getBufferoosFailsAndContainsNoData() {
         bufferoosViewModel.getBufferoos()
-        stubGetBufferoos(Flowable.error(RuntimeException()))
+        stubGetBufferoos(Single.error(RuntimeException()))
 
         assert(bufferoosViewModel.getBufferoos().value?.data == null)
     }
@@ -70,7 +70,7 @@ class BrowseBufferoosViewModelTest {
     fun getBufferoosFailsAndContainsMessage() {
         val errorMessage = DataFactory.randomUuid()
         bufferoosViewModel.getBufferoos()
-        stubGetBufferoos(Flowable.error(RuntimeException(errorMessage)))
+        stubGetBufferoos(Single.error(RuntimeException(errorMessage)))
 
         assert(bufferoosViewModel.getBufferoos().value?.errorMessage == errorMessage)
     }
@@ -99,8 +99,8 @@ class BrowseBufferoosViewModelTest {
     }
     //</editor-fold>
 
-    private fun stubGetBufferoos(flowable: Flowable<List<Bufferoo>>) {
+    private fun stubGetBufferoos(single: Single<List<Bufferoo>>) {
         whenever(mockGetBufferoos.execute(any()))
-                .thenReturn(flowable)
+            .thenReturn(single)
     }
 }

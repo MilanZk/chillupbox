@@ -23,7 +23,7 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.ext.koin.viewModel
 import org.koin.dsl.module.module
 
-val applicationModule = module(override=true) {
+val applicationModule = module(override = true) {
 
     single { PreferencesHelper(androidContext()) }
 
@@ -32,9 +32,13 @@ val applicationModule = module(override=true) {
     single { JobExecutor() as ThreadExecutor }
     single { UiThread() as PostExecutionThread }
 
-    single { Room.databaseBuilder(androidContext(),
-            BufferoosDatabase::class.java, "bufferoos.db")
-            .build() }
+    single {
+        Room.databaseBuilder(
+            androidContext(),
+            BufferoosDatabase::class.java, "bufferoos.db"
+        )
+            .build()
+    }
     factory { get<BufferoosDatabase>().cachedBufferooDao() }
 
     factory<BufferooDataStore>("remote") { BufferooRemoteImpl(get(), get()) }

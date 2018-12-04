@@ -1,11 +1,11 @@
 package org.buffer.android.boilerplate.ui.browse
 
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import org.buffer.android.boilerplate.data.browse.Bufferoo
@@ -21,15 +21,15 @@ class BrowseAdapter : RecyclerView.Adapter<BrowseAdapter.ViewHolder>() {
         holder.titleText.text = bufferoo.title
 
         Glide.with(holder.itemView.context)
-                .load(bufferoo.avatar)
-                .apply(RequestOptions.circleCropTransform())
-                .into(holder.avatarImage)
+            .load(bufferoo.avatar)
+            .apply(RequestOptions.circleCropTransform())
+            .into(holder.avatarImage)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = LayoutInflater
-                .from(parent.context)
-                .inflate(R.layout.item_bufferoo, parent, false)
+            .from(parent.context)
+            .inflate(R.layout.item_bufferoo, parent, false)
         return ViewHolder(itemView)
     }
 
@@ -48,5 +48,4 @@ class BrowseAdapter : RecyclerView.Adapter<BrowseAdapter.ViewHolder>() {
             titleText = view.findViewById(R.id.text_title)
         }
     }
-
 }

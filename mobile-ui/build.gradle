@@ -65,7 +65,7 @@ dependencies {
 
     testImplementation mobileUiTestDependencies.kotlinJUnit
     androidTestImplementation mobileUiTestDependencies.lifecycleTest
-    androidTestImplementation (mobileUiTestDependencies.koinTest, {
+    androidTestImplementation(mobileUiTestDependencies.koinTest, {
         exclude group: 'org.jetbrains.kotlin'
         exclude group: 'org.mockito'
     })
@@ -73,22 +73,22 @@ dependencies {
 
     // Instrumentation test dependencies
     androidTestImplementation mobileUiTestDependencies.junit
-    androidTestImplementation (mobileUiTestDependencies.mockitoKotlin, {
+    androidTestImplementation(mobileUiTestDependencies.mockitoKotlin, {
         exclude group: 'org.jetbrains.kotlin'
         exclude group: 'org.mockito'
     })
     androidTestImplementation mobileUiTestDependencies.mockitoAndroid
     androidTestImplementation mobileUiTestDependencies.androidJUnit
-    androidTestImplementation (mobileUiTestDependencies.espressoCore) {
+    androidTestImplementation(mobileUiTestDependencies.espressoCore) {
         exclude group: 'com.android.support', module: 'support-annotations'
     }
-    androidTestImplementation (mobileUiTestDependencies.androidRunner) {
+    androidTestImplementation(mobileUiTestDependencies.androidRunner) {
         exclude group: 'com.android.support', module: 'support-annotations'
     }
-    androidTestImplementation (mobileUiTestDependencies.androidRules) {
+    androidTestImplementation(mobileUiTestDependencies.androidRules) {
         exclude group: 'com.android.support', module: 'support-annotations'
     }
-    androidTestImplementation (mobileUiTestDependencies.espressoIntents) {
+    androidTestImplementation(mobileUiTestDependencies.espressoIntents) {
         exclude group: 'com.android.support', module: 'support-annotations'
     }
     androidTestImplementation(mobileUiTestDependencies.espressoContrib) {

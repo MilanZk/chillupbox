@@ -16,8 +16,9 @@ object BufferooFactory {
     }
 
     fun makeBufferooModel(): Bufferoo {
-        return Bufferoo(DataFactory.randomLong(), DataFactory.randomUuid(),
-                DataFactory.randomUuid(), DataFactory.randomUuid())
+        return Bufferoo(
+            DataFactory.randomLong(), DataFactory.randomUuid(),
+            DataFactory.randomUuid(), DataFactory.randomUuid()
+        )
     }
-
 }
