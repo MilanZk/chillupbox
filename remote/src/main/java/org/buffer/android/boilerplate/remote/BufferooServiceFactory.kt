@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit
  */
 object BufferooServiceFactory {
 
-    fun makeBuffeoorService(isDebug: Boolean): BufferooService {
+    fun makeBuffeooService(isDebug: Boolean): BufferooService {
         val okHttpClient = makeOkHttpClient(
             makeLoggingInterceptor(isDebug)
         )

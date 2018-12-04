@@ -46,7 +46,7 @@ val applicationModule = module(override = true) {
     factory { BufferooDataStoreFactory(get("local"), get("remote")) }
 
     factory { BufferooEntityMapper() }
-    factory { BufferooServiceFactory.makeBuffeoorService(BuildConfig.DEBUG) }
+    factory { BufferooServiceFactory.makeBuffeooService(BuildConfig.DEBUG) }
 
     factory<BufferooRepository> { BufferooDataRepository(get()) }
 }
