@@ -15,15 +15,15 @@ import kotlin.test.assertEquals
 class BufferooCacheImplTest {
 
     private var bufferoosDatabase = Room.inMemoryDatabaseBuilder(
-        ApplicationProvider.getApplicationContext(),
-        BufferoosDatabase::class.java
+            ApplicationProvider.getApplicationContext(),
+            BufferoosDatabase::class.java
     ).allowMainThreadQueries().build()
     private var entityMapper = BufferooEntityMapper()
     private var preferencesHelper = PreferencesHelper(ApplicationProvider.getApplicationContext())
 
     private val databaseHelper = BufferooCacheImpl(
-        bufferoosDatabase,
-        entityMapper, preferencesHelper
+            bufferoosDatabase,
+            entityMapper, preferencesHelper
     )
 
     @Test
@@ -68,7 +68,7 @@ class BufferooCacheImplTest {
         insertBufferoos(cachedBufferoos)
 
         val testObserver = databaseHelper.getBufferoos().test()
-        //  testObserver.assertValue(bufferooEntities)
+        testObserver.assertValue(bufferooEntities)
     }
     //</editor-fold>
 
