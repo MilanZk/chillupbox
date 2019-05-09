@@ -6,14 +6,32 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 [//]: # (## [X.X.X] - YYYY-MM-DD)
 [//]: # (### Added)
-[//]: # (- Add new things.)
+[//]: # (- Add new features)
 [//]: # (### Changed)
-[//]: # (- Add breaking changes!)
-[//]: # (- Add changes.)
+[//]: # (- Add breaking changes first!)
+[//]: # (- Add changes in existing functionality)
+[//]: # (### Deprecated)
+[//]: # (- Add soon-to-be removed features)
 [//]: # (### Removed)
-[//]: # (- Add deprecated things.)
+[//]: # (- Add now removed features)
 [//]: # (### Fixed)
-[//]: # (- Add fixes.)
+[//]: # (- Add any bug fixes)
+[//]: # (### Security)
+[//]: # (- Add vulnerabilities)
+
+## [X.X.X] - YYYY-MM-DD
+### Added
+- New mock server using Postman.
+
+### Changed
+- Android code style was updated.
+- Project dependencies were updated.
+
+### Removed
+- 
+
+### Fixed
+- 
 
 ## [0.1.0] - 2018-11-28
 ### Added
