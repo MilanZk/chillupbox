@@ -6,7 +6,7 @@ allprojects {
 
 ext {
     // Android
-    androidMinSdkVersion = 19
+    androidMinSdkVersion = 21
     androidTargetSdkVersion = 28
     androidCompileSdkVersion = 28
 
@@ -18,11 +18,11 @@ ext {
     recyclerViewVersion = '1.0.0'
     materialDesignVersion = '1.0.0'
     koinVersion = '1.0.2'
-    rxJavaVersion = '2.2.7'
+    rxJavaVersion = '2.2.8'
     rxAndroidVersion = '2.1.1'
     rxKotlinVersion = '2.3.0'
     gsonVersion = '2.8.5'
-    okHttpVersion = '3.14.0'
+    okHttpVersion = '3.14.1'
     retrofitVersion = '2.5.0'
     lifecycleExtensionsVersion = '2.0.0'
     roomVersion = '2.0.0'
@@ -30,11 +30,12 @@ ext {
     glideVersion = '4.9.0'
 
     // Testing
+    androidCoreTesting = '2.0.1'
     testCoreVersion = '1.1.0'
     androidJUnitVersion = '1.1.0'
     robolectricVersion = '4.2'
     jUnitVersion = '4.12'
-    assertJVersion = '3.11.1'
+    assertJVersion = '3.12.2'
     espressoVersion = '3.1.1'
     mockitoKotlinVersion = '2.1.0'
     mockitoAndroidVersion = '2.25.0'
@@ -121,7 +122,7 @@ ext {
 
     mobileUiTestDependencies = [
             kotlinJUnit    : "org.jetbrains.kotlin:kotlin-test-junit:${kotlin_version}",
-            lifecycleTest  : "androidx.arch.core:core-testing:${lifecycleExtensionsVersion}",
+            lifecycleTest  : "androidx.arch.core:core-testing:${androidCoreTesting}",
             koinTest       : "org.koin:koin-test:${koinVersion}",
             mockitoKotlin  : "com.nhaarman.mockitokotlin2:mockito-kotlin:${mockitoKotlinVersion}",
             junit          : "junit:junit:${jUnitVersion}",
