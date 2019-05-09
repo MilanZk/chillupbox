@@ -1,0 +1,79 @@
+{
+	"info": {
+		"_postman_id": "cb7b2be8-143d-494a-8a77-fdc5d8554879",
+		"name": "Android Template",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "users",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/users",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Default",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json; charset=utf-8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/users",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"team\": [\n    {\n      \"id\": 1,\n      \"name\": \"Michael Jackson\",\n      \"title\": \"King of pop\",\n      \"avatar\": \"https://www.songhall.org/images/made/images/uploads/exhibits/Michael_Jackson_656_656_85_s_c1.jpg\"\n    },\n    {\n      \"id\": 1,\n      \"name\": \"Michael Jackson\",\n      \"title\": \"King of pop\",\n      \"avatar\": \"https://www.songhall.org/images/made/images/uploads/exhibits/Michael_Jackson_656_656_85_s_c1.jpg\"\n    },\n    {\n      \"id\": 1,\n      \"name\": \"Michael Jackson\",\n      \"title\": \"King of pop\",\n      \"avatar\": \"https://www.songhall.org/images/made/images/uploads/exhibits/Michael_Jackson_656_656_85_s_c1.jpg\"\n    },\n    {\n      \"id\": 1,\n      \"name\": \"Michael Jackson\",\n      \"title\": \"King of pop\",\n      \"avatar\": \"https://www.songhall.org/images/made/images/uploads/exhibits/Michael_Jackson_656_656_85_s_c1.jpg\"\n    },\n    {\n      \"id\": 1,\n      \"name\": \"Michael Jackson\",\n      \"title\": \"King of pop\",\n      \"avatar\": \"https://www.songhall.org/images/made/images/uploads/exhibits/Michael_Jackson_656_656_85_s_c1.jpg\"\n    },\n    {\n      \"id\": 1,\n      \"name\": \"Michael Jackson\",\n      \"title\": \"King of pop\",\n      \"avatar\": \"https://www.songhall.org/images/made/images/uploads/exhibits/Michael_Jackson_656_656_85_s_c1.jpg\"\n    },\n    {\n      \"id\": 1,\n      \"name\": \"Michael Jackson\",\n      \"title\": \"King of pop\",\n      \"avatar\": \"https://www.songhall.org/images/made/images/uploads/exhibits/Michael_Jackson_656_656_85_s_c1.jpg\"\n    },\n    {\n      \"id\": 1,\n      \"name\": \"Michael Jackson\",\n      \"title\": \"King of pop\",\n      \"avatar\": \"https://www.songhall.org/images/made/images/uploads/exhibits/Michael_Jackson_656_656_85_s_c1.jpg\"\n    },\n    {\n      \"id\": 1,\n      \"name\": \"Michael Jackson\",\n      \"title\": \"King of pop\",\n      \"avatar\": \"https://www.songhall.org/images/made/images/uploads/exhibits/Michael_Jackson_656_656_85_s_c1.jpg\"\n    },\n    {\n      \"id\": 1,\n      \"name\": \"Michael Jackson\",\n      \"title\": \"King of pop\",\n      \"avatar\": \"https://www.songhall.org/images/made/images/uploads/exhibits/Michael_Jackson_656_656_85_s_c1.jpg\"\n    },\n    {\n      \"id\": 1,\n      \"name\": \"Michael Jackson\",\n      \"title\": \"King of pop\",\n      \"avatar\": \"https://www.songhall.org/images/made/images/uploads/exhibits/Michael_Jackson_656_656_85_s_c1.jpg\"\n    }\n  ]\n}"
+				}
+			]
+		}
+	]
+}

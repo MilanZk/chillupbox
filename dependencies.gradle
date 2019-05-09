@@ -30,7 +30,6 @@ ext {
     glideVersion = '4.9.0'
 
     // Testing
-    androidCoreTesting = '2.0.1'
     testCoreVersion = '1.1.0'
     androidJUnitVersion = '1.1.0'
     robolectricVersion = '4.2'
@@ -122,7 +121,7 @@ ext {
 
     mobileUiTestDependencies = [
             kotlinJUnit    : "org.jetbrains.kotlin:kotlin-test-junit:${kotlin_version}",
-            lifecycleTest  : "androidx.arch.core:core-testing:${androidCoreTesting}",
+            lifecycleTest  : "androidx.arch.core:core-testing:${lifecycleExtensionsVersion}",
             koinTest       : "org.koin:koin-test:${koinVersion}",
             mockitoKotlin  : "com.nhaarman.mockitokotlin2:mockito-kotlin:${mockitoKotlinVersion}",
             junit          : "junit:junit:${jUnitVersion}",

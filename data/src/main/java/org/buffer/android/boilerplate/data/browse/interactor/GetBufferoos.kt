@@ -7,7 +7,7 @@ import org.buffer.android.boilerplate.data.executor.ThreadExecutor
 import org.buffer.android.boilerplate.data.interactor.SingleUseCase
 import org.buffer.android.boilerplate.data.repository.BufferooRepository
 
-class GetBufferoos(
+open class GetBufferoos(
     private val bufferooRepository: BufferooRepository,
     threadExecutor: ThreadExecutor,
     postExecutionThread: PostExecutionThread
