@@ -17,6 +17,7 @@ import org.koin.android.ext.android.inject
 import org.koin.androidx.scope.ext.android.bindScope
 import org.koin.androidx.scope.ext.android.getOrCreateScope
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import timber.log.Timber
 
 class BrowseActivity : AppCompatActivity() {
 
@@ -81,6 +82,7 @@ class BrowseActivity : AppCompatActivity() {
         recycler_browse.visibility = View.GONE
         view_empty.visibility = View.GONE
         view_error.visibility = View.VISIBLE
+        Timber.e(message)
     }
 
     private fun setupViewListeners() {

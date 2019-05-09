@@ -25,7 +25,7 @@ object BufferooServiceFactory {
 
     private fun makeBufferooService(okHttpClient: OkHttpClient, gson: Gson): BufferooService {
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://joe-birch-dsdb.squarespace.com/s/")
+            .baseUrl("https://5178af27-2e3e-481f-ad80-7c5e7703f0ee.mock.pstmn.io")
             .client(okHttpClient)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(gson))
