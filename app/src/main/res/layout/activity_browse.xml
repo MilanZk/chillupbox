@@ -18,13 +18,13 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center" />
 
-    <org.buffer.android.boilerplate.app.widget.empty.EmptyView
+    <com.company.mobile.android.appname.app.widget.empty.EmptyView
         android:id="@+id/view_empty"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone" />
 
-    <org.buffer.android.boilerplate.app.widget.error.ErrorView
+    <com.company.mobile.android.appname.app.widget.error.ErrorView
         android:id="@+id/view_error"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

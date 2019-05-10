@@ -16,7 +16,7 @@ android {
         versionCode globalConfiguration["androidVersionCode"]
         versionName globalConfiguration["androidVersionName"]
 
-        testInstrumentationRunner "org.buffer.android.boilerplate.ui.test.TestRunner"
+        testInstrumentationRunner "com.company.mobile.android.appname.ui.test.TestRunner"
     }
 
     dexOptions {
