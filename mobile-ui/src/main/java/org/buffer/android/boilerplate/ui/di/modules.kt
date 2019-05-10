@@ -1,10 +1,10 @@
 package org.buffer.android.boilerplate.ui.di
 
 import androidx.room.Room
-import org.buffer.android.boilerplate.cache.BufferooCacheImpl
-import org.buffer.android.boilerplate.cache.PreferencesHelper
-import org.buffer.android.boilerplate.cache.db.BufferoosDatabase
-import org.buffer.android.boilerplate.cache.mapper.BufferooEntityMapper
+import org.buffer.android.boilerplate.datasources.cache.BufferooCacheImpl
+import org.buffer.android.boilerplate.datasources.cache.PreferencesHelper
+import org.buffer.android.boilerplate.datasources.cache.db.BufferoosDatabase
+import org.buffer.android.boilerplate.datasources.cache.mapper.BufferooEntityMapper
 import org.buffer.android.boilerplate.data.BufferooDataRepository
 import org.buffer.android.boilerplate.data.browse.interactor.GetBufferoos
 import org.buffer.android.boilerplate.data.executor.JobExecutor
@@ -13,8 +13,8 @@ import org.buffer.android.boilerplate.data.executor.ThreadExecutor
 import org.buffer.android.boilerplate.data.repository.BufferooRepository
 import org.buffer.android.boilerplate.data.source.BufferooDataStore
 import org.buffer.android.boilerplate.data.source.BufferooDataStoreFactory
-import org.buffer.android.boilerplate.remote.BufferooRemoteImpl
-import org.buffer.android.boilerplate.remote.BufferooServiceFactory
+import org.buffer.android.boilerplate.datasources.remote.BufferooRemoteImpl
+import org.buffer.android.boilerplate.datasources.remote.BufferooServiceFactory
 import org.buffer.android.boilerplate.ui.BuildConfig
 import org.buffer.android.boilerplate.ui.UiThread
 import org.buffer.android.boilerplate.ui.browse.BrowseAdapter
@@ -27,7 +27,7 @@ val applicationModule = module(override = true) {
 
     single { PreferencesHelper(androidContext()) }
 
-    factory { org.buffer.android.boilerplate.remote.mapper.BufferooEntityMapper() }
+    factory { org.buffer.android.boilerplate.datasources.remote.mapper.BufferooEntityMapper() }
 
     single { JobExecutor() as ThreadExecutor }
     single { UiThread() as PostExecutionThread }

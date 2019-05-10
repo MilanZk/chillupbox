@@ -55,6 +55,7 @@ dependencies {
 
     implementation project(':data')
 
+    // Cache
     implementation cacheDependencies.kotlin
     implementation cacheDependencies.roomRuntime
     kapt cacheDependencies.roomCompiler
@@ -62,6 +63,14 @@ dependencies {
     implementation cacheDependencies.rxJava
     implementation cacheDependencies.rxKotlin
     implementation cacheDependencies.timber
+
+    // Remote
+    implementation cacheDependencies.retrofit
+    implementation cacheDependencies.retrofitConverter
+    implementation cacheDependencies.retrofitAdapter
+    implementation cacheDependencies.okHttp
+    implementation cacheDependencies.okHttpLogger
+    implementation cacheDependencies.gson
 
     testImplementation cacheTestDependencies.junit
     testImplementation cacheTestDependencies.kotlinJUnit
