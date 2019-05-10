@@ -72,7 +72,7 @@ dependencies {
     def mobileUiTestDependencies = rootProject.ext.mobileUiTestDependencies
 
     implementation project(':data')
-    implementation project(':cache')
+    implementation project(':datasources')
 
     implementation mobileUiDependencies.kotlin
     implementation mobileUiDependencies.koin
