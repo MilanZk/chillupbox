@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [X.X.X] - YYYY-MM-DD
 ### Added
+- App bundle generation files.
 - New mock server using Postman.
 
 ### Changed

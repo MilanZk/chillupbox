@@ -38,6 +38,11 @@ dependencyUpdates.resolutionStrategy {
 apply from: 'dependencies.gradle'
 apply plugin: 'com.github.ben-manes.versions'
 
+def versionMajor = 0
+def versionMinor = 1
+def versionPatch = 0
+def versionBuild = 0 // bump for dogfood builds, public betas, etc.
+
 allprojects {
     repositories {
         google()
@@ -46,7 +51,7 @@ allprojects {
 
     ext {
         androidApplicationId = 'org.buffer.android.boilerplate'
-        androidVersionCode = 3
+        androidVersionCode = versionMajor * 10000 + versionMinor * 1000 + versionPatch * 100 + versionBuild
         androidVersionName = "0.1.0"
     }
 }

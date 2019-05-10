@@ -11,6 +11,11 @@ android {
     defaultConfig {
         minSdkVersion globalConfiguration["androidMinSdkVersion"]
         targetSdkVersion globalConfiguration["androidTargetSdkVersion"]
+
+        applicationId globalConfiguration["androidApplicationId"]
+        versionCode globalConfiguration["androidVersionCode"]
+        versionName globalConfiguration["androidVersionName"]
+
         testInstrumentationRunner "org.buffer.android.boilerplate.ui.test.TestRunner"
     }
 
@@ -35,6 +40,21 @@ android {
         quiet true
         abortOnError false
         ignoreWarnings true
+    }
+
+    signingConfigs {
+        debug {
+            storeFile file('../buildsystem/debug.keystore')
+            storePassword 'android'
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+        }
+        release {
+            keyAlias 'key0'
+            keyPassword '&_ud~/$U2-<E9R8L'
+            storeFile file('../extras/release/firma_hiberus.jks')
+            storePassword '&_ud~/$U2-<E9R8L'
+        }
     }
 }
 
