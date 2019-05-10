@@ -40,6 +40,7 @@ android {
         quiet true
         abortOnError false
         ignoreWarnings true
+        disable 'GoogleAppIndexingWarning'  //For removing warning about deep linking in Manifest, because this app do not use deep links
     }
 
     signingConfigs {
