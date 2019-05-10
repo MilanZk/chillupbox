@@ -2,6 +2,21 @@
 
 ### General
 
+- [ ] Add and example with TypeAdapters?
+- [ ] Add error management with retries.
+- [ ] Add NetViewModel for authentication errors.
+- [ ] Add authentication with login.
+- [ ] Add two independent examples: one with a navigation drawer and another with bottom navigation.
+- [ ] Add a selection screen for choosing navigation template. Add a navigator object.
+- [ ] Add a splash screen.
+- [ ] Move initialization methods in lifecycle methods to a base fragment.
+- [ ] Bring Echeman fixes to this template.
+- [ ] Rename packages and app id to com.company.mobile.android.appname.
+- [ ] Build a shared models package.
+- [ ] Split data package into data and domain.
+- [ ] Rename framework package to dataSources.
+- [ ] Rename mobile-ui to app.
+- [ ] Merge cache and remote packages.
 - [x] Convert remote Java library into Android Java library.
 - [x] Fix use cases implementation.
 - [x] Fix cache behavior.
