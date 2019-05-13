@@ -1,4 +1,4 @@
-package com.company.mobile.android.appname.app.browse
+package com.company.mobile.android.appname.app.bufferoos.master
 
 import android.view.LayoutInflater
 import android.view.View
@@ -9,10 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.company.mobile.android.appname.app.R
-import com.company.mobile.android.appname.app.browse.BrowseAdapter.ViewHolder
-import com.company.mobile.android.model.bufferoo.Bufferoo
+import com.company.mobile.android.appname.app.bufferoos.master.BufferoosAdapter.ViewHolder
+import com.company.mobile.android.appname.model.bufferoo.Bufferoo
 
-class BrowseAdapter : RecyclerView.Adapter<ViewHolder>() {
+class BufferoosAdapter : RecyclerView.Adapter<ViewHolder>() {
 
     var bufferoos: List<Bufferoo> = arrayListOf()
 
@@ -30,7 +30,7 @@ class BrowseAdapter : RecyclerView.Adapter<ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = LayoutInflater
             .from(parent.context)
-            .inflate(R.layout.item_bufferoo, parent, false)
+            .inflate(R.layout.row_bufferoo, parent, false)
         return ViewHolder(itemView)
     }
 
@@ -44,9 +44,9 @@ class BrowseAdapter : RecyclerView.Adapter<ViewHolder>() {
         var titleText: TextView
 
         init {
-            avatarImage = view.findViewById(R.id.image_avatar)
-            nameText = view.findViewById(R.id.text_name)
-            titleText = view.findViewById(R.id.text_title)
+            avatarImage = view.findViewById(R.id.iv_bufferoo_row_avatar_image)
+            nameText = view.findViewById(R.id.tv_bufferoo_visit_row_name)
+            titleText = view.findViewById(R.id.tv_bufferoo_row_title)
         }
     }
 }

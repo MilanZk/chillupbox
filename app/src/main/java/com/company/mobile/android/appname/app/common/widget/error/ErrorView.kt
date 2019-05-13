@@ -1,18 +1,18 @@
-package com.company.mobile.android.appname.app.widget.empty
+package com.company.mobile.android.appname.app.common.widget.error
 
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.RelativeLayout
 import com.company.mobile.android.appname.app.R
-import kotlinx.android.synthetic.main.view_empty.view.button_check_again
+import kotlinx.android.synthetic.main.view_error.view.bt_error_view_retry_button
 
 /**
  * Widget used to display an empty state to the user
  */
-class EmptyView : RelativeLayout {
+class ErrorView : RelativeLayout {
 
-    var emptyListener: EmptyListener? = null
+    var errorListener: ErrorListener? = null
 
     constructor(context: Context) : super(context) {
         init()
@@ -28,7 +28,7 @@ class EmptyView : RelativeLayout {
     }
 
     private fun init() {
-        LayoutInflater.from(context).inflate(R.layout.view_empty, this)
-        button_check_again.setOnClickListener { emptyListener?.onCheckAgainClicked() }
+        LayoutInflater.from(context).inflate(R.layout.view_error, this)
+        bt_error_view_retry_button.setOnClickListener { errorListener?.onTryAgainClicked() }
     }
 }

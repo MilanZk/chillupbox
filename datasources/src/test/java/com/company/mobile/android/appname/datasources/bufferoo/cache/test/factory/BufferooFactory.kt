@@ -1,6 +1,6 @@
 package com.company.mobile.android.appname.datasources.bufferoo.cache.test.factory
 
-import com.company.mobile.android.model.bufferoo.Bufferoo
+import com.company.mobile.android.appname.model.bufferoo.Bufferoo
 import com.company.mobile.android.appname.datasources.bufferoo.cache.model.CachedBufferoo
 import com.company.mobile.android.appname.datasources.bufferoo.cache.test.factory.DataFactory.Factory.randomLong
 import com.company.mobile.android.appname.datasources.bufferoo.cache.test.factory.DataFactory.Factory.randomUuid

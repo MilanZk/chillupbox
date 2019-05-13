@@ -1,4 +1,4 @@
-package com.company.mobile.android.appname.app.browse
+package com.company.mobile.android.appname.app.main
 
 import androidx.recyclerview.widget.RecyclerView
 import androidx.test.espresso.Espresso.onView
@@ -14,7 +14,7 @@ import com.company.mobile.android.appname.app.di.applicationModule
 import com.company.mobile.android.appname.app.di.browseModule
 import com.company.mobile.android.appname.app.test.util.BufferooFactory
 import com.company.mobile.android.appname.app.test.util.RecyclerViewMatcher
-import com.company.mobile.android.model.bufferoo.Bufferoo
+import com.company.mobile.android.appname.model.bufferoo.Bufferoo
 import com.company.mobile.android.appname.domain.bufferoo.repository.BufferooRepository
 import com.nhaarman.mockitokotlin2.whenever
 import io.reactivex.Single
@@ -32,7 +32,7 @@ class BrowseActivityTest : KoinTest {
 
     @Rule
     @JvmField
-    val activity = ActivityTestRule<BrowseActivity>(BrowseActivity::class.java, false, false)
+    val activity = ActivityTestRule<MainActivity>(MainActivity::class.java, false, false)
 
     @Before
     fun setUp() {
@@ -62,7 +62,7 @@ class BrowseActivityTest : KoinTest {
         activity.launchActivity(null)
 
         bufferoos.forEachIndexed { index, bufferoo ->
-            onView(withId(R.id.recycler_browse)).perform(
+            onView(withId(R.id.rv_bufferoos)).perform(
                 RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(index)
             )
             checkBufferooDetailsDisplay(bufferoo, index)
@@ -70,9 +70,9 @@ class BrowseActivityTest : KoinTest {
     }
 
     private fun checkBufferooDetailsDisplay(bufferoo: Bufferoo, position: Int) {
-        onView(RecyclerViewMatcher.withRecyclerView(R.id.recycler_browse).atPosition(position))
+        onView(RecyclerViewMatcher.withRecyclerView(R.id.rv_bufferoos).atPosition(position))
             .check(matches(hasDescendant(withText(bufferoo.name))))
-        onView(RecyclerViewMatcher.withRecyclerView(R.id.recycler_browse).atPosition(position))
+        onView(RecyclerViewMatcher.withRecyclerView(R.id.rv_bufferoos).atPosition(position))
             .check(matches(hasDescendant(withText(bufferoo.title))))
     }
 

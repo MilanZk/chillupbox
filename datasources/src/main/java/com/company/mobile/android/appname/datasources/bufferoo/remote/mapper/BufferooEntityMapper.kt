@@ -1,6 +1,6 @@
 package com.company.mobile.android.appname.datasources.bufferoo.remote.mapper
 
-import com.company.mobile.android.model.bufferoo.Bufferoo
+import com.company.mobile.android.appname.model.bufferoo.Bufferoo
 import com.company.mobile.android.appname.datasources.bufferoo.remote.model.BufferooModel
 
 /**

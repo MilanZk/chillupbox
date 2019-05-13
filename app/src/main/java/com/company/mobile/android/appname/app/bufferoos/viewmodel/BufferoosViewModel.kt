@@ -1,17 +1,17 @@
-package com.company.mobile.android.appname.app.browse
+package com.company.mobile.android.appname.app.bufferoos.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.company.mobile.android.appname.app.browse.BrowseState.Error
-import com.company.mobile.android.appname.app.browse.BrowseState.Loading
-import com.company.mobile.android.appname.app.browse.BrowseState.Success
+import com.company.mobile.android.appname.app.bufferoos.viewmodel.BufferoosState.Error
+import com.company.mobile.android.appname.app.bufferoos.viewmodel.BufferoosState.Loading
+import com.company.mobile.android.appname.app.bufferoos.viewmodel.BufferoosState.Success
 import com.company.mobile.android.appname.domain.bufferoo.interactor.GetBufferoos
 import io.reactivex.disposables.Disposable
 
-class BrowseBufferoosViewModel(val getBufferoos: GetBufferoos) : ViewModel() {
+class BufferoosViewModel(val getBufferoos: GetBufferoos) : ViewModel() {
 
-    private val bufferoosLiveData: MutableLiveData<BrowseState> = MutableLiveData()
+    private val bufferoosLiveData: MutableLiveData<BufferoosState> = MutableLiveData()
     private var disposable: Disposable? = null
 
     override fun onCleared() {
@@ -19,7 +19,7 @@ class BrowseBufferoosViewModel(val getBufferoos: GetBufferoos) : ViewModel() {
         super.onCleared()
     }
 
-    fun getBufferoos(): LiveData<BrowseState> {
+    fun getBufferoos(): LiveData<BufferoosState> {
         return bufferoosLiveData
     }
 

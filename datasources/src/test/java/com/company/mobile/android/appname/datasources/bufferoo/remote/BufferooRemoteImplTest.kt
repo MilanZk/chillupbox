@@ -1,7 +1,7 @@
 package com.company.mobile.android.appname.datasources.bufferoo.remote
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.company.mobile.android.model.bufferoo.Bufferoo
+import com.company.mobile.android.appname.model.bufferoo.Bufferoo
 import com.company.mobile.android.appname.datasources.bufferoo.remote.mapper.BufferooEntityMapper
 import com.company.mobile.android.appname.datasources.bufferoo.remote.test.factory.BufferooFactory
 import com.nhaarman.mockitokotlin2.mock

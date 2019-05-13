@@ -1,6 +1,6 @@
 package com.company.mobile.android.appname.datasources.bufferoo.cache
 
-import com.company.mobile.android.model.bufferoo.Bufferoo
+import com.company.mobile.android.appname.model.bufferoo.Bufferoo
 import com.company.mobile.android.appname.data.bufferoo.source.BufferooDataStore
 import com.company.mobile.android.appname.datasources.bufferoo.cache.db.BufferoosDatabase
 import com.company.mobile.android.appname.datasources.bufferoo.cache.mapper.BufferooEntityMapper

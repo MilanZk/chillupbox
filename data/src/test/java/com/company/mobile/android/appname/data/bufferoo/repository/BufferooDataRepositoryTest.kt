@@ -3,7 +3,7 @@ package com.company.mobile.android.appname.data.bufferoo.repository
 import com.company.mobile.android.appname.data.bufferoo.source.BufferooDataStore
 import com.company.mobile.android.appname.data.bufferoo.source.BufferooDataStoreFactory
 import com.company.mobile.android.appname.data.bufferoo.test.factory.BufferooFactory
-import com.company.mobile.android.model.bufferoo.Bufferoo
+import com.company.mobile.android.appname.model.bufferoo.Bufferoo
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.never

@@ -1,4 +1,4 @@
-package com.company.mobile.android.appname.app.model
+package com.company.mobile.android.appname.app.common.model
 
 class Resource<out T> constructor(val status: ResourceState, val data: T?, val message: String?) {
 
