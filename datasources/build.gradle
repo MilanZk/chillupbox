@@ -1,0 +1,85 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+android {
+    def globalConfiguration = rootProject.extensions.getByName("ext")
+
+    compileSdkVersion globalConfiguration["androidCompileSdkVersion"]
+
+    defaultConfig {
+        minSdkVersion globalConfiguration["androidMinSdkVersion"]
+        targetSdkVersion globalConfiguration["androidTargetSdkVersion"]
+        multiDexEnabled = true
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
+    }
+
+    dexOptions {
+        preDexLibraries = false
+        dexInProcess = false
+        javaMaxHeapSize "4g"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    packagingOptions {
+        exclude 'LICENSE.txt'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/ASL2.0'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+    }
+
+    lintOptions {
+        quiet true
+        abortOnError false
+        ignoreWarnings true
+        disable 'InvalidPackage'            //Some libraries have issues with this.
+        disable 'OldTargetApi'              //Lint gives this warning but SDK 20 would be Android L Beta.
+        disable 'IconDensities'             //For testing purpose. This is safe to remove.
+        disable 'IconMissingDensityFolder'  //For testing purpose. This is safe to remove.
+    }
+}
+
+dependencies {
+    def datasourcesDependencies = rootProject.ext.datasourcesDependencies
+    def datasourcesTestDependencies = rootProject.ext.datasourcesTestDependencies
+
+    implementation project(':data')
+    implementation project(':model')
+
+    // Cache
+    implementation datasourcesDependencies.kotlin
+    implementation datasourcesDependencies.roomRuntime
+    kapt datasourcesDependencies.roomCompiler
+    implementation datasourcesDependencies.roomRxJava
+    implementation datasourcesDependencies.rxJava
+    implementation datasourcesDependencies.rxKotlin
+    implementation datasourcesDependencies.timber
+
+    // Remote
+    implementation datasourcesDependencies.retrofit
+    implementation datasourcesDependencies.retrofitConverter
+    implementation datasourcesDependencies.retrofitAdapter
+    implementation datasourcesDependencies.okHttp
+    implementation datasourcesDependencies.okHttpLogger
+    implementation datasourcesDependencies.gson
+
+    testImplementation datasourcesTestDependencies.junit
+    testImplementation datasourcesTestDependencies.kotlinJUnit
+    testImplementation datasourcesTestDependencies.assertj
+    testImplementation datasourcesTestDependencies.mockitoKotlin
+    testImplementation datasourcesTestDependencies.testCore
+    testImplementation datasourcesTestDependencies.androidJUnit
+    testImplementation datasourcesTestDependencies.androidRunner
+    testImplementation datasourcesTestDependencies.robolectric
+    testImplementation datasourcesTestDependencies.roomTesting
+}

@@ -2,8 +2,8 @@
 
 # Usage function
 usage(){
-	echo "Usage: <aab_filename> <jks_file> <jks_password> <jks_alias>"
-	exit 1
+	echo "Usage: $0 aab_filename [jks_file] [jks_password] [jks_alias]"
+	exit 0
 }
 
 bundleToolFileName="bundletool-all-0.9.0.jar" 

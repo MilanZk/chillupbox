@@ -11,12 +11,12 @@
 - [ ] Add a splash screen.
 - [ ] Move initialization methods in lifecycle methods to a base fragment.
 - [ ] Bring Echeman fixes to this template.
-- [ ] Rename packages and app id to com.company.mobile.android.appname.
-- [ ] Build a shared models package.
-- [ ] Split data package into data and domain.
-- [ ] Rename framework package to dataSources.
-- [ ] Rename mobile-ui to app.
-- [ ] Merge cache and remote packages.
+- [x] Build a shared models package.
+- [x] Split data package into data and domain.
+- [x] Rename packages and app id to com.company.mobile.android.appname.
+- [x] Rename framework package to data sources.
+- [x] Rename mobile-ui to app.
+- [x] Merge cache and remote packages.
 - [x] Convert remote Java library into Android Java library.
 - [x] Fix use cases implementation.
 - [x] Fix cache behavior.

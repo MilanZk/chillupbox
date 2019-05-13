@@ -40,66 +40,6 @@ ext {
     mockitoAndroidVersion = '2.25.0'
     runnerVersion = '1.1.1'
 
-    dataDependencies = [
-            kotlin   : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}",
-            rxJava   : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
-            rxAndroid: "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
-            rxKotlin : "io.reactivex.rxjava2:rxkotlin:${rxKotlinVersion}"
-    ]
-
-    dataTestDependencies = [
-            junit        : "junit:junit:${jUnitVersion}",
-            kotlinJUnit  : "org.jetbrains.kotlin:kotlin-test-junit:${kotlin_version}",
-            mockitoKotlin: "com.nhaarman.mockitokotlin2:mockito-kotlin:${mockitoKotlinVersion}",
-            assertj      : "org.assertj:assertj-core:${assertJVersion}"
-    ]
-
-    cacheDependencies = [
-            kotlin      : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}",
-            roomRuntime : "androidx.room:room-runtime:${roomVersion}",
-            roomCompiler: "androidx.room:room-compiler:${roomVersion}",
-            roomRxJava  : "androidx.room:room-rxjava2:${roomVersion}",
-            rxJava      : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
-            rxKotlin    : "io.reactivex.rxjava2:rxkotlin:${rxKotlinVersion}",
-            timber      : "com.jakewharton.timber:timber:${timberVersion}"
-    ]
-
-    cacheTestDependencies = [
-            junit        : "junit:junit:${jUnitVersion}",
-            kotlinJUnit  : "org.jetbrains.kotlin:kotlin-test-junit:${kotlin_version}",
-            assertj      : "org.assertj:assertj-core:${assertJVersion}",
-            mockitoKotlin: "com.nhaarman.mockitokotlin2:mockito-kotlin:${mockitoKotlinVersion}",
-            testCore     : "androidx.test:core:${testCoreVersion}",
-            androidRunner: "androidx.test:runner:${runnerVersion}",
-            androidJUnit : "androidx.test.ext:junit:${androidJUnitVersion}",
-            robolectric  : "org.robolectric:robolectric:${robolectricVersion}",
-            roomTesting  : "androidx.room:room-testing:${roomVersion}"
-    ]
-
-    remoteDependencies = [
-            kotlin           : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}",
-            retrofit         : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
-            retrofitConverter: "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
-            retrofitAdapter  : "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}",
-            okHttp           : "com.squareup.okhttp3:okhttp:${okHttpVersion}",
-            okHttpLogger     : "com.squareup.okhttp3:logging-interceptor:${okHttpVersion}",
-            gson             : "com.google.code.gson:gson:${gsonVersion}",
-            rxJava           : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
-            rxKotlin         : "io.reactivex.rxjava2:rxkotlin:${rxKotlinVersion}",
-            timber           : "com.jakewharton.timber:timber:${timberVersion}"
-    ]
-
-    remoteTestDependencies = [
-            junit        : "junit:junit:${jUnitVersion}",
-            kotlinJUnit  : "org.jetbrains.kotlin:kotlin-test-junit:${kotlin_version}",
-            mockitoKotlin: "com.nhaarman.mockitokotlin2:mockito-kotlin:${mockitoKotlinVersion}",
-            assertj      : "org.assertj:assertj-core:${assertJVersion}",
-            testCore     : "androidx.test:core:${testCoreVersion}",
-            androidRunner: "androidx.test:runner:${runnerVersion}",
-            androidJUnit : "androidx.test.ext:junit:${androidJUnitVersion}",
-            robolectric  : "org.robolectric:robolectric:${robolectricVersion}"
-    ]
-
     mobileUiDependencies = [
             kotlin              : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}",
             koin                : "org.koin:koin-android:${koinVersion}",
@@ -132,5 +72,61 @@ ext {
             espressoCore   : "androidx.test.espresso:espresso-core:${espressoVersion}",
             espressoIntents: "androidx.test.espresso:espresso-intents:${espressoVersion}",
             espressoContrib: "androidx.test.espresso:espresso-contrib:${espressoVersion}"
+    ]
+
+    domainDependencies = [
+            kotlin   : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}",
+            rxJava   : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+            rxAndroid: "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
+            rxKotlin : "io.reactivex.rxjava2:rxkotlin:${rxKotlinVersion}"
+    ]
+
+    domainTestDependencies = [
+            junit        : "junit:junit:${jUnitVersion}",
+            kotlinJUnit  : "org.jetbrains.kotlin:kotlin-test-junit:${kotlin_version}",
+            mockitoKotlin: "com.nhaarman.mockitokotlin2:mockito-kotlin:${mockitoKotlinVersion}",
+            assertj      : "org.assertj:assertj-core:${assertJVersion}"
+    ]
+
+    dataDependencies = [
+            kotlin   : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}",
+            rxJava   : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+            rxAndroid: "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
+            rxKotlin : "io.reactivex.rxjava2:rxkotlin:${rxKotlinVersion}"
+    ]
+
+    dataTestDependencies = [
+            junit        : "junit:junit:${jUnitVersion}",
+            kotlinJUnit  : "org.jetbrains.kotlin:kotlin-test-junit:${kotlin_version}",
+            mockitoKotlin: "com.nhaarman.mockitokotlin2:mockito-kotlin:${mockitoKotlinVersion}",
+            assertj      : "org.assertj:assertj-core:${assertJVersion}"
+    ]
+
+    datasourcesDependencies = [
+            kotlin           : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}",
+            roomRuntime      : "androidx.room:room-runtime:${roomVersion}",
+            roomCompiler     : "androidx.room:room-compiler:${roomVersion}",
+            roomRxJava       : "androidx.room:room-rxjava2:${roomVersion}",
+            retrofit         : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
+            retrofitConverter: "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
+            retrofitAdapter  : "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}",
+            okHttp           : "com.squareup.okhttp3:okhttp:${okHttpVersion}",
+            okHttpLogger     : "com.squareup.okhttp3:logging-interceptor:${okHttpVersion}",
+            gson             : "com.google.code.gson:gson:${gsonVersion}",
+            rxJava           : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+            rxKotlin         : "io.reactivex.rxjava2:rxkotlin:${rxKotlinVersion}",
+            timber           : "com.jakewharton.timber:timber:${timberVersion}"
+    ]
+
+    datasourcesTestDependencies = [
+            junit        : "junit:junit:${jUnitVersion}",
+            kotlinJUnit  : "org.jetbrains.kotlin:kotlin-test-junit:${kotlin_version}",
+            assertj      : "org.assertj:assertj-core:${assertJVersion}",
+            mockitoKotlin: "com.nhaarman.mockitokotlin2:mockito-kotlin:${mockitoKotlinVersion}",
+            testCore     : "androidx.test:core:${testCoreVersion}",
+            androidRunner: "androidx.test:runner:${runnerVersion}",
+            androidJUnit : "androidx.test.ext:junit:${androidJUnitVersion}",
+            robolectric  : "org.robolectric:robolectric:${robolectricVersion}",
+            roomTesting  : "androidx.room:room-testing:${roomVersion}"
     ]
 }
