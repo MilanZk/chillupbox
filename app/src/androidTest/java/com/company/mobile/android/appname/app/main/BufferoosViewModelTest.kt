@@ -1,9 +1,10 @@
 package com.company.mobile.android.appname.app.main
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.company.mobile.android.appname.app.main.BrowseState.Error
-import com.company.mobile.android.appname.app.main.BrowseState.Loading
-import com.company.mobile.android.appname.app.main.BrowseState.Success
+import com.company.mobile.android.appname.app.bufferoos.viewmodel.BufferoosState.Error
+import com.company.mobile.android.appname.app.bufferoos.viewmodel.BufferoosState.Loading
+import com.company.mobile.android.appname.app.bufferoos.viewmodel.BufferoosState.Success
+import com.company.mobile.android.appname.app.bufferoos.viewmodel.BufferoosViewModel
 import com.company.mobile.android.appname.app.test.util.BufferooFactory
 import com.company.mobile.android.appname.app.test.util.DataFactory
 import com.company.mobile.android.appname.model.bufferoo.Bufferoo
@@ -14,13 +15,13 @@ import com.nhaarman.mockitokotlin2.whenever
 import io.reactivex.Single
 import org.junit.*
 
-class BrowseBufferoosViewModelTest {
+class BufferoosViewModelTest {
 
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
     val mockGetBufferoos = mock<GetBufferoos>()
 
-    private val bufferoosViewModel = BrowseBufferoosViewModel(mockGetBufferoos)
+    private val bufferoosViewModel = BufferoosViewModel(mockGetBufferoos)
 
     //<editor-fold desc="Success">
     @Test

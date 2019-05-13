@@ -4,7 +4,7 @@
     android:layout_height="match_parent">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_browse"
+        android:id="@+id/rv_bufferoos"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
@@ -13,19 +13,19 @@
         android:scrollbars="vertical" />
 
     <ProgressBar
-        android:id="@+id/progress"
+        android:id="@+id/pb_bufferoos_progress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center" />
 
-    <com.company.mobile.android.appname.app.widget.empty.EmptyView
-        android:id="@+id/view_empty"
+    <com.company.mobile.android.appname.app.common.widget.empty.EmptyView
+        android:id="@+id/ev_bufferoos_empty_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone" />
 
-    <com.company.mobile.android.appname.app.widget.error.ErrorView
-        android:id="@+id/view_error"
+    <com.company.mobile.android.appname.app.common.widget.error.ErrorView
+        android:id="@+id/ev_bufferoos_error_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone" />

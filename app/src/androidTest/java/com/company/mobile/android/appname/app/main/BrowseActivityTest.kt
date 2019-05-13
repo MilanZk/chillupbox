@@ -62,7 +62,7 @@ class BrowseActivityTest : KoinTest {
         activity.launchActivity(null)
 
         bufferoos.forEachIndexed { index, bufferoo ->
-            onView(withId(R.id.recycler_browse)).perform(
+            onView(withId(R.id.rv_bufferoos)).perform(
                 RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(index)
             )
             checkBufferooDetailsDisplay(bufferoo, index)
@@ -70,9 +70,9 @@ class BrowseActivityTest : KoinTest {
     }
 
     private fun checkBufferooDetailsDisplay(bufferoo: Bufferoo, position: Int) {
-        onView(RecyclerViewMatcher.withRecyclerView(R.id.recycler_browse).atPosition(position))
+        onView(RecyclerViewMatcher.withRecyclerView(R.id.rv_bufferoos).atPosition(position))
             .check(matches(hasDescendant(withText(bufferoo.name))))
-        onView(RecyclerViewMatcher.withRecyclerView(R.id.recycler_browse).atPosition(position))
+        onView(RecyclerViewMatcher.withRecyclerView(R.id.rv_bufferoos).atPosition(position))
             .check(matches(hasDescendant(withText(bufferoo.title))))
     }
 
