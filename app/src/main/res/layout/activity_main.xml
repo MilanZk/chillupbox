@@ -22,6 +22,22 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/main_drawer_header"
-        app:menu="@menu/main_drawer_menu"/>
+        app:menu="@menu/main_drawer_menu">
 
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom">
+
+            <TextView
+                android:id="@+id/tv_main_drawer_footer_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/main_drawer_footer_spacing"
+                android:layout_marginEnd="@dimen/main_drawer_footer_spacing"
+                android:gravity="end"
+                android:text="@string/drawer_menu_footer_text" />
+        </FrameLayout>
+
+    </com.google.android.material.navigation.NavigationView>
 </androidx.drawerlayout.widget.DrawerLayout>

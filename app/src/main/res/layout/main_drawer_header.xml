@@ -18,7 +18,7 @@
         app:srcCompat="@mipmap/ic_launcher_round" />
 
     <TextView
-        android:id="@+id/tv_main_drawer_header_label"
+        android:id="@+id/tv_main_drawer_header_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/main_drawer_header_vertical_spacing"
