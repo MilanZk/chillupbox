@@ -1,38 +1,38 @@
-package com.company.mobile.android.appname.app.browse
+package com.company.mobile.android.appname.app.main
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.company.mobile.android.appname.model.bufferoo.Bufferoo
 import com.company.mobile.android.appname.app.R
-import com.company.mobile.android.appname.app.browse.BrowseState.Error
-import com.company.mobile.android.appname.app.browse.BrowseState.Loading
-import com.company.mobile.android.appname.app.browse.BrowseState.Success
 import com.company.mobile.android.appname.app.widget.empty.EmptyListener
 import com.company.mobile.android.appname.app.widget.error.ErrorListener
-import com.company.mobile.android.model.bufferoo.Bufferoo
-import kotlinx.android.synthetic.main.activity_browse.progress
-import kotlinx.android.synthetic.main.activity_browse.recycler_browse
-import kotlinx.android.synthetic.main.activity_browse.view_empty
-import kotlinx.android.synthetic.main.activity_browse.view_error
+import kotlinx.android.synthetic.main.fragment_bufferoos.progress
+import kotlinx.android.synthetic.main.fragment_bufferoos.recycler_browse
+import kotlinx.android.synthetic.main.fragment_bufferoos.view_empty
+import kotlinx.android.synthetic.main.fragment_bufferoos.view_error
 import org.koin.android.ext.android.inject
-import org.koin.androidx.scope.ext.android.bindScope
-import org.koin.androidx.scope.ext.android.getOrCreateScope
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import timber.log.Timber
 
-class BrowseActivity : AppCompatActivity() {
-
-    private val SCOPE_NAME = (this::class.java.canonicalName ?: "BrowseActivity") + hashCode()
+class BrowseFragment : Fragment() {
 
     private val browseAdapter: BrowseAdapter by inject()
     val browseBufferoosViewModel: BrowseBufferoosViewModel by viewModel()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_browse)
-        bindScope(getOrCreateScope(SCOPE_NAME))
+    companion object {
+        fun newInstance() = BrowseFragment()
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        return inflater.inflate(R.layout.fragment_bufferoos, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         setupBrowseRecycler()
         setupViewListeners()
@@ -44,16 +44,20 @@ class BrowseActivity : AppCompatActivity() {
         browseBufferoosViewModel.fetchBufferoos()
     }
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+    }
+
     private fun setupBrowseRecycler() {
-        recycler_browse.layoutManager = LinearLayoutManager(this)
+        recycler_browse.layoutManager = LinearLayoutManager(this.context)
         recycler_browse.adapter = browseAdapter
     }
 
     private fun handleDataState(browseState: BrowseState) {
         when (browseState) {
-            is Loading -> setupScreenForLoadingState()
-            is Success -> setupScreenForSuccess(browseState.data)
-            is Error -> setupScreenForError(browseState.errorMessage)
+            is BrowseState.Loading -> setupScreenForLoadingState()
+            is BrowseState.Success -> setupScreenForSuccess(browseState.data)
+            is BrowseState.Error -> setupScreenForError(browseState.errorMessage)
         }
     }
 
@@ -85,7 +89,6 @@ class BrowseActivity : AppCompatActivity() {
         recycler_browse.visibility = View.GONE
         view_empty.visibility = View.GONE
         view_error.visibility = View.VISIBLE
-        Timber.e(message)
     }
 
     private fun setupViewListeners() {

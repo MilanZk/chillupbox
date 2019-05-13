@@ -1,12 +1,12 @@
-package com.company.mobile.android.appname.app.browse
+package com.company.mobile.android.appname.app.main
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.company.mobile.android.appname.app.browse.BrowseState.Error
-import com.company.mobile.android.appname.app.browse.BrowseState.Loading
-import com.company.mobile.android.appname.app.browse.BrowseState.Success
+import com.company.mobile.android.appname.app.main.BrowseState.Error
+import com.company.mobile.android.appname.app.main.BrowseState.Loading
+import com.company.mobile.android.appname.app.main.BrowseState.Success
 import com.company.mobile.android.appname.app.test.util.BufferooFactory
 import com.company.mobile.android.appname.app.test.util.DataFactory
-import com.company.mobile.android.model.bufferoo.Bufferoo
+import com.company.mobile.android.appname.model.bufferoo.Bufferoo
 import com.company.mobile.android.appname.domain.bufferoo.interactor.GetBufferoos
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.mock

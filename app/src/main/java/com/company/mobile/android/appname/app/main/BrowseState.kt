@@ -1,7 +1,7 @@
-package com.company.mobile.android.appname.app.browse
+package com.company.mobile.android.appname.app.main
 
 import com.company.mobile.android.appname.app.model.ResourceState
-import com.company.mobile.android.model.bufferoo.Bufferoo
+import com.company.mobile.android.appname.model.bufferoo.Bufferoo
 
 sealed class BrowseState(
     val resourceState: ResourceState,

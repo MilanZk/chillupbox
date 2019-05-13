@@ -3,8 +3,8 @@ package com.company.mobile.android.appname.app.di
 import androidx.room.Room
 import com.company.mobile.android.appname.app.BuildConfig
 import com.company.mobile.android.appname.app.UiThread
-import com.company.mobile.android.appname.app.browse.BrowseAdapter
-import com.company.mobile.android.appname.app.browse.BrowseBufferoosViewModel
+import com.company.mobile.android.appname.app.main.BrowseAdapter
+import com.company.mobile.android.appname.app.main.BrowseBufferoosViewModel
 import com.company.mobile.android.appname.data.bufferoo.repository.BufferooDataRepository
 import com.company.mobile.android.appname.data.bufferoo.source.BufferooDataStore
 import com.company.mobile.android.appname.data.bufferoo.source.BufferooDataStoreFactory

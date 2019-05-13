@@ -1,11 +1,11 @@
-package com.company.mobile.android.appname.app.browse
+package com.company.mobile.android.appname.app.main
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.company.mobile.android.appname.app.browse.BrowseState.Error
-import com.company.mobile.android.appname.app.browse.BrowseState.Loading
-import com.company.mobile.android.appname.app.browse.BrowseState.Success
+import com.company.mobile.android.appname.app.main.BrowseState.Error
+import com.company.mobile.android.appname.app.main.BrowseState.Loading
+import com.company.mobile.android.appname.app.main.BrowseState.Success
 import com.company.mobile.android.appname.domain.bufferoo.interactor.GetBufferoos
 import io.reactivex.disposables.Disposable
 

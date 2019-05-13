@@ -5,7 +5,7 @@ import com.company.mobile.android.appname.domain.executor.PostExecutionThread
 import com.company.mobile.android.appname.domain.executor.ThreadExecutor
 import com.company.mobile.android.appname.domain.bufferoo.repository.BufferooRepository
 import com.company.mobile.android.appname.domain.test.factory.BufferooFactory
-import com.company.mobile.android.model.bufferoo.Bufferoo
+import com.company.mobile.android.appname.model.bufferoo.Bufferoo
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever

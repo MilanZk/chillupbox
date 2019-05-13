@@ -1,6 +1,6 @@
 package com.company.mobile.android.appname.domain.bufferoo.repository
 
-import com.company.mobile.android.model.bufferoo.Bufferoo
+import com.company.mobile.android.appname.model.bufferoo.Bufferoo
 import io.reactivex.Completable
 import io.reactivex.Single
 

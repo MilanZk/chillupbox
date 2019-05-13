@@ -1,4 +1,4 @@
-package com.company.mobile.android.appname.app.browse
+package com.company.mobile.android.appname.app.main
 
 import android.view.LayoutInflater
 import android.view.View
@@ -9,8 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.company.mobile.android.appname.app.R
-import com.company.mobile.android.appname.app.browse.BrowseAdapter.ViewHolder
-import com.company.mobile.android.model.bufferoo.Bufferoo
+import com.company.mobile.android.appname.app.main.BrowseAdapter.ViewHolder
+import com.company.mobile.android.appname.model.bufferoo.Bufferoo
 
 class BrowseAdapter : RecyclerView.Adapter<ViewHolder>() {
 
