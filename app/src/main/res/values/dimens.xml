@@ -10,4 +10,8 @@
     <dimen name="text_smaller_body">12sp</dimen>
     <dimen name="text_tiny_body">10sp</dimen>
 
+    <!-- Drawer -->
+    <dimen name="main_drawer_header_padding">16dp</dimen>
+    <dimen name="main_drawer_header_vertical_spacing">8dp</dimen>
+
 </resources>

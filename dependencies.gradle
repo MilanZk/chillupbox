@@ -16,8 +16,8 @@ ext {
     annotationVersion = '1.0.2'
     appcompatVersion = '1.0.2'
     recyclerViewVersion = '1.0.0'
-    materialDesignVersion = '1.0.0'
     constraintLayoutVersion = '1.1.3'
+    materialDesignVersion = '1.0.0'
     koinVersion = '1.0.2'
     rxJavaVersion = '2.2.8'
     rxAndroidVersion = '2.1.1'
@@ -49,8 +49,8 @@ ext {
             androidAnnotation   : "androidx.annotation:annotation:${annotationVersion}",
             appcompat           : "androidx.appcompat:appcompat:${appcompatVersion}",
             recyclerView        : "androidx.recyclerview:recyclerview:${recyclerViewVersion}",
-            materialDesign      : "com.google.android.material:material:${materialDesignVersion}",
             constraintLayout    : "androidx.constraintlayout:constraintlayout:${constraintLayoutVersion}",
+            materialDesign      : "com.google.android.material:material:${materialDesignVersion}",
             lifecycleExtensions : "androidx.lifecycle:lifecycle-extensions:${lifecycleExtensionsVersion}",
             lifecycleCommonJava8: "androidx.lifecycle:lifecycle-common-java8:${lifecycleExtensionsVersion}",
             roomRuntime         : "androidx.room:room-runtime:${roomVersion}",
