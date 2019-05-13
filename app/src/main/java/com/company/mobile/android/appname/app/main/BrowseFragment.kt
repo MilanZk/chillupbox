@@ -33,19 +33,48 @@ class BrowseFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        setupBrowseRecycler()
-        setupViewListeners()
-
-        browseBufferoosViewModel.getBufferoos().observe(this,
-            Observer<BrowseState> {
-                if (it != null) this.handleDataState(it)
-            })
-        browseBufferoosViewModel.fetchBufferoos()
+        // At this point, Kotlin extensions are available
+        earlyInitializeViews()
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        initializeState(savedInstanceState)
+        initializeViews()
+        initializeContents()
+    }
+
+    /**
+     * View initialization that does not depend on view models.
+     */
+    private fun earlyInitializeViews() {
+        setupBrowseRecycler()
+        setupViewListeners()
+    }
+
+    /**
+     * Initializes fragment state with [androidx.lifecycle.ViewModel]s and parameters passed through [Bundle].
+     */
+    private fun initializeState(savedInstanceState: Bundle?) {
+    }
+
+    /**
+     * View initialization that depends on view models.
+     */
+    private fun initializeViews() {
+        browseBufferoosViewModel.getBufferoos().observe(this,
+            Observer<BrowseState> {
+                if (it != null) this.handleDataState(it)
+            }
+        )
+    }
+
+    /**
+     * Initializes view contents.
+     */
+    private fun initializeContents() {
+        browseBufferoosViewModel.fetchBufferoos()
     }
 
     private fun setupBrowseRecycler() {
