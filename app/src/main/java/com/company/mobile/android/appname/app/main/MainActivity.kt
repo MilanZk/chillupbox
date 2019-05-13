@@ -10,6 +10,7 @@ import com.company.mobile.android.appname.app.BuildConfig
 import com.company.mobile.android.appname.app.R
 import com.company.mobile.android.appname.app.bufferoos.master.BufferoosFragment
 import com.google.android.material.navigation.NavigationView
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.dl_main_drawer_layout
 import kotlinx.android.synthetic.main.activity_main.nv_main_drawer_navigation_view
 import kotlinx.android.synthetic.main.activity_main.tv_main_drawer_footer_text
@@ -21,6 +22,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private val SCOPE_NAME = (this::class.java.canonicalName ?: "MainActivity") + hashCode()
     private val VERSION_NAME = BuildConfig.VERSION_NAME
+
+    private lateinit var exitSnackBar: Snackbar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,7 +49,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         if (dl_main_drawer_layout.isDrawerOpen(GravityCompat.START)) {
             dl_main_drawer_layout.closeDrawer(GravityCompat.START)
         } else {
-            super.onBackPressed()
+            // IMPORTANT: Back button does not navigate between Navigation Drawer Views.
+            // See: https://material.io/design/components/bottom-navigation.html#behavior
+            if (exitSnackBar.isShown) {
+                finish()
+            } else {
+                exitSnackBar.show()
+            }
         }
     }
 
@@ -94,5 +103,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         dl_main_drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
         tv_main_drawer_footer_text.text = resources.getString(R.string.drawer_menu_footer_text, VERSION_NAME)
+
+        // Initialize exit snack bar
+        exitSnackBar = Snackbar.make(nv_main_drawer_navigation_view, R.string.press_back_again, Snackbar.LENGTH_SHORT)
     }
 }

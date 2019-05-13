@@ -21,6 +21,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [X.X.X] - YYYY-MM-DD
 ### Added
+- Double back button tap is needed to close the app.
+- App version is shown in navigation drawer menu footer.
+- Navigation drawer.
 - App bundle generation files.
 - New mock server using Postman.
 
