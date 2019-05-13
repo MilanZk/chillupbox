@@ -50,35 +50,36 @@ android {
 }
 
 dependencies {
-    def cacheDependencies = rootProject.ext.cacheDependencies
-    def cacheTestDependencies = rootProject.ext.cacheTestDependencies
+    def datasourcesDependencies = rootProject.ext.datasourcesDependencies
+    def datasourcesTestDependencies = rootProject.ext.datasourcesTestDependencies
 
     implementation project(':data')
+    implementation project(':model')
 
     // Cache
-    implementation cacheDependencies.kotlin
-    implementation cacheDependencies.roomRuntime
-    kapt cacheDependencies.roomCompiler
-    implementation cacheDependencies.roomRxJava
-    implementation cacheDependencies.rxJava
-    implementation cacheDependencies.rxKotlin
-    implementation cacheDependencies.timber
+    implementation datasourcesDependencies.kotlin
+    implementation datasourcesDependencies.roomRuntime
+    kapt datasourcesDependencies.roomCompiler
+    implementation datasourcesDependencies.roomRxJava
+    implementation datasourcesDependencies.rxJava
+    implementation datasourcesDependencies.rxKotlin
+    implementation datasourcesDependencies.timber
 
     // Remote
-    implementation cacheDependencies.retrofit
-    implementation cacheDependencies.retrofitConverter
-    implementation cacheDependencies.retrofitAdapter
-    implementation cacheDependencies.okHttp
-    implementation cacheDependencies.okHttpLogger
-    implementation cacheDependencies.gson
+    implementation datasourcesDependencies.retrofit
+    implementation datasourcesDependencies.retrofitConverter
+    implementation datasourcesDependencies.retrofitAdapter
+    implementation datasourcesDependencies.okHttp
+    implementation datasourcesDependencies.okHttpLogger
+    implementation datasourcesDependencies.gson
 
-    testImplementation cacheTestDependencies.junit
-    testImplementation cacheTestDependencies.kotlinJUnit
-    testImplementation cacheTestDependencies.assertj
-    testImplementation cacheTestDependencies.mockitoKotlin
-    testImplementation cacheTestDependencies.testCore
-    testImplementation cacheTestDependencies.androidJUnit
-    testImplementation cacheTestDependencies.androidRunner
-    testImplementation cacheTestDependencies.robolectric
-    testImplementation cacheTestDependencies.roomTesting
+    testImplementation datasourcesTestDependencies.junit
+    testImplementation datasourcesTestDependencies.kotlinJUnit
+    testImplementation datasourcesTestDependencies.assertj
+    testImplementation datasourcesTestDependencies.mockitoKotlin
+    testImplementation datasourcesTestDependencies.testCore
+    testImplementation datasourcesTestDependencies.androidJUnit
+    testImplementation datasourcesTestDependencies.androidRunner
+    testImplementation datasourcesTestDependencies.robolectric
+    testImplementation datasourcesTestDependencies.roomTesting
 }

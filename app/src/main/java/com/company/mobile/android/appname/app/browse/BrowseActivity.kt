@@ -11,7 +11,7 @@ import com.company.mobile.android.appname.app.browse.BrowseState.Loading
 import com.company.mobile.android.appname.app.browse.BrowseState.Success
 import com.company.mobile.android.appname.app.widget.empty.EmptyListener
 import com.company.mobile.android.appname.app.widget.error.ErrorListener
-import com.company.mobile.android.appname.data.browse.Bufferoo
+import com.company.mobile.android.model.bufferoo.Bufferoo
 import kotlinx.android.synthetic.main.activity_browse.progress
 import kotlinx.android.synthetic.main.activity_browse.recycler_browse
 import kotlinx.android.synthetic.main.activity_browse.view_empty

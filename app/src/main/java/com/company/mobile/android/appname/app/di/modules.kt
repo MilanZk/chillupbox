@@ -5,20 +5,20 @@ import com.company.mobile.android.appname.app.BuildConfig
 import com.company.mobile.android.appname.app.UiThread
 import com.company.mobile.android.appname.app.browse.BrowseAdapter
 import com.company.mobile.android.appname.app.browse.BrowseBufferoosViewModel
-import com.company.mobile.android.appname.data.BufferooDataRepository
-import com.company.mobile.android.appname.data.browse.interactor.GetBufferoos
-import com.company.mobile.android.appname.data.executor.JobExecutor
-import com.company.mobile.android.appname.data.executor.PostExecutionThread
-import com.company.mobile.android.appname.data.executor.ThreadExecutor
-import com.company.mobile.android.appname.data.repository.BufferooRepository
-import com.company.mobile.android.appname.data.source.BufferooDataStore
-import com.company.mobile.android.appname.data.source.BufferooDataStoreFactory
-import com.company.mobile.android.appname.datasources.cache.BufferooCacheImpl
-import com.company.mobile.android.appname.datasources.cache.PreferencesHelper
-import com.company.mobile.android.appname.datasources.cache.db.BufferoosDatabase
-import com.company.mobile.android.appname.datasources.cache.mapper.BufferooEntityMapper
-import com.company.mobile.android.appname.datasources.remote.BufferooRemoteImpl
-import com.company.mobile.android.appname.datasources.remote.BufferooServiceFactory
+import com.company.mobile.android.appname.data.bufferoo.repository.BufferooDataRepository
+import com.company.mobile.android.appname.data.bufferoo.source.BufferooDataStore
+import com.company.mobile.android.appname.data.bufferoo.source.BufferooDataStoreFactory
+import com.company.mobile.android.appname.datasources.bufferoo.cache.BufferooCacheImpl
+import com.company.mobile.android.appname.datasources.bufferoo.cache.PreferencesHelper
+import com.company.mobile.android.appname.datasources.bufferoo.cache.db.BufferoosDatabase
+import com.company.mobile.android.appname.datasources.bufferoo.cache.mapper.BufferooEntityMapper
+import com.company.mobile.android.appname.datasources.bufferoo.remote.BufferooRemoteImpl
+import com.company.mobile.android.appname.datasources.bufferoo.remote.BufferooServiceFactory
+import com.company.mobile.android.appname.domain.bufferoo.interactor.GetBufferoos
+import com.company.mobile.android.appname.domain.bufferoo.repository.BufferooRepository
+import com.company.mobile.android.appname.domain.executor.JobExecutor
+import com.company.mobile.android.appname.domain.executor.PostExecutionThread
+import com.company.mobile.android.appname.domain.executor.ThreadExecutor
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.ext.koin.viewModel
 import org.koin.dsl.module.module
@@ -27,7 +27,7 @@ val applicationModule = module(override = true) {
 
     single { PreferencesHelper(androidContext()) }
 
-    factory { com.company.mobile.android.appname.datasources.remote.mapper.BufferooEntityMapper() }
+    factory { com.company.mobile.android.appname.datasources.bufferoo.remote.mapper.BufferooEntityMapper() }
 
     single { JobExecutor() as ThreadExecutor }
     single { UiThread() as PostExecutionThread }

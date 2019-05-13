@@ -10,7 +10,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.company.mobile.android.appname.app.R
 import com.company.mobile.android.appname.app.browse.BrowseAdapter.ViewHolder
-import com.company.mobile.android.appname.data.browse.Bufferoo
+import com.company.mobile.android.model.bufferoo.Bufferoo
 
 class BrowseAdapter : RecyclerView.Adapter<ViewHolder>() {
 

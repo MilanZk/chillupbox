@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.company.mobile.android.appname.app.browse.BrowseState.Error
 import com.company.mobile.android.appname.app.browse.BrowseState.Loading
 import com.company.mobile.android.appname.app.browse.BrowseState.Success
-import com.company.mobile.android.appname.data.browse.interactor.GetBufferoos
+import com.company.mobile.android.appname.domain.bufferoo.interactor.GetBufferoos
 import io.reactivex.disposables.Disposable
 
 class BrowseBufferoosViewModel(val getBufferoos: GetBufferoos) : ViewModel() {

@@ -1,11 +1,14 @@
 apply plugin: 'kotlin'
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceCompatibility = "8"
+targetCompatibility = "8"
 
 dependencies {
     def dataDependencies = rootProject.ext.dataDependencies
     def dataTestDependencies = rootProject.ext.dataTestDependencies
+
+    implementation project(':domain')
+    implementation project(':model')
 
     implementation dataDependencies.kotlin
     implementation dataDependencies.rxJava

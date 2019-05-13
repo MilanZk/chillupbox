@@ -25,6 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - New mock server using Postman.
 
 ### Changed
+- Data module was split into domain and data with a new shared models module.
 - Android code style was updated.
 - Project dependencies were updated.
 

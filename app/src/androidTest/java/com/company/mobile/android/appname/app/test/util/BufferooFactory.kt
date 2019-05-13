@@ -1,6 +1,6 @@
 package com.company.mobile.android.appname.app.test.util
 
-import com.company.mobile.android.appname.data.browse.Bufferoo
+import com.company.mobile.android.model.bufferoo.Bufferoo
 
 /**
  * Factory class for Bufferoo related instances

@@ -16,7 +16,7 @@ android {
         versionCode globalConfiguration["androidVersionCode"]
         versionName globalConfiguration["androidVersionName"]
 
-        testInstrumentationRunner "com.company.mobile.android.appname.ui.test.TestRunner"
+        testInstrumentationRunner "com.company.mobile.android.appname.app.test.TestRunner"
     }
 
     dexOptions {
@@ -71,6 +71,8 @@ dependencies {
     def mobileUiDependencies = rootProject.ext.mobileUiDependencies
     def mobileUiTestDependencies = rootProject.ext.mobileUiTestDependencies
 
+    implementation project(':model')
+    implementation project(':domain')
     implementation project(':data')
     implementation project(':datasources')
 

@@ -14,8 +14,8 @@ import com.company.mobile.android.appname.app.di.applicationModule
 import com.company.mobile.android.appname.app.di.browseModule
 import com.company.mobile.android.appname.app.test.util.BufferooFactory
 import com.company.mobile.android.appname.app.test.util.RecyclerViewMatcher
-import com.company.mobile.android.appname.data.browse.Bufferoo
-import com.company.mobile.android.appname.data.repository.BufferooRepository
+import com.company.mobile.android.model.bufferoo.Bufferoo
+import com.company.mobile.android.appname.domain.bufferoo.repository.BufferooRepository
 import com.nhaarman.mockitokotlin2.whenever
 import io.reactivex.Single
 import org.junit.*

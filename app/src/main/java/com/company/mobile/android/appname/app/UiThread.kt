@@ -1,6 +1,6 @@
 package com.company.mobile.android.appname.app
 
-import com.company.mobile.android.appname.data.executor.PostExecutionThread
+import com.company.mobile.android.appname.domain.executor.PostExecutionThread
 import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
 
