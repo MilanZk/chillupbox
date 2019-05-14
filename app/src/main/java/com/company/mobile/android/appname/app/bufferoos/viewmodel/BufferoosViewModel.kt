@@ -3,14 +3,14 @@ package com.company.mobile.android.appname.app.bufferoos.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.company.mobile.android.appname.app.bufferoos.master.BufferoosNavigationCommand
+import com.company.mobile.android.appname.app.bufferoos.master.BufferoosNavigationCommand.GoToDetailsView
 import com.company.mobile.android.appname.app.bufferoos.viewmodel.BufferoosState.Error
 import com.company.mobile.android.appname.app.bufferoos.viewmodel.BufferoosState.Loading
 import com.company.mobile.android.appname.app.bufferoos.viewmodel.BufferoosState.Success
+import com.company.mobile.android.appname.app.common.viewmodel.SingleLiveEvent
 import com.company.mobile.android.appname.domain.bufferoo.interactor.GetBufferoos
 import com.company.mobile.android.appname.model.bufferoo.Bufferoo
-import com.company.mobile.android.appname.app.common.viewmodel.SingleLiveEvent
-import com.company.mobile.android.appname.app.bufferoos.master.BufferoosNavigationCommand
-import com.company.mobile.android.appname.app.bufferoos.master.BufferoosNavigationCommand.GoToDetailsView
 import io.reactivex.disposables.Disposable
 
 class BufferoosViewModel(val getBufferoos: GetBufferoos) : ViewModel() {
@@ -30,6 +30,10 @@ class BufferoosViewModel(val getBufferoos: GetBufferoos) : ViewModel() {
         return bufferoosLiveData
     }
 
+    fun getSelectedBufferoo(): LiveData<Bufferoo> {
+        return selectedBufferooLiveData
+    }
+
     fun select(position: Int) {
         // Store selected item for details view
         selectedBufferooLiveData.value = bufferoos[position]
@@ -47,5 +51,4 @@ class BufferoosViewModel(val getBufferoos: GetBufferoos) : ViewModel() {
                 bufferoosLiveData.postValue(Error(it.message))
             })
     }
-
 }

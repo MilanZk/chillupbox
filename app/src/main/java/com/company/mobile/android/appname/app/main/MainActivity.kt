@@ -164,7 +164,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         // item is selected in the future.
         mainActivityViewModel.currentSectionFragmentTag = sectionTag
         // Push initial fragment for this section. Any new fragment pushed by this section
-        // will be added to the backstack, and all of them will be removed when changing
+        // will be added to the back stack, and all of them will be removed when changing
         // section with clearBackStackInclusive() function.
         pushSectionFragment(mainActivityViewModel.currentSectionFragmentTag, sectionFragment, sectionTitleStringId)
     }

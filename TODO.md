@@ -11,7 +11,7 @@
 - [ ] Add a splash screen.
 - [ ] Move initialization methods in lifecycle methods to a base fragment.
 - [ ] Bring Echeman fixes to this template.
-- [ ] Add detail view and implement navigation.
+- [x] Add detail view and implement navigation.
 - [x] Add fragment switching.
 - [x] Use double back to quit app.
 - [x] Add navigation drawer.
