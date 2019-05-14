@@ -107,11 +107,17 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
     private fun initializeContents(savedInstanceState: Bundle?) {
         if (savedInstanceState == null) {
+            // First time initialization
             mainActivityViewModel.currentSectionFragmentTag = BufferoosFragment.TAG
             val menuItem = nv_main_drawer_navigation_view.menu.getItem(0)
             mainActivityViewModel.currentMenuItemId = menuItem.itemId
             menuItem.isChecked = true
             pushSectionFragment(mainActivityViewModel.currentSectionFragmentTag, BufferoosFragment.newInstance(), R.string.drawer_menu_bufferoos)
+        } else {
+            // After recreation (rotation)
+            nv_main_drawer_navigation_view.menu.findItem(mainActivityViewModel.currentMenuItemId)?.let {
+                it.isChecked = true
+            }
         }
 
         bufferoosViewModel.bufferoosNavigationEvent.observe(this, Observer { command ->
