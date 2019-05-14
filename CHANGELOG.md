@@ -21,11 +21,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [X.X.X] - YYYY-MM-DD
 ### Added
+- Section fragment switching was added.
 - Double back button tap is needed to close the app.
 - App version is shown in navigation drawer menu footer.
-- Navigation drawer.
-- App bundle generation files.
-- New mock server using Postman.
+- Navigation drawer was implemented.
+- App bundle generation files were included.
+- New mock server using Postman was created.
 
 ### Changed
 - Data module was split into domain and data with a new shared models module.

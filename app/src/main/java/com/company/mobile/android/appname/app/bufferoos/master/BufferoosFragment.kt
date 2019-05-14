@@ -14,6 +14,7 @@ import com.company.mobile.android.appname.app.bufferoos.viewmodel.BufferoosState
 import com.company.mobile.android.appname.app.bufferoos.viewmodel.BufferoosState.Loading
 import com.company.mobile.android.appname.app.bufferoos.viewmodel.BufferoosState.Success
 import com.company.mobile.android.appname.app.bufferoos.viewmodel.BufferoosViewModel
+import com.company.mobile.android.appname.app.common.BaseFragment
 import com.company.mobile.android.appname.app.common.widget.empty.EmptyListener
 import com.company.mobile.android.appname.app.common.widget.error.ErrorListener
 import kotlinx.android.synthetic.main.fragment_bufferoos.ev_bufferoos_empty_view
@@ -23,12 +24,13 @@ import kotlinx.android.synthetic.main.fragment_bufferoos.rv_bufferoos
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class BufferoosFragment : Fragment() {
+class BufferoosFragment : BaseFragment() {
 
     private val bufferoosAdapter: BufferoosAdapter by inject()
     val bufferoosViewModel: BufferoosViewModel by viewModel()
 
     companion object {
+        val TAG = BufferoosFragment::class.java.canonicalName
         fun newInstance() = BufferoosFragment()
     }
 
