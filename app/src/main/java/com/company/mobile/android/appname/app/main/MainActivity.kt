@@ -19,13 +19,14 @@ import kotlinx.android.synthetic.main.activity_main.tv_main_drawer_footer_text
 import kotlinx.android.synthetic.main.main_app_bar.tb_main_toolbar
 import org.koin.androidx.scope.ext.android.bindScope
 import org.koin.androidx.scope.ext.android.getOrCreateScope
+import kotlin.properties.Delegates
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private val SCOPE_NAME = (this::class.java.canonicalName ?: "MainActivity") + hashCode()
     private val VERSION_NAME = BuildConfig.VERSION_NAME
     private lateinit var currentTagFlag: String
-    private var currentMenuItemId: Int = 0
+    private var currentMenuItemId: Int by Delegates.notNull()
 
     private lateinit var exitSnackBar: Snackbar
 
