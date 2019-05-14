@@ -55,8 +55,8 @@ class BufferoosFragment : BaseFragment() {
         super.onActivityCreated(savedInstanceState)
 
         initializeState(savedInstanceState)
-        initializeViews()
-        initializeContents()
+        initializeViews(savedInstanceState)
+        initializeContents(savedInstanceState)
     }
 
     /**
@@ -76,13 +76,13 @@ class BufferoosFragment : BaseFragment() {
     /**
      * View initialization that depends on view models.
      */
-    private fun initializeViews() {
+    private fun initializeViews(savedInstanceState: Bundle?) {
     }
 
     /**
      * Initializes view contents.
      */
-    private fun initializeContents() {
+    private fun initializeContents(savedInstanceState: Bundle?) {
         // Link the fragment and the model view with "viewLifecycleOwner", so that observers
         // can be subscribed in onActivityCreated() and can be automatically unsubscribed
         // in onDestroyView().
@@ -94,7 +94,11 @@ class BufferoosFragment : BaseFragment() {
             }
         )
 
-        bufferoosViewModel.fetchBufferoos()
+        // Check if the view model has data
+        if (bufferoosViewModel.getBufferoos().value == null) {
+            // Fetch data only if the view model doesn't have data
+            bufferoosViewModel.fetchBufferoos()
+        }
     }
 
     private fun setupBrowseRecycler() {
