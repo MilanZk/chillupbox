@@ -6,7 +6,7 @@
         android:id="@+id/main_drawer_menu"
         android:checkableBehavior="none">
         <item
-            android:id="@+id/main_drawer_menu_maintenance_visits"
+            android:id="@+id/main_drawer_menu_bufferoos"
             android:icon="@drawable/ic_bufferoo"
             android:title="@string/drawer_menu_bufferoos" />
         <item

@@ -5,16 +5,26 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.NonNull
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.company.mobile.android.appname.app.R
 import com.company.mobile.android.appname.app.bufferoos.master.BufferoosAdapter.ViewHolder
 import com.company.mobile.android.appname.model.bufferoo.Bufferoo
+import com.company.mobile.android.appname.app.common.view.OnSingleClickListener
+import java.lang.ref.WeakReference
 
 class BufferoosAdapter : RecyclerView.Adapter<ViewHolder>() {
 
+
+    interface BufferoosAdapterListener {
+
+        fun onItemClicked(position: Int)
+    }
+
     var bufferoos: List<Bufferoo> = arrayListOf()
+    private var bufferosAdapterListenerWeakReference: WeakReference<BufferoosAdapterListener>? = null
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val bufferoo = bufferoos[position]
@@ -25,6 +35,15 @@ class BufferoosAdapter : RecyclerView.Adapter<ViewHolder>() {
             .load(bufferoo.avatar)
             .apply(RequestOptions.circleCropTransform())
             .into(holder.avatarImage)
+
+        // On click listener
+        holder.itemView.setOnClickListener(
+            OnSingleClickListener.wrap(View.OnClickListener {
+                this@BufferoosAdapter.bufferosAdapterListenerWeakReference?.get()?.let { bufferoosAdapterListener ->
+                    bufferoosAdapterListener.onItemClicked(position)
+                }
+            })
+        )
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -38,6 +57,10 @@ class BufferoosAdapter : RecyclerView.Adapter<ViewHolder>() {
         return bufferoos.size
     }
 
+    fun setBufferoosAdapterListener(@NonNull bufferoosAdapterListener: BufferoosAdapterListener) {
+        this.bufferosAdapterListenerWeakReference = WeakReference(bufferoosAdapterListener)
+    }
+
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var avatarImage: ImageView
         var nameText: TextView
@@ -45,7 +68,7 @@ class BufferoosAdapter : RecyclerView.Adapter<ViewHolder>() {
 
         init {
             avatarImage = view.findViewById(R.id.iv_bufferoo_row_avatar_image)
-            nameText = view.findViewById(R.id.tv_bufferoo_visit_row_name)
+            nameText = view.findViewById(R.id.tv_bufferoo_row_name)
             titleText = view.findViewById(R.id.tv_bufferoo_row_title)
         }
     }
