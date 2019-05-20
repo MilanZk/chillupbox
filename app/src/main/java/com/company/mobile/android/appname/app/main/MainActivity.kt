@@ -2,11 +2,13 @@ package com.company.mobile.android.appname.app.main
 
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import androidx.annotation.NonNull
 import androidx.annotation.StringRes
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
 import com.company.mobile.android.appname.app.BuildConfig
 import com.company.mobile.android.appname.app.R
@@ -34,8 +36,9 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
     private val mainActivityViewModel: MainActivityViewModel by viewModel()
     private val bufferoosViewModel: BufferoosViewModel by viewModel()
-
     private lateinit var exitSnackBar: Snackbar
+    private lateinit var drawerToggle: ActionBarDrawerToggle
+    private var toolBarNavigationListenerIsRegistered = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,7 +53,11 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {
-                dl_main_drawer_layout.openDrawer(GravityCompat.START)
+                if (drawerToggle.isDrawerIndicatorEnabled) {
+                    dl_main_drawer_layout.openDrawer(GravityCompat.START)
+                } else {
+                    onBackPressed()
+                }
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -61,10 +68,18 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         if (dl_main_drawer_layout.isDrawerOpen(GravityCompat.START)) {
             dl_main_drawer_layout.closeDrawer(GravityCompat.START)
         } else {
-            val fragmentManager = supportFragmentManager
-            if (fragmentManager.backStackEntryCount > 1) {
+            if (supportFragmentManager.backStackEntryCount > 1) {
+                // Update home button here before popping back stack, because back stack pop operation is asynchronous
+                // and it is not possible to accurately know (race condition) the actual number of fragments just after
+                // calling popBackStack().
+                // If back stack size is 2, show back button is false because a fragment will be popped.
+                // If back stack size is greater than 2, show back button must be true.
+                val showBackButton = supportFragmentManager.backStackEntryCount > 2
                 // Pop fragments while more than one remains in the stack
-                fragmentManager.popBackStack()
+                supportFragmentManager.popBackStack()
+                // Update home icon now, because if it is updated before popBackStack(), the hamburger icon is shown
+                // before popping the fragment.
+                updateToolBarHomeIcon(showBackButton)
             } else {
                 // IMPORTANT: Back button does not navigate between Navigation Drawer Views.
                 // See: https://material.io/design/components/bottom-navigation.html#behavior
@@ -74,6 +89,56 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                     exitSnackBar.show()
                 }
             }
+        }
+    }
+
+    private fun updateToolBarHomeIcon(showBackButton: Boolean) {
+        // See: https://stackoverflow.com/a/36677279/5189200
+        // To keep states of ActionBar and ActionBarDrawerToggle synchronized, when one is enabled, the other must be
+        // disabled.
+        // And as you may notice, the order for this operation is first disable, then enable - VERY VERY IMPORTANT.
+        val actionbar: ActionBar? = supportActionBar
+        actionbar?.let { actionBar ->
+            if (showBackButton) {
+                // You may not want to open the drawer on swipe from the left in this case
+                dl_main_drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+                // Remove hamburger
+                drawerToggle.isDrawerIndicatorEnabled = false
+                // Show back button
+                actionBar.setDisplayHomeAsUpEnabled(true)
+                actionBar.setHomeAsUpIndicator(0) // According to documentation, a resource id of 0 sets the default theme icon for back button
+                // When DrawerToggle is disabled i.e. setDrawerIndicatorEnabled(false), navigation icon
+                // clicks are disabled i.e. the UP button will not work.
+                // We need to add a listener, as in below, so DrawerToggle will forward
+                // click events to this listener.
+                if (!toolBarNavigationListenerIsRegistered) {
+                    drawerToggle.toolbarNavigationClickListener = View.OnClickListener {
+                        // Doesn't have to be onBackPressed
+                        onBackPressed()
+                    }
+
+                    toolBarNavigationListenerIsRegistered = true
+                }
+            } else {
+                // You must regain the power of swipe for the drawer.
+                dl_main_drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
+
+                // Remove back button
+                actionBar.setDisplayHomeAsUpEnabled(true)
+                //actionBar!!.setHomeAsUpIndicator(R.drawable.ic_menu) // Do NOT uncomment or this solution will not work!!!
+                // Show hamburger
+                drawerToggle.isDrawerIndicatorEnabled = true
+                // Remove the/any drawer toggle listener
+                drawerToggle.toolbarNavigationClickListener = null
+                toolBarNavigationListenerIsRegistered = false
+            }
+
+            // So, one may think "Hmm why not simplify to:
+            // .....
+            // supportActionBar!!.setDisplayHomeAsUpEnabled(showBackButton);
+            // drawerToggle.isDrawerIndicatorEnabled = !showBackButton;
+            // ......
+            // To re-iterate, the order in which you enable and disable views IS important #dontSimplify.
         }
     }
 
@@ -126,6 +191,8 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                     pushSectionFragment(BufferooDetailsFragment.TAG, BufferooDetailsFragment.newInstance(), R.string.bufferoo_details_title)
                 }
             }
+            // After pushing a fragment, show back button must be true
+            updateToolBarHomeIcon(true)
         })
     }
 
@@ -143,9 +210,16 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
         // Initialize navigation drawer
         nv_main_drawer_navigation_view.setNavigationItemSelectedListener(this)
-        val toggle = ActionBarDrawerToggle(this, dl_main_drawer_layout, tb_main_toolbar, R.string.drawer_menu_open, R.string.drawer_menu_close)
-        dl_main_drawer_layout.addDrawerListener(toggle)
-        toggle.syncState()
+        // Initialize ActionBarDrawerToggle, which will control toggle of hamburger
+        drawerToggle = ActionBarDrawerToggle(this, dl_main_drawer_layout, tb_main_toolbar, R.string.drawer_menu_open, R.string.drawer_menu_close)
+        // Setting the actionbarToggle to drawer layout
+        dl_main_drawer_layout.addDrawerListener(drawerToggle)
+        // Calling sync state is necessary to show your hamburger icon
+        drawerToggle.syncState()
+
+        // Update the icon according to the back stack size, this is a must when recreating the activity (rotation)
+        updateToolBarHomeIcon(supportFragmentManager.backStackEntryCount > 1)
+
         tv_main_drawer_footer_text.text = resources.getString(R.string.drawer_menu_footer_text, VERSION_NAME)
 
         // Initialize exit snack bar
@@ -170,7 +244,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     }
 
     private fun pushSectionFragment(sectionTag: String, sectionFragment: BaseFragment, @StringRes sectionTitleStringId: Int) {
-        // Push a fragment for current section that will be added to the backstack
+        // Push a fragment for current section that will be added to the back stack
         pushFragment(R.id.fl_main_content, sectionFragment, mainActivityViewModel.currentSectionFragmentTag)
         // Update toolbar title
         setTitle(getString(sectionTitleStringId))
