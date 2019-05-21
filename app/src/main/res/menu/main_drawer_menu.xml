@@ -10,9 +10,9 @@
             android:icon="@drawable/ic_bufferoo"
             android:title="@string/drawer_menu_bufferoos" />
         <item
-            android:id="@+id/main_drawer_menu_search"
-            android:icon="@drawable/ic_search"
-            android:title="@string/drawer_menu_search" />
+            android:id="@+id/main_drawer_menu_about"
+            android:icon="@drawable/ic_about"
+            android:title="@string/drawer_menu_about" />
         <item
             android:id="@+id/main_drawer_menu_sign_out"
             android:icon="@drawable/ic_sign_out"

@@ -1,4 +1,4 @@
-package com.company.mobile.android.appname.app.search
+package com.company.mobile.android.appname.app.about
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,19 +6,19 @@ import android.view.View
 import android.view.ViewGroup
 import com.company.mobile.android.appname.app.R
 import com.company.mobile.android.appname.app.common.BaseFragment
-import kotlinx.android.synthetic.main.fragment_search.ev_search_empty_view
-import kotlinx.android.synthetic.main.fragment_search.ev_search_error_view
-import kotlinx.android.synthetic.main.fragment_search.pb_search_progress
+import kotlinx.android.synthetic.main.fragment_about.ev_about_empty_view
+import kotlinx.android.synthetic.main.fragment_about.ev_about_error_view
+import kotlinx.android.synthetic.main.fragment_about.pb_about_progress
 
-class SearchFragment : BaseFragment() {
+class AboutFragment : BaseFragment() {
 
     companion object {
-        val TAG = SearchFragment::class.java.canonicalName
-        fun newInstance() = SearchFragment()
+        val TAG = AboutFragment::class.java.canonicalName
+        fun newInstance() = AboutFragment()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        return inflater.inflate(R.layout.fragment_search, container, false)
+        return inflater.inflate(R.layout.fragment_about, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -38,7 +38,7 @@ class SearchFragment : BaseFragment() {
     override fun onResume() {
         super.onResume()
 
-        activity?.setTitle(R.string.bufferoo_search_title)
+        activity?.setTitle(R.string.bufferoo_about_title)
     }
 
     /**
@@ -63,8 +63,8 @@ class SearchFragment : BaseFragment() {
      * Initializes view contents.
      */
     private fun initializeContents() {
-        ev_search_error_view.visibility = View.GONE
-        ev_search_empty_view.visibility = View.GONE
-        pb_search_progress.visibility = View.GONE
+        ev_about_error_view.visibility = View.GONE
+        ev_about_empty_view.visibility = View.GONE
+        pb_about_progress.visibility = View.GONE
     }
 }

@@ -3,7 +3,6 @@ package com.company.mobile.android.appname.app.main
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
-import androidx.annotation.NonNull
 import androidx.annotation.StringRes
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -18,7 +17,7 @@ import com.company.mobile.android.appname.app.bufferoos.master.BufferoosNavigati
 import com.company.mobile.android.appname.app.bufferoos.viewmodel.BufferoosViewModel
 import com.company.mobile.android.appname.app.common.BaseActivity
 import com.company.mobile.android.appname.app.common.BaseFragment
-import com.company.mobile.android.appname.app.search.SearchFragment
+import com.company.mobile.android.appname.app.about.AboutFragment
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.dl_main_drawer_layout
@@ -157,8 +156,8 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                 R.id.main_drawer_menu_bufferoos -> {
                     changeSection(BufferoosFragment.TAG, BufferoosFragment.newInstance(), R.string.drawer_menu_bufferoos)
                 }
-                R.id.main_drawer_menu_search -> {
-                    changeSection(SearchFragment.TAG, SearchFragment.newInstance(), R.string.drawer_menu_search)
+                R.id.main_drawer_menu_about -> {
+                    changeSection(AboutFragment.TAG, AboutFragment.newInstance(), R.string.drawer_menu_about)
                 }
                 R.id.main_drawer_menu_sign_out -> {
                     finish()
