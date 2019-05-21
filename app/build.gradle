@@ -83,8 +83,8 @@ dependencies {
     implementation mobileUiDependencies.androidAnnotation
     implementation mobileUiDependencies.appcompat
     implementation mobileUiDependencies.recyclerView
-    implementation mobileUiDependencies.materialDesign
     implementation mobileUiDependencies.constraintLayout
+    implementation mobileUiDependencies.materialDesign
     implementation mobileUiDependencies.lifecycleExtensions
     implementation mobileUiDependencies.lifecycleCommonJava8
     implementation mobileUiDependencies.roomRuntime

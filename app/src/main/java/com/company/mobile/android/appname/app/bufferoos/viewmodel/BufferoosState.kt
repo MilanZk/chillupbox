@@ -15,7 +15,7 @@ sealed class BufferoosState(
     )
 
     data class Error(private val message: String? = null) : BufferoosState(
-        ResourceState.SUCCESS,
+        ResourceState.ERROR,
         errorMessage = message
     )
 

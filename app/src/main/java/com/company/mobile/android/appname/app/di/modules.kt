@@ -19,10 +19,19 @@ import com.company.mobile.android.appname.domain.bufferoo.repository.BufferooRep
 import com.company.mobile.android.appname.domain.executor.JobExecutor
 import com.company.mobile.android.appname.domain.executor.PostExecutionThread
 import com.company.mobile.android.appname.domain.executor.ThreadExecutor
+import com.company.mobile.android.appname.app.main.MainActivityViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.ext.koin.viewModel
 import org.koin.dsl.module.module
 
+/**
+ * This file is where all Koin modules are defined.
+ *
+ * [The original template](https://github.com/bufferapp/clean-architecture-koin-boilerplate) was a
+ * port of a [Dagger template](https://github.com/bufferapp/android-clean-architecture-boilerplate),
+ * and the explanation of the dependency injection porting was explained in this
+ * [post](https://overflow.buffer.com/2018/09/13/a-brief-look-at-koin-on-android/).
+ */
 val applicationModule = module(override = true) {
 
     single { PreferencesHelper(androidContext()) }
@@ -51,7 +60,11 @@ val applicationModule = module(override = true) {
     factory<BufferooRepository> { BufferooDataRepository(get()) }
 }
 
-val browseModule = module("Browse", override = true) {
+val mainModule = module("Main", override = true) {
+    viewModel { MainActivityViewModel() }
+}
+
+val bufferoosModule = module("Bufferoos", override = true) {
     factory { BufferoosAdapter() }
     factory { GetBufferoos(get(), get(), get()) }
     viewModel { BufferoosViewModel(get()) }

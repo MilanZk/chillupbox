@@ -4,16 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.company.mobile.android.appname.model.bufferoo.Bufferoo
 import com.company.mobile.android.appname.app.R
+import com.company.mobile.android.appname.app.bufferoos.master.BufferoosAdapter.BufferoosAdapterListener
 import com.company.mobile.android.appname.app.bufferoos.viewmodel.BufferoosState
 import com.company.mobile.android.appname.app.bufferoos.viewmodel.BufferoosState.Error
 import com.company.mobile.android.appname.app.bufferoos.viewmodel.BufferoosState.Loading
 import com.company.mobile.android.appname.app.bufferoos.viewmodel.BufferoosState.Success
 import com.company.mobile.android.appname.app.bufferoos.viewmodel.BufferoosViewModel
+import com.company.mobile.android.appname.app.common.BaseFragment
 import com.company.mobile.android.appname.app.common.widget.empty.EmptyListener
 import com.company.mobile.android.appname.app.common.widget.error.ErrorListener
 import kotlinx.android.synthetic.main.fragment_bufferoos.ev_bufferoos_empty_view
@@ -21,14 +22,22 @@ import kotlinx.android.synthetic.main.fragment_bufferoos.ev_bufferoos_error_view
 import kotlinx.android.synthetic.main.fragment_bufferoos.pb_bufferoos_progress
 import kotlinx.android.synthetic.main.fragment_bufferoos.rv_bufferoos
 import org.koin.android.ext.android.inject
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import timber.log.Timber
 
-class BufferoosFragment : Fragment() {
+class BufferoosFragment : BaseFragment() {
 
     private val bufferoosAdapter: BufferoosAdapter by inject()
-    val bufferoosViewModel: BufferoosViewModel by viewModel()
+    private val bufferoosViewModel: BufferoosViewModel by sharedViewModel()
+    private val adapterListener = object : BufferoosAdapterListener {
+        override fun onItemClicked(position: Int) {
+            Timber.d("Selected position $position")
+            bufferoosViewModel.select(position)
+        }
+    }
 
     companion object {
+        val TAG = BufferoosFragment::class.java.canonicalName
         fun newInstance() = BufferoosFragment()
     }
 
@@ -46,8 +55,8 @@ class BufferoosFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         initializeState(savedInstanceState)
-        initializeViews()
-        initializeContents()
+        initializeViews(savedInstanceState)
+        initializeContents(savedInstanceState)
     }
 
     /**
@@ -67,23 +76,35 @@ class BufferoosFragment : Fragment() {
     /**
      * View initialization that depends on view models.
      */
-    private fun initializeViews() {
-        bufferoosViewModel.getBufferoos().observe(this,
-            Observer<BufferoosState> {
-                if (it != null) this.handleDataState(it)
-            }
-        )
+    private fun initializeViews(savedInstanceState: Bundle?) {
     }
 
     /**
      * Initializes view contents.
      */
-    private fun initializeContents() {
-        bufferoosViewModel.fetchBufferoos()
+    private fun initializeContents(savedInstanceState: Bundle?) {
+        // Link the fragment and the model view with "viewLifecycleOwner", so that observers
+        // can be subscribed in onActivityCreated() and can be automatically unsubscribed
+        // in onDestroyView().
+        // IMPORTANT: Never use "this" as lifecycle owner.
+        // See: https://medium.com/@BladeCoder/architecture-components-pitfalls-part-1-9300dd969808
+        bufferoosViewModel.getBufferoos().observe(viewLifecycleOwner,
+            Observer<BufferoosState> {
+                if (it != null) this.handleDataState(it)
+            }
+        )
+
+        // Check if the view model has data
+        if (bufferoosViewModel.getBufferoos().value == null) {
+            // Fetch data only if the view model doesn't have data
+            bufferoosViewModel.fetchBufferoos()
+        }
     }
 
     private fun setupBrowseRecycler() {
         rv_bufferoos.layoutManager = LinearLayoutManager(this.context)
+
+        bufferoosAdapter.setBufferoosAdapterListener(this.adapterListener)
         rv_bufferoos.adapter = bufferoosAdapter
     }
 
