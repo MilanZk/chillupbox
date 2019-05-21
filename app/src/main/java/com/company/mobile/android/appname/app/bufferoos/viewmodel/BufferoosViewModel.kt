@@ -45,13 +45,15 @@ class BufferoosViewModel(val getBufferoos: GetBufferoos) : ViewModel() {
     }
 
     fun fetchBufferoos() {
-        bufferoosLiveData.postValue(Loading())
+        // Do NOT use postValue(), since it will update the value asynchronously. Therefore, loading may not be seen by
+        // the view just after setting it.
+        bufferoosLiveData.value = Loading()
         disposable = getBufferoos.execute()
             .subscribe({
                 bufferoos = it
-                bufferoosLiveData.postValue(Success(bufferoos))
+                bufferoosLiveData.value = Success(bufferoos)
             }, {
-                bufferoosLiveData.postValue(Error(it.message ?: ""))
+                bufferoosLiveData.value = Error(it.message ?: "")
             })
     }
 }
