@@ -1,14 +1,14 @@
 package com.company.mobile.android.appname.app.main
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.company.mobile.android.appname.app.bufferoos.viewmodel.BufferoosState.Error
-import com.company.mobile.android.appname.app.bufferoos.viewmodel.BufferoosState.Loading
-import com.company.mobile.android.appname.app.bufferoos.viewmodel.BufferoosState.Success
 import com.company.mobile.android.appname.app.bufferoos.viewmodel.BufferoosViewModel
+import com.company.mobile.android.appname.app.common.model.ResourceState.Error
+import com.company.mobile.android.appname.app.common.model.ResourceState.Loading
+import com.company.mobile.android.appname.app.common.model.ResourceState.Success
 import com.company.mobile.android.appname.app.test.util.BufferooFactory
 import com.company.mobile.android.appname.app.test.util.DataFactory
-import com.company.mobile.android.appname.model.bufferoo.Bufferoo
 import com.company.mobile.android.appname.domain.bufferoo.interactor.GetBufferoos
+import com.company.mobile.android.appname.model.bufferoo.Bufferoo
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
 import io.reactivex.Single
@@ -39,16 +39,8 @@ class BufferoosViewModelTest {
         stubGetBufferoos(Single.just(list))
         bufferoosViewModel.fetchBufferoos()
 
-        Assert.assertSame(bufferoosViewModel.getBufferoos().value?.data, list)
-    }
-
-    @Test
-    fun getBufferoosReturnsNoMessageOnSuccess() {
-        val list = BufferooFactory.makeBufferooList(2)
-        stubGetBufferoos(Single.just(list))
-        bufferoosViewModel.fetchBufferoos()
-
-        Assert.assertTrue(bufferoosViewModel.getBufferoos().value?.errorMessage == null)
+        val result = bufferoosViewModel.getBufferoos().value
+        Assert.assertTrue(result is Success && result.data == list)
     }
     //</editor-fold>
 
@@ -62,21 +54,13 @@ class BufferoosViewModelTest {
     }
 
     @Test
-    fun getBufferoosFailsAndContainsNoData() {
-        stubGetBufferoos(Single.error(RuntimeException()))
-        bufferoosViewModel.fetchBufferoos()
-
-        Assert.assertTrue(bufferoosViewModel.getBufferoos().value?.data == null)
-    }
-
-    @Test
     fun getBufferoosFailsAndContainsMessage() {
         val errorMessage = DataFactory.randomUuid()
         stubGetBufferoos(Single.error(RuntimeException(errorMessage)))
         bufferoosViewModel.fetchBufferoos()
 
         val result = bufferoosViewModel.getBufferoos().value
-        Assert.assertTrue(result is Error && result.errorMessage == errorMessage)
+        Assert.assertTrue(result is Error && result.message == errorMessage)
     }
     //</editor-fold>
 
@@ -88,20 +72,6 @@ class BufferoosViewModelTest {
         bufferoosViewModel.fetchBufferoos()
 
         Assert.assertTrue(bufferoosViewModel.getBufferoos().value is Loading)
-    }
-
-    @Test
-    fun getBufferoosContainsNoDataWhenLoading() {
-        val list = BufferooFactory.makeBufferooList(2)
-        stubGetBufferoos(Single.just(list).delay(60, TimeUnit.SECONDS))
-        bufferoosViewModel.fetchBufferoos()
-
-        Assert.assertTrue(bufferoosViewModel.getBufferoos().value?.data == null)
-    }
-
-    @Test
-    fun getBufferoosContainsNoMessageWhenLoading() {
-        Assert.assertTrue(bufferoosViewModel.getBufferoos().value?.data == null)
     }
     //</editor-fold>
 

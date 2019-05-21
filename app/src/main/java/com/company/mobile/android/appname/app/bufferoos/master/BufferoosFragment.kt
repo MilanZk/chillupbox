@@ -90,7 +90,7 @@ class BufferoosFragment : BaseFragment() {
         when (bufferoosState) {
             is Loading -> setupScreenForLoadingState()
             is Success -> setupScreenForSuccess(bufferoosState.data)
-            is Error -> setupScreenForError(bufferoosState.errorMessage)
+            is Error -> setupScreenForError(bufferoosState.message)
         }
     }
 

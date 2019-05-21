@@ -1,9 +1,14 @@
 package com.company.mobile.android.appname.app.common.model
 
 /**
- * Represents the state in which a [Resource] is currently in
+ * A generic class that serves as default implementation for a resource state class.
+ *
+ * If you need a more specific class, create a copy, remove generic parameter, customize to your like and place in
+ * inside the same package of the view model where it is used.
  */
-enum class ResourceState {
+sealed class ResourceState<out T> {
 
-    LOADING, SUCCESS, ERROR
+    class Loading<T> : ResourceState<T>() // Loading can NOT be an object inside a class with a generic type
+    data class Success<T>(val data: T) : ResourceState<T>()
+    data class Error<T>(val message: String) : ResourceState<T>()
 }

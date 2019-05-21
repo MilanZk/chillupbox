@@ -5,13 +5,16 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.company.mobile.android.appname.app.bufferoos.master.BufferoosNavigationCommand
 import com.company.mobile.android.appname.app.bufferoos.master.BufferoosNavigationCommand.GoToDetailsView
-import com.company.mobile.android.appname.app.bufferoos.viewmodel.BufferoosState.Error
-import com.company.mobile.android.appname.app.bufferoos.viewmodel.BufferoosState.Loading
-import com.company.mobile.android.appname.app.bufferoos.viewmodel.BufferoosState.Success
+import com.company.mobile.android.appname.app.common.model.ResourceState
+import com.company.mobile.android.appname.app.common.model.ResourceState.Success
+import com.company.mobile.android.appname.app.common.model.ResourceState.Error
+import com.company.mobile.android.appname.app.common.model.ResourceState.Loading
 import com.company.mobile.android.appname.app.common.viewmodel.SingleLiveEvent
 import com.company.mobile.android.appname.domain.bufferoo.interactor.GetBufferoos
 import com.company.mobile.android.appname.model.bufferoo.Bufferoo
 import io.reactivex.disposables.Disposable
+
+typealias BufferoosState = ResourceState<List<Bufferoo>>
 
 class BufferoosViewModel(val getBufferoos: GetBufferoos) : ViewModel() {
 
@@ -42,13 +45,13 @@ class BufferoosViewModel(val getBufferoos: GetBufferoos) : ViewModel() {
     }
 
     fun fetchBufferoos() {
-        bufferoosLiveData.postValue(Loading)
+        bufferoosLiveData.postValue(Loading())
         disposable = getBufferoos.execute()
             .subscribe({
                 bufferoos = it
                 bufferoosLiveData.postValue(Success(bufferoos))
             }, {
-                bufferoosLiveData.postValue(Error(it.message))
+                bufferoosLiveData.postValue(Error(it.message ?: ""))
             })
     }
 }
