@@ -20,8 +20,11 @@ abstract class SingleUseCase<T, in Params> constructor(
 
     /**
      * Executes the current use case.
+     *
+     * This function is open in order to be mockeable from instrumental tests, which do not allow to mock final classes
+     * or functions.
      */
-    fun execute(params: Params? = null): Single<T> {
+    open fun execute(params: Params? = null): Single<T> {
         return this.buildUseCaseObservable(params)
             .subscribeOn(Schedulers.from(threadExecutor))
             .observeOn(postExecutionThread.scheduler)

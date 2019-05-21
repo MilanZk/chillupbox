@@ -21,8 +21,9 @@ import com.company.mobile.android.appname.domain.executor.PostExecutionThread
 import com.company.mobile.android.appname.domain.executor.ThreadExecutor
 import com.company.mobile.android.appname.app.main.MainActivityViewModel
 import org.koin.android.ext.koin.androidContext
-import org.koin.androidx.viewmodel.ext.koin.viewModel
-import org.koin.dsl.module.module
+import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.core.qualifier.named
+import org.koin.dsl.module
 
 /**
  * This file is where all Koin modules are defined.
@@ -50,9 +51,10 @@ val applicationModule = module(override = true) {
     }
     factory { get<BufferoosDatabase>().cachedBufferooDao() }
 
-    factory<BufferooDataStore>("remote") { BufferooRemoteImpl(get(), get()) }
-    factory<BufferooDataStore>("local") { BufferooCacheImpl(get(), get(), get()) }
-    factory { BufferooDataStoreFactory(get("local"), get("remote")) }
+    // IMPORTANT: Named qualifiers must be unique inside the module
+    factory<BufferooDataStore>(named("remoteBufferooDataStore")) { BufferooRemoteImpl(get(), get()) }
+    factory<BufferooDataStore>(named("localBufferooDataStore")) { BufferooCacheImpl(get(), get(), get()) }
+    factory { BufferooDataStoreFactory(get(named("localBufferooDataStore")), get(named("remoteBufferooDataStore"))) }
 
     factory { BufferooEntityMapper() }
     factory { BufferooServiceFactory.makeBuffeooService(BuildConfig.DEBUG) }
@@ -60,11 +62,11 @@ val applicationModule = module(override = true) {
     factory<BufferooRepository> { BufferooDataRepository(get()) }
 }
 
-val mainModule = module("Main", override = true) {
+val mainModule = module(override = true) {
     viewModel { MainActivityViewModel() }
 }
 
-val bufferoosModule = module("Bufferoos", override = true) {
+val bufferoosModule = module(override = true) {
     factory { BufferoosAdapter() }
     factory { GetBufferoos(get(), get(), get()) }
     viewModel { BufferoosViewModel(get()) }

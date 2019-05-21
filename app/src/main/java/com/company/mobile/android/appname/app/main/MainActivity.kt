@@ -24,13 +24,10 @@ import kotlinx.android.synthetic.main.activity_main.dl_main_drawer_layout
 import kotlinx.android.synthetic.main.activity_main.nv_main_drawer_navigation_view
 import kotlinx.android.synthetic.main.activity_main.tv_main_drawer_footer_text
 import kotlinx.android.synthetic.main.main_app_bar.tb_main_toolbar
-import org.koin.androidx.scope.ext.android.bindScope
-import org.koin.androidx.scope.ext.android.getOrCreateScope
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
 
-    private val SCOPE_NAME = (this::class.java.canonicalName ?: "MainActivity") + hashCode()
     private val VERSION_NAME = BuildConfig.VERSION_NAME
 
     private val mainActivityViewModel: MainActivityViewModel by viewModel()
@@ -42,7 +39,6 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        bindScope(getOrCreateScope(SCOPE_NAME))
 
         initializeViews(savedInstanceState)
         initializeState(savedInstanceState)
