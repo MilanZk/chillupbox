@@ -11,7 +11,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
 import com.company.mobile.android.appname.app.R
 import com.company.mobile.android.appname.app.di.applicationModule
-import com.company.mobile.android.appname.app.di.browseModule
+import com.company.mobile.android.appname.app.di.bufferoosModule
 import com.company.mobile.android.appname.app.test.util.BufferooFactory
 import com.company.mobile.android.appname.app.test.util.RecyclerViewMatcher
 import com.company.mobile.android.appname.model.bufferoo.Bufferoo
@@ -26,7 +26,7 @@ import org.koin.test.KoinTest
 import org.koin.test.declareMock
 
 @RunWith(AndroidJUnit4::class)
-class BrowseActivityTest : KoinTest {
+class BufferooActivityTest : KoinTest {
 
     val mockBufferooRepository: BufferooRepository by inject()
 
@@ -36,7 +36,7 @@ class BrowseActivityTest : KoinTest {
 
     @Before
     fun setUp() {
-        loadKoinModules(applicationModule, browseModule)
+        loadKoinModules(applicationModule, bufferoosModule)
         declareMock<BufferooRepository>()
     }
 

@@ -69,7 +69,7 @@ class BufferoosFragment : BaseFragment() {
      * View initialization that does not depend on view models.
      */
     private fun earlyInitializeViews() {
-        setupBrowseRecycler()
+        setupBufferoosRecycler()
         setupViewListeners()
     }
 
@@ -107,7 +107,7 @@ class BufferoosFragment : BaseFragment() {
         }
     }
 
-    private fun setupBrowseRecycler() {
+    private fun setupBufferoosRecycler() {
         rv_bufferoos.layoutManager = LinearLayoutManager(this.context)
 
         bufferoosAdapter.setBufferoosAdapterListener(this.adapterListener)
