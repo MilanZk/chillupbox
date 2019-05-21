@@ -9,11 +9,11 @@ import com.company.mobile.android.appname.app.test.util.BufferooFactory
 import com.company.mobile.android.appname.app.test.util.DataFactory
 import com.company.mobile.android.appname.model.bufferoo.Bufferoo
 import com.company.mobile.android.appname.domain.bufferoo.interactor.GetBufferoos
-import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
 import io.reactivex.Single
 import org.junit.*
+import java.util.concurrent.TimeUnit
 
 class BufferoosViewModelTest {
 
@@ -28,83 +28,87 @@ class BufferoosViewModelTest {
     fun getBufferoosReturnsSuccess() {
         val list = BufferooFactory.makeBufferooList(2)
         stubGetBufferoos(Single.just(list))
-        bufferoosViewModel.getBufferoos()
+        bufferoosViewModel.fetchBufferoos()
 
-        assert(bufferoosViewModel.getBufferoos().value is Success)
+        Assert.assertTrue(bufferoosViewModel.getBufferoos().value is Success)
     }
 
     @Test
     fun getBufferoosReturnsDataOnSuccess() {
         val list = BufferooFactory.makeBufferooList(2)
         stubGetBufferoos(Single.just(list))
-        bufferoosViewModel.getBufferoos()
+        bufferoosViewModel.fetchBufferoos()
 
-        assert(bufferoosViewModel.getBufferoos().value?.data == list)
+        Assert.assertSame(bufferoosViewModel.getBufferoos().value?.data, list)
     }
 
     @Test
     fun getBufferoosReturnsNoMessageOnSuccess() {
         val list = BufferooFactory.makeBufferooList(2)
         stubGetBufferoos(Single.just(list))
+        bufferoosViewModel.fetchBufferoos()
 
-        bufferoosViewModel.getBufferoos()
-
-        assert(bufferoosViewModel.getBufferoos().value?.errorMessage == null)
+        Assert.assertTrue(bufferoosViewModel.getBufferoos().value?.errorMessage == null)
     }
     //</editor-fold>
 
     //<editor-fold desc="Error">
     @Test
     fun getBufferoosReturnsError() {
-        bufferoosViewModel.getBufferoos()
         stubGetBufferoos(Single.error(RuntimeException()))
+        bufferoosViewModel.fetchBufferoos()
 
-        assert(bufferoosViewModel.getBufferoos().value is Error)
+        Assert.assertTrue(bufferoosViewModel.getBufferoos().value is Error)
     }
 
     @Test
     fun getBufferoosFailsAndContainsNoData() {
-        bufferoosViewModel.getBufferoos()
         stubGetBufferoos(Single.error(RuntimeException()))
+        bufferoosViewModel.fetchBufferoos()
 
-        assert(bufferoosViewModel.getBufferoos().value?.data == null)
+        Assert.assertTrue(bufferoosViewModel.getBufferoos().value?.data == null)
     }
 
     @Test
     fun getBufferoosFailsAndContainsMessage() {
         val errorMessage = DataFactory.randomUuid()
-        bufferoosViewModel.getBufferoos()
         stubGetBufferoos(Single.error(RuntimeException(errorMessage)))
+        bufferoosViewModel.fetchBufferoos()
 
-        assert(bufferoosViewModel.getBufferoos().value?.errorMessage == errorMessage)
+        val result = bufferoosViewModel.getBufferoos().value
+        Assert.assertTrue(result is Error && result.errorMessage == errorMessage)
     }
     //</editor-fold>
 
     //<editor-fold desc="Loading">
     @Test
     fun getBufferoosReturnsLoading() {
-        bufferoosViewModel.getBufferoos()
+        val list = BufferooFactory.makeBufferooList(2)
+        stubGetBufferoos(Single.just(list).delay(60, TimeUnit.SECONDS))
+        bufferoosViewModel.fetchBufferoos()
 
-        assert(bufferoosViewModel.getBufferoos().value is Loading)
+        Assert.assertTrue(bufferoosViewModel.getBufferoos().value is Loading)
     }
 
     @Test
     fun getBufferoosContainsNoDataWhenLoading() {
-        bufferoosViewModel.getBufferoos()
+        val list = BufferooFactory.makeBufferooList(2)
+        stubGetBufferoos(Single.just(list).delay(60, TimeUnit.SECONDS))
+        bufferoosViewModel.fetchBufferoos()
 
-        assert(bufferoosViewModel.getBufferoos().value?.data == null)
+        Assert.assertTrue(bufferoosViewModel.getBufferoos().value?.data == null)
     }
 
     @Test
     fun getBufferoosContainsNoMessageWhenLoading() {
-        bufferoosViewModel.getBufferoos()
-
-        assert(bufferoosViewModel.getBufferoos().value?.data == null)
+        Assert.assertTrue(bufferoosViewModel.getBufferoos().value?.data == null)
     }
     //</editor-fold>
 
     private fun stubGetBufferoos(single: Single<List<Bufferoo>>) {
-        whenever(mockGetBufferoos.execute(any()))
+        // Note: do not use mockGetBufferoos.execute(any()), it will not work. If there are no parameters, that is
+        // use case params is Void, do not use any()
+        whenever(mockGetBufferoos.execute())
             .thenReturn(single)
     }
 }

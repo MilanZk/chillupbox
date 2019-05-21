@@ -22,13 +22,10 @@ import org.junit.*
 import org.junit.runner.*
 import org.koin.core.context.loadKoinModules
 import org.koin.test.KoinTest
-import org.koin.test.inject
 import org.koin.test.mock.declareMock
 
 @RunWith(AndroidJUnit4::class)
 class BufferooActivityTest : KoinTest {
-
-    val mockBufferooRepository: BufferooRepository by inject()
 
     @Rule
     @JvmField
@@ -37,7 +34,6 @@ class BufferooActivityTest : KoinTest {
     @Before
     fun setUp() {
         loadKoinModules(applicationModule, bufferoosModule)
-        declareMock<BufferooRepository>()
     }
 
     @Test
@@ -77,7 +73,10 @@ class BufferooActivityTest : KoinTest {
     }
 
     private fun stubBufferooRepositoryGetBufferoos(single: Single<List<Bufferoo>>) {
-        whenever(mockBufferooRepository.getBufferoos())
-            .thenReturn(single)
+        // Mock is declared with a stubbing function in order to allow that each repository instance created by the
+        // Koin factory is properly mocked and getBufferos() returns test data.
+        declareMock<BufferooRepository> {
+            whenever(this.getBufferoos()).thenReturn(single)
+        }
     }
 }
