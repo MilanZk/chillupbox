@@ -21,9 +21,15 @@
     <string name="drawer_menu_footer_text">Version: %1$s</string>
 
     <!-- Bufferoo details -->
+    <string name="bufferoo_master_title">@string/drawer_menu_bufferoos</string>
+
+    <!-- Bufferoo details -->
     <string name="bufferoo_details_title">Bufferoo</string>
     <string name="bufferoo_details_name">My name</string>
     <string name="bufferoo_details_position">My position</string>
+
+    <!-- Search -->
+    <string name="bufferoo_search_title">@string/drawer_menu_search</string>
 
     <!-- Deprecated -->
     <string name="label_empty_result">Oops, there are no results to display</string>

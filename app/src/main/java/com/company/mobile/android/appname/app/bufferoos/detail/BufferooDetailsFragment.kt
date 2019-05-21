@@ -46,6 +46,12 @@ class BufferooDetailsFragment : BaseFragment() {
         initializeContents()
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        activity?.setTitle(R.string.bufferoo_details_title)
+    }
+
     /**
      * View initialization that does not depend on view models.
      */

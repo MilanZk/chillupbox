@@ -226,11 +226,6 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         exitSnackBar = Snackbar.make(nv_main_drawer_navigation_view, R.string.press_back_again, Snackbar.LENGTH_SHORT)
     }
 
-    private fun setTitle(@NonNull title: String) {
-        // Set title in activity bar
-        supportActionBar?.title = title
-    }
-
     private fun changeSection(sectionTag: String, sectionFragment: BaseFragment, @StringRes sectionTitleStringId: Int) {
         // Clear completely the back stack (not a single transition should remain)
         clearBackStackInclusive(mainActivityViewModel.currentSectionFragmentTag)
