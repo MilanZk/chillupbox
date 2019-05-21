@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [X.X.X] - YYYY-MM-DD
 ### Added
+- Base fragment class defines lifecycle-aware initialization methods for every fragment in the app.
 - Leak Canary 2.0 was added to debug builds for detecting memory leaks.
 - Instrumental tests were updated and fixed.
 - Project was updated to Koin 2.0.

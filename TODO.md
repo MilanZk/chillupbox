@@ -9,7 +9,7 @@
 - [ ] Add two independent examples: one with a navigation drawer and another with bottom navigation.
 - [ ] Add a selection screen for choosing navigation template. Add a navigator object.
 - [ ] Add a splash screen.
-- [ ] Move initialization methods in lifecycle methods to a base fragment.
+- [x] Move initialization methods in lifecycle methods to a base fragment.
 - [x] Add Leak Canary memory leak detection library.
 - [x] Make instrumental tests work again.
 - [x] Update project to Koin 2.0.

@@ -45,50 +45,22 @@ class BufferoosFragment : BaseFragment() {
         return inflater.inflate(R.layout.fragment_bufferoos, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        // At this point, Kotlin extensions are available
-        earlyInitializeViews()
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-        initializeState(savedInstanceState)
-        initializeViews(savedInstanceState)
-        initializeContents(savedInstanceState)
-    }
-
     override fun onResume() {
         super.onResume()
 
         activity?.setTitle(R.string.bufferoo_master_title)
     }
 
-    /**
-     * View initialization that does not depend on view models.
-     */
-    private fun earlyInitializeViews() {
+    override fun earlyInitializeViews() {
+        super.earlyInitializeViews()
+
         setupBufferoosRecycler()
         setupViewListeners()
     }
 
-    /**
-     * Initializes fragment state with [androidx.lifecycle.ViewModel]s and parameters passed through [Bundle].
-     */
-    private fun initializeState(savedInstanceState: Bundle?) {
-    }
+    override fun initializeContents(savedInstanceState: Bundle?) {
+        super.initializeContents(savedInstanceState)
 
-    /**
-     * View initialization that depends on view models.
-     */
-    private fun initializeViews(savedInstanceState: Bundle?) {
-    }
-
-    /**
-     * Initializes view contents.
-     */
-    private fun initializeContents(savedInstanceState: Bundle?) {
         // Link the fragment and the model view with "viewLifecycleOwner", so that observers
         // can be subscribed in onActivityCreated() and can be automatically unsubscribed
         // in onDestroyView().
