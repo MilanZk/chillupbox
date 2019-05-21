@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.company.mobile.android.appname.model.bufferoo.Bufferoo
 import com.company.mobile.android.appname.app.R
 import com.company.mobile.android.appname.app.bufferoos.master.BufferoosAdapter.BufferoosAdapterListener
 import com.company.mobile.android.appname.app.bufferoos.viewmodel.BufferoosState
@@ -17,6 +16,7 @@ import com.company.mobile.android.appname.app.bufferoos.viewmodel.BufferoosViewM
 import com.company.mobile.android.appname.app.common.BaseFragment
 import com.company.mobile.android.appname.app.common.widget.empty.EmptyListener
 import com.company.mobile.android.appname.app.common.widget.error.ErrorListener
+import com.company.mobile.android.appname.model.bufferoo.Bufferoo
 import kotlinx.android.synthetic.main.fragment_bufferoos.ev_bufferoos_empty_view
 import kotlinx.android.synthetic.main.fragment_bufferoos.ev_bufferoos_error_view
 import kotlinx.android.synthetic.main.fragment_bufferoos.pb_bufferoos_progress
@@ -27,6 +27,11 @@ import timber.log.Timber
 
 class BufferoosFragment : BaseFragment() {
 
+    companion object {
+        val TAG = BufferoosFragment::class.java.canonicalName
+        fun newInstance() = BufferoosFragment()
+    }
+
     private val bufferoosAdapter: BufferoosAdapter by inject()
     private val bufferoosViewModel: BufferoosViewModel by sharedViewModel()
     private val adapterListener = object : BufferoosAdapterListener {
@@ -34,11 +39,6 @@ class BufferoosFragment : BaseFragment() {
             Timber.d("Selected position $position")
             bufferoosViewModel.select(position)
         }
-    }
-
-    companion object {
-        val TAG = BufferoosFragment::class.java.canonicalName
-        fun newInstance() = BufferoosFragment()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {

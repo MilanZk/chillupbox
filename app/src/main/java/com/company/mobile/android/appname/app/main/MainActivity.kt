@@ -28,7 +28,9 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
 
-    private val VERSION_NAME = BuildConfig.VERSION_NAME
+    companion object {
+        private const val VERSION_NAME = BuildConfig.VERSION_NAME
+    }
 
     private val mainActivityViewModel: MainActivityViewModel by viewModel()
     private val bufferoosViewModel: BufferoosViewModel by viewModel()

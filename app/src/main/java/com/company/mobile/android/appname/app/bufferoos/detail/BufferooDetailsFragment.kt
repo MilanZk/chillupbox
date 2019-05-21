@@ -21,12 +21,12 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class BufferooDetailsFragment : BaseFragment() {
 
-    private val bufferoosViewModel: BufferoosViewModel by sharedViewModel()
-
     companion object {
         val TAG = BufferooDetailsFragment::class.java.canonicalName
         fun newInstance() = BufferooDetailsFragment()
     }
+
+    private val bufferoosViewModel: BufferoosViewModel by sharedViewModel()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         return inflater.inflate(R.layout.fragment_bufferoo_details, container, false)
