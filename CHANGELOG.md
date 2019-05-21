@@ -21,6 +21,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [X.X.X] - YYYY-MM-DD
 ### Added
+- Instrumental tests were updated and fixed.
+- Project was updated to Koin 2.0.
+- Back icon was added to tool bar when using navigation drawer.
 - Item details fragment was added and navigation between fragments implemented.
 - Section fragment switching was added.
 - Double back button tap is needed to close the app.

@@ -10,7 +10,9 @@
 - [ ] Add a selection screen for choosing navigation template. Add a navigator object.
 - [ ] Add a splash screen.
 - [ ] Move initialization methods in lifecycle methods to a base fragment.
-- [ ] Bring Echeman fixes to this template.
+- [x] Make instrumental tests work again.
+- [x] Update project to Koin 2.0.
+- [x] Add back icon to tool bar with navigation drawer.
 - [x] Add detail view and implement navigation.
 - [x] Add fragment switching.
 - [x] Use double back to quit app.
