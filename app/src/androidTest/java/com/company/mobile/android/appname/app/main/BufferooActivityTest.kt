@@ -20,10 +20,10 @@ import com.nhaarman.mockitokotlin2.whenever
 import io.reactivex.Single
 import org.junit.*
 import org.junit.runner.*
-import org.koin.standalone.StandAloneContext.loadKoinModules
-import org.koin.standalone.inject
+import org.koin.core.context.loadKoinModules
 import org.koin.test.KoinTest
-import org.koin.test.declareMock
+import org.koin.test.inject
+import org.koin.test.mock.declareMock
 
 @RunWith(AndroidJUnit4::class)
 class BufferooActivityTest : KoinTest {
