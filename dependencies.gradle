@@ -42,6 +42,9 @@ ext {
     mockitoAndroidVersion = '2.27.0'
     runnerVersion = '1.1.1'
 
+    //Development
+    leakCanaryVersion = '2.0-alpha-2'
+
     appDependencies = [
             kotlin              : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}",
             koin                : "org.koin:koin-android:${koinVersion}",
@@ -132,5 +135,9 @@ ext {
             androidJUnit : "androidx.test.ext:junit:${androidJUnitVersion}",
             robolectric  : "org.robolectric:robolectric:${robolectricVersion}",
             roomTesting  : "androidx.room:room-testing:${roomVersion}"
+    ]
+
+    developmentDependencies = [
+            leakCanary: "com.squareup.leakcanary:leakcanary-android:${leakCanaryVersion}"
     ]
 }

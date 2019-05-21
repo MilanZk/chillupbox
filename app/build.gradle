@@ -70,6 +70,7 @@ android {
 dependencies {
     def appDependencies = rootProject.ext.appDependencies
     def appTestDependencies = rootProject.ext.appTestDependencies
+    def developmentDependencies = rootProject.ext.developmentDependencies
 
     implementation project(':model')
     implementation project(':domain')
@@ -94,6 +95,7 @@ dependencies {
     implementation appDependencies.glide
     implementation appDependencies.timber
 
+    // Unit test dependencies
     testImplementation appTestDependencies.kotlinJUnit
     testImplementation appTestDependencies.mockitoKotlin
     testImplementation appTestDependencies.mockitoInline
@@ -132,4 +134,7 @@ dependencies {
         exclude module: 'recyclerview-v7'
         exclude module: 'design'
     }
+
+    //Development
+    debugImplementation developmentDependencies.leakCanary
 }
