@@ -42,7 +42,7 @@ ext {
     mockitoAndroidVersion = '2.27.0'
     runnerVersion = '1.1.1'
 
-    mobileUiDependencies = [
+    appDependencies = [
             kotlin              : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}",
             koin                : "org.koin:koin-android:${koinVersion}",
             koinCompile         : "org.koin:koin-androidx-scope:${koinVersion}",
@@ -62,7 +62,7 @@ ext {
             timber              : "com.jakewharton.timber:timber:${timberVersion}"
     ]
 
-    mobileUiTestDependencies = [
+    appTestDependencies = [
             kotlinJUnit    : "org.jetbrains.kotlin:kotlin-test-junit:${kotlin_version}",
             lifecycleTest  : "androidx.arch.core:core-testing:${lifecycleExtensionsVersion}",
             koinTest       : "org.koin:koin-test:${koinVersion}",

@@ -68,62 +68,62 @@ android {
 }
 
 dependencies {
-    def mobileUiDependencies = rootProject.ext.mobileUiDependencies
-    def mobileUiTestDependencies = rootProject.ext.mobileUiTestDependencies
+    def appDependencies = rootProject.ext.appDependencies
+    def appTestDependencies = rootProject.ext.appTestDependencies
 
     implementation project(':model')
     implementation project(':domain')
     implementation project(':data')
     implementation project(':datasources')
 
-    implementation mobileUiDependencies.kotlin
-    implementation mobileUiDependencies.koin
-    implementation mobileUiDependencies.koinCompile
-    implementation mobileUiDependencies.koinArch
-    implementation mobileUiDependencies.androidAnnotation
-    implementation mobileUiDependencies.appcompat
-    implementation mobileUiDependencies.recyclerView
-    implementation mobileUiDependencies.constraintLayout
-    implementation mobileUiDependencies.materialDesign
-    implementation mobileUiDependencies.lifecycleExtensions
-    implementation mobileUiDependencies.lifecycleCommonJava8
-    implementation mobileUiDependencies.roomRuntime
-    implementation mobileUiDependencies.rxJava
-    implementation mobileUiDependencies.rxAndroid
-    implementation mobileUiDependencies.rxKotlin
-    implementation mobileUiDependencies.glide
-    implementation mobileUiDependencies.timber
+    implementation appDependencies.kotlin
+    implementation appDependencies.koin
+    implementation appDependencies.koinCompile
+    implementation appDependencies.koinArch
+    implementation appDependencies.androidAnnotation
+    implementation appDependencies.appcompat
+    implementation appDependencies.recyclerView
+    implementation appDependencies.constraintLayout
+    implementation appDependencies.materialDesign
+    implementation appDependencies.lifecycleExtensions
+    implementation appDependencies.lifecycleCommonJava8
+    implementation appDependencies.roomRuntime
+    implementation appDependencies.rxJava
+    implementation appDependencies.rxAndroid
+    implementation appDependencies.rxKotlin
+    implementation appDependencies.glide
+    implementation appDependencies.timber
 
-    testImplementation mobileUiTestDependencies.kotlinJUnit
-    testImplementation mobileUiTestDependencies.mockitoKotlin
-    testImplementation mobileUiTestDependencies.mockitoInline
+    testImplementation appTestDependencies.kotlinJUnit
+    testImplementation appTestDependencies.mockitoKotlin
+    testImplementation appTestDependencies.mockitoInline
 
     // Instrumentation test dependencies
-    androidTestImplementation mobileUiTestDependencies.junit
-    androidTestImplementation mobileUiTestDependencies.lifecycleTest
-    androidTestImplementation(mobileUiTestDependencies.koinTest, {
+    androidTestImplementation appTestDependencies.junit
+    androidTestImplementation appTestDependencies.lifecycleTest
+    androidTestImplementation(appTestDependencies.koinTest, {
         exclude group: 'org.jetbrains.kotlin'
         exclude group: 'org.mockito'
     })
-    androidTestImplementation(mobileUiTestDependencies.mockitoKotlin, {
+    androidTestImplementation(appTestDependencies.mockitoKotlin, {
         exclude group: 'org.jetbrains.kotlin'
         exclude group: 'org.mockito'
     })
-    androidTestImplementation mobileUiTestDependencies.mockitoAndroid
-    androidTestImplementation mobileUiTestDependencies.androidJUnit
-    androidTestImplementation(mobileUiTestDependencies.espressoCore) {
+    androidTestImplementation appTestDependencies.mockitoAndroid
+    androidTestImplementation appTestDependencies.androidJUnit
+    androidTestImplementation(appTestDependencies.espressoCore) {
         exclude group: 'com.android.support', module: 'support-annotations'
     }
-    androidTestImplementation(mobileUiTestDependencies.androidRunner) {
+    androidTestImplementation(appTestDependencies.androidRunner) {
         exclude group: 'com.android.support', module: 'support-annotations'
     }
-    androidTestImplementation(mobileUiTestDependencies.androidRules) {
+    androidTestImplementation(appTestDependencies.androidRules) {
         exclude group: 'com.android.support', module: 'support-annotations'
     }
-    androidTestImplementation(mobileUiTestDependencies.espressoIntents) {
+    androidTestImplementation(appTestDependencies.espressoIntents) {
         exclude group: 'com.android.support', module: 'support-annotations'
     }
-    androidTestImplementation(mobileUiTestDependencies.espressoContrib) {
+    androidTestImplementation(appTestDependencies.espressoContrib) {
         exclude module: 'appcompat'
         exclude module: 'appcompat-v7'
         exclude module: 'support-v4'
