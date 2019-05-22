@@ -1,7 +1,6 @@
-package com.company.mobile.android.appname.app.main
+package com.company.mobile.android.appname.app.bufferoos.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.company.mobile.android.appname.app.bufferoos.viewmodel.BufferoosViewModel
 import com.company.mobile.android.appname.app.common.model.ResourceState.Error
 import com.company.mobile.android.appname.app.common.model.ResourceState.Loading
 import com.company.mobile.android.appname.app.common.model.ResourceState.Success

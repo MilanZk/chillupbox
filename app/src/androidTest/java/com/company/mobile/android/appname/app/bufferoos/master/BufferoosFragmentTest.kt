@@ -1,4 +1,4 @@
-package com.company.mobile.android.appname.app.main
+package com.company.mobile.android.appname.app.bufferoos.master
 
 import androidx.recyclerview.widget.RecyclerView
 import androidx.test.espresso.Espresso.onView
@@ -12,6 +12,7 @@ import androidx.test.rule.ActivityTestRule
 import com.company.mobile.android.appname.app.R
 import com.company.mobile.android.appname.app.di.applicationModule
 import com.company.mobile.android.appname.app.di.bufferoosModule
+import com.company.mobile.android.appname.app.main.MainActivity
 import com.company.mobile.android.appname.app.test.util.BufferooFactory
 import com.company.mobile.android.appname.app.test.util.RecyclerViewMatcher
 import com.company.mobile.android.appname.model.bufferoo.Bufferoo
@@ -25,7 +26,7 @@ import org.koin.test.KoinTest
 import org.koin.test.mock.declareMock
 
 @RunWith(AndroidJUnit4::class)
-class BufferooActivityTest : KoinTest {
+class BufferoosFragmentTest : KoinTest {
 
     @Rule
     @JvmField
