@@ -8,7 +8,7 @@
 - [ ] Add authentication with login.
 - [ ] Add two independent examples: one with a navigation drawer and another with bottom navigation.
 - [ ] Add a selection screen for choosing navigation template. Add a navigator object.
-- [ ] Add a splash screen.
+- [x] Add a splash screen.
 - [x] Revise resource state management.
 - [x] Move initialization methods in lifecycle methods to a base fragment.
 - [x] Add Leak Canary memory leak detection library.

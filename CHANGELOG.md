@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [X.X.X] - YYYY-MM-DD
 ### Added
+- Splash screen theme and activity were created.
 - Resource state definition was generalized adding a default implementation with a template. Tests were updated, since it is now impossible to have and error with data or a success with an error message.
 - Base fragment class defines lifecycle-aware initialization methods for every fragment in the app.
 - Leak Canary 2.0 was added to debug builds for detecting memory leaks.

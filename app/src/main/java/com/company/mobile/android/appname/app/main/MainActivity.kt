@@ -1,5 +1,7 @@
 package com.company.mobile.android.appname.app.main
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
@@ -30,6 +32,10 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
     companion object {
         private const val VERSION_NAME = BuildConfig.VERSION_NAME
+
+        fun getCallingIntent(context: Context): Intent {
+            return Intent(context, MainActivity::class.java)
+        }
     }
 
     private val mainActivityViewModel: MainActivityViewModel by viewModel()
