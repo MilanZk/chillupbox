@@ -19,7 +19,7 @@ import com.company.mobile.android.appname.domain.bufferoo.repository.BufferooRep
 import com.company.mobile.android.appname.domain.executor.JobExecutor
 import com.company.mobile.android.appname.domain.executor.PostExecutionThread
 import com.company.mobile.android.appname.domain.executor.ThreadExecutor
-import com.company.mobile.android.appname.app.main.MainActivityViewModel
+import com.company.mobile.android.appname.app.main.navigationdrawer.NavigationDrawerMainActivityViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
@@ -63,7 +63,7 @@ val applicationModule = module(override = true) {
 }
 
 val mainModule = module(override = true) {
-    viewModel { MainActivityViewModel() }
+    viewModel { NavigationDrawerMainActivityViewModel() }
 }
 
 val bufferoosModule = module(override = true) {

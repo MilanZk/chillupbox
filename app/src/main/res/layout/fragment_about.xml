@@ -12,7 +12,7 @@
             android:id="@+id/tv_about_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/drawer_menu_about" />
+            android:text="@string/navigation_drawer_menu_about" />
     </LinearLayout>
 
     <ProgressBar

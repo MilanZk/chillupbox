@@ -24,7 +24,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.company.mobile.android.appname.app.main.MainActivity"
+            android:name="com.company.mobile.android.appname.app.choosenavigation.ChooseNavigationActivity"
+            android:theme="@style/SplashTheme" />
+        <activity
+            android:name="com.company.mobile.android.appname.app.main.navigationdrawer.NavigationDrawerMainActivity"
             android:theme="@style/SplashTheme" />
 
     </application>

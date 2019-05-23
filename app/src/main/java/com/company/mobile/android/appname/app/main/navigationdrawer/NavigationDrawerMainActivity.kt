@@ -1,4 +1,4 @@
-package com.company.mobile.android.appname.app.main
+package com.company.mobile.android.appname.app.main.navigationdrawer
 
 import android.content.Context
 import android.content.Intent
@@ -13,32 +13,32 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
 import com.company.mobile.android.appname.app.BuildConfig
 import com.company.mobile.android.appname.app.R
+import com.company.mobile.android.appname.app.about.AboutFragment
 import com.company.mobile.android.appname.app.bufferoos.detail.BufferooDetailsFragment
 import com.company.mobile.android.appname.app.bufferoos.master.BufferoosFragment
 import com.company.mobile.android.appname.app.bufferoos.master.BufferoosNavigationCommand.GoToDetailsView
 import com.company.mobile.android.appname.app.bufferoos.viewmodel.BufferoosViewModel
 import com.company.mobile.android.appname.app.common.BaseActivity
 import com.company.mobile.android.appname.app.common.BaseFragment
-import com.company.mobile.android.appname.app.about.AboutFragment
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.activity_main.dl_main_drawer_layout
-import kotlinx.android.synthetic.main.activity_main.nv_main_drawer_navigation_view
-import kotlinx.android.synthetic.main.activity_main.tv_main_drawer_footer_text
-import kotlinx.android.synthetic.main.main_app_bar.tb_main_toolbar
+import kotlinx.android.synthetic.main.activity_navigation_drawer_main.dl_navidation_drawer_drawer_layout
+import kotlinx.android.synthetic.main.activity_navigation_drawer_main.nv_navigation_drawer_navigation_view
+import kotlinx.android.synthetic.main.activity_navigation_drawer_main.tv_navigation_drawer_footer_text
+import kotlinx.android.synthetic.main.navigation_drawer_main_app_bar.tb_navigation_drawer_main_toolbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
+class NavigationDrawerMainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     companion object {
         private const val VERSION_NAME = BuildConfig.VERSION_NAME
 
         fun getCallingIntent(context: Context): Intent {
-            return Intent(context, MainActivity::class.java)
+            return Intent(context, NavigationDrawerMainActivity::class.java)
         }
     }
 
-    private val mainActivityViewModel: MainActivityViewModel by viewModel()
+    private val navigationDrawerMainActivityViewModel: NavigationDrawerMainActivityViewModel by viewModel()
     private val bufferoosViewModel: BufferoosViewModel by viewModel()
     private lateinit var exitSnackBar: Snackbar
     private lateinit var drawerToggle: ActionBarDrawerToggle
@@ -46,7 +46,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_navigation_drawer_main)
 
         initializeViews(savedInstanceState)
         initializeState(savedInstanceState)
@@ -57,7 +57,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         return when (item.itemId) {
             android.R.id.home -> {
                 if (drawerToggle.isDrawerIndicatorEnabled) {
-                    dl_main_drawer_layout.openDrawer(GravityCompat.START)
+                    dl_navidation_drawer_drawer_layout.openDrawer(GravityCompat.START)
                 } else {
                     onBackPressed()
                 }
@@ -68,8 +68,8 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     }
 
     override fun onBackPressed() {
-        if (dl_main_drawer_layout.isDrawerOpen(GravityCompat.START)) {
-            dl_main_drawer_layout.closeDrawer(GravityCompat.START)
+        if (dl_navidation_drawer_drawer_layout.isDrawerOpen(GravityCompat.START)) {
+            dl_navidation_drawer_drawer_layout.closeDrawer(GravityCompat.START)
         } else {
             if (supportFragmentManager.backStackEntryCount > 1) {
                 // Update home button here before popping back stack, because back stack pop operation is asynchronous
@@ -104,7 +104,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         actionbar?.let { actionBar ->
             if (showBackButton) {
                 // You may not want to open the drawer on swipe from the left in this case
-                dl_main_drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+                dl_navidation_drawer_drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
                 // Remove hamburger
                 drawerToggle.isDrawerIndicatorEnabled = false
                 // Show back button
@@ -124,7 +124,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                 }
             } else {
                 // You must regain the power of swipe for the drawer.
-                dl_main_drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
+                dl_navidation_drawer_drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
 
                 // Remove back button
                 actionBar.setDisplayHomeAsUpEnabled(true)
@@ -146,22 +146,22 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        if (item.itemId != mainActivityViewModel.currentMenuItemId) {
+        if (item.itemId != navigationDrawerMainActivityViewModel.currentMenuItemId) {
             // Remove checked state from current selected item
-            nv_main_drawer_navigation_view.menu.findItem(mainActivityViewModel.currentMenuItemId)?.let {
+            nv_navigation_drawer_navigation_view.menu.findItem(navigationDrawerMainActivityViewModel.currentMenuItemId)?.let {
                 it.isChecked = false
             }
             // Set checked state for new selected item
-            mainActivityViewModel.currentMenuItemId = item.itemId
+            navigationDrawerMainActivityViewModel.currentMenuItemId = item.itemId
             item.isChecked = true
 
             // Handle navigation view item clicks here
             when (item.itemId) {
                 R.id.main_drawer_menu_bufferoos -> {
-                    changeSection(BufferoosFragment.TAG, BufferoosFragment.newInstance(), R.string.drawer_menu_bufferoos)
+                    changeSection(BufferoosFragment.TAG, BufferoosFragment.newInstance(), R.string.navigation_drawer_menu_bufferoos)
                 }
                 R.id.main_drawer_menu_about -> {
-                    changeSection(AboutFragment.TAG, AboutFragment.newInstance(), R.string.drawer_menu_about)
+                    changeSection(AboutFragment.TAG, AboutFragment.newInstance(), R.string.navigation_drawer_menu_about)
                 }
                 R.id.main_drawer_menu_sign_out -> {
                     finish()
@@ -169,21 +169,21 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             }
         }
 
-        dl_main_drawer_layout.closeDrawer(GravityCompat.START)
+        dl_navidation_drawer_drawer_layout.closeDrawer(GravityCompat.START)
         return true
     }
 
     private fun initializeContents(savedInstanceState: Bundle?) {
         if (savedInstanceState == null) {
             // First time initialization
-            mainActivityViewModel.currentSectionFragmentTag = BufferoosFragment.TAG
-            val menuItem = nv_main_drawer_navigation_view.menu.getItem(0)
-            mainActivityViewModel.currentMenuItemId = menuItem.itemId
+            navigationDrawerMainActivityViewModel.currentSectionFragmentTag = BufferoosFragment.TAG
+            val menuItem = nv_navigation_drawer_navigation_view.menu.getItem(0)
+            navigationDrawerMainActivityViewModel.currentMenuItemId = menuItem.itemId
             menuItem.isChecked = true
-            pushSectionFragment(BufferoosFragment.newInstance(), mainActivityViewModel.currentSectionFragmentTag, R.string.drawer_menu_bufferoos)
+            pushSectionFragment(BufferoosFragment.newInstance(), navigationDrawerMainActivityViewModel.currentSectionFragmentTag, R.string.navigation_drawer_menu_bufferoos)
         } else {
             // After recreation (rotation)
-            nv_main_drawer_navigation_view.menu.findItem(mainActivityViewModel.currentMenuItemId)?.let {
+            nv_navigation_drawer_navigation_view.menu.findItem(navigationDrawerMainActivityViewModel.currentMenuItemId)?.let {
                 it.isChecked = true
             }
         }
@@ -204,7 +204,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
     private fun initializeViews(savedInstanceState: Bundle?) {
         // Initialize toolbar
-        setSupportActionBar(tb_main_toolbar)
+        setSupportActionBar(tb_navigation_drawer_main_toolbar)
         val actionbar: ActionBar? = supportActionBar
         actionbar?.apply {
             setDisplayHomeAsUpEnabled(true)
@@ -212,39 +212,39 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         }
 
         // Initialize navigation drawer
-        nv_main_drawer_navigation_view.setNavigationItemSelectedListener(this)
+        nv_navigation_drawer_navigation_view.setNavigationItemSelectedListener(this)
         // Initialize ActionBarDrawerToggle, which will control toggle of hamburger
-        drawerToggle = ActionBarDrawerToggle(this, dl_main_drawer_layout, tb_main_toolbar, R.string.drawer_menu_open, R.string.drawer_menu_close)
+        drawerToggle = ActionBarDrawerToggle(this, dl_navidation_drawer_drawer_layout, tb_navigation_drawer_main_toolbar, R.string.navigation_drawer_menu_open, R.string.navigation_drawer_menu_close)
         // Setting the actionbarToggle to drawer layout
-        dl_main_drawer_layout.addDrawerListener(drawerToggle)
+        dl_navidation_drawer_drawer_layout.addDrawerListener(drawerToggle)
         // Calling sync state is necessary to show your hamburger icon
         drawerToggle.syncState()
 
         // Update the icon according to the back stack size, this is a must when recreating the activity (rotation)
         updateToolBarHomeIcon(supportFragmentManager.backStackEntryCount > 1)
 
-        tv_main_drawer_footer_text.text = resources.getString(R.string.drawer_menu_footer_text, VERSION_NAME)
+        tv_navigation_drawer_footer_text.text = resources.getString(R.string.navigation_drawer_menu_footer_text, VERSION_NAME)
 
         // Initialize exit snack bar
-        exitSnackBar = Snackbar.make(nv_main_drawer_navigation_view, R.string.press_back_again, Snackbar.LENGTH_SHORT)
+        exitSnackBar = Snackbar.make(nv_navigation_drawer_navigation_view, R.string.press_back_again, Snackbar.LENGTH_SHORT)
     }
 
     private fun changeSection(sectionTag: String, sectionFragment: BaseFragment, @StringRes sectionTitleStringId: Int) {
         // Clear completely the back stack (not a single transition should remain)
-        clearBackStackInclusive(mainActivityViewModel.currentSectionFragmentTag)
+        clearBackStackInclusive(navigationDrawerMainActivityViewModel.currentSectionFragmentTag)
         // Store current fragment tag to completely clear the back stack when another menu
         // item is selected in the future.
-        mainActivityViewModel.currentSectionFragmentTag = sectionTag
+        navigationDrawerMainActivityViewModel.currentSectionFragmentTag = sectionTag
         // Push initial fragment for this section. Any new fragment pushed by this section
         // will be added to the back stack, and all of them will be removed when changing
         // section with clearBackStackInclusive() function.
-        pushSectionFragment(sectionFragment, mainActivityViewModel.currentSectionFragmentTag, sectionTitleStringId)
+        pushSectionFragment(sectionFragment, navigationDrawerMainActivityViewModel.currentSectionFragmentTag, sectionTitleStringId)
     }
 
     private fun pushSectionFragment(sectionFragment: BaseFragment, sectionTag: String, @StringRes sectionTitleStringId: Int) {
         // Push a fragment for current section that will be added to the back stack
-        pushFragment(R.id.fl_main_content, sectionFragment, sectionTag)
+        pushFragment(R.id.fl_navigation_drawer_main_content, sectionFragment, sectionTag)
         // Update toolbar title
-        setTitle(getString(sectionTitleStringId))
+        title = getString(sectionTitleStringId)
     }
 }

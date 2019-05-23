@@ -11,17 +11,22 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
 
+    <!-- Choose navigation -->
+    <string name="choose_navigation_navigation_drawer_option">Navigation drawer example</string>
+    <string name="choose_navigation_bottom_navigation_option">Bottom navigation example</string>
+    <string name="choose_navigation_no_navigation_option">No navigation example</string>
+
     <!-- Drawer menu -->
-    <string name="drawer_header_title">Navigation drawer example</string>
-    <string name="drawer_menu_open">Open drawer menu</string>
-    <string name="drawer_menu_close">Close drawer menu</string>
-    <string name="drawer_menu_bufferoos">Bufferoos</string>
-    <string name="drawer_menu_about">About</string>
-    <string name="drawer_menu_sign_out">Sign out</string>
-    <string name="drawer_menu_footer_text">Version: %1$s</string>
+    <string name="navigation_drawer_header_title">Navigation drawer example</string>
+    <string name="navigation_drawer_menu_open">Open drawer menu</string>
+    <string name="navigation_drawer_menu_close">Close drawer menu</string>
+    <string name="navigation_drawer_menu_bufferoos">Bufferoos</string>
+    <string name="navigation_drawer_menu_about">About</string>
+    <string name="navigation_drawer_menu_sign_out">Sign out</string>
+    <string name="navigation_drawer_menu_footer_text">Version: %1$s</string>
 
     <!-- Bufferoo details -->
-    <string name="bufferoo_master_title">@string/drawer_menu_bufferoos</string>
+    <string name="bufferoo_master_title">@string/navigation_drawer_menu_bufferoos</string>
 
     <!-- Bufferoo details -->
     <string name="bufferoo_details_title">Bufferoo</string>
@@ -29,7 +34,7 @@
     <string name="bufferoo_details_position">My position</string>
 
     <!-- About -->
-    <string name="bufferoo_about_title">@string/drawer_menu_about</string>
+    <string name="bufferoo_about_title">@string/navigation_drawer_menu_about</string>
 
     <!-- Deprecated -->
     <string name="label_empty_result">Oops, there are no results to display</string>

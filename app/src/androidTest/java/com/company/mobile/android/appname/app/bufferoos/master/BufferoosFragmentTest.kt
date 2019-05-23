@@ -12,7 +12,7 @@ import androidx.test.rule.ActivityTestRule
 import com.company.mobile.android.appname.app.R
 import com.company.mobile.android.appname.app.di.applicationModule
 import com.company.mobile.android.appname.app.di.bufferoosModule
-import com.company.mobile.android.appname.app.main.MainActivity
+import com.company.mobile.android.appname.app.main.navigationdrawer.NavigationDrawerMainActivity
 import com.company.mobile.android.appname.app.test.util.BufferooFactory
 import com.company.mobile.android.appname.app.test.util.RecyclerViewMatcher
 import com.company.mobile.android.appname.model.bufferoo.Bufferoo
@@ -30,7 +30,7 @@ class BufferoosFragmentTest : KoinTest {
 
     @Rule
     @JvmField
-    val activity = ActivityTestRule<MainActivity>(MainActivity::class.java, false, false)
+    val activity = ActivityTestRule<NavigationDrawerMainActivity>(NavigationDrawerMainActivity::class.java, false, false)
 
     @Before
     fun setUp() {

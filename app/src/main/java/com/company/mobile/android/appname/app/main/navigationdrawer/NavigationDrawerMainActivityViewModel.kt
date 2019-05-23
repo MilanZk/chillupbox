@@ -1,9 +1,9 @@
-package com.company.mobile.android.appname.app.main
+package com.company.mobile.android.appname.app.main.navigationdrawer
 
 import androidx.lifecycle.ViewModel
 import kotlin.properties.Delegates
 
-class MainActivityViewModel : ViewModel() {
+class NavigationDrawerMainActivityViewModel : ViewModel() {
     lateinit var currentSectionFragmentTag: String
     var currentMenuItemId: Int by Delegates.notNull()
 }

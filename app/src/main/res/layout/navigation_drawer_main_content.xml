@@ -5,11 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".main.MainActivity"
-    tools:showIn="@layout/main_app_bar">
+    tools:context=".main.navigationdrawer.NavigationDrawerMainActivity"
+    tools:showIn="@layout/navigation_drawer_main_app_bar">
 
     <FrameLayout
-        android:id="@+id/fl_main_content"
+        android:id="@+id/fl_navigation_drawer_main_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorLightBackground"/>
