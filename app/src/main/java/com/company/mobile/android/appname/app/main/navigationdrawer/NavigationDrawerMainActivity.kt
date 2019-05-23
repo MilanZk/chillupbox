@@ -180,7 +180,7 @@ class NavigationDrawerMainActivity : BaseActivity(), NavigationView.OnNavigation
             val menuItem = nv_navigation_drawer_navigation_view.menu.getItem(0)
             navigationDrawerMainActivityViewModel.currentMenuItemId = menuItem.itemId
             menuItem.isChecked = true
-            pushSectionFragment(BufferoosFragment.newInstance(), navigationDrawerMainActivityViewModel.currentSectionFragmentTag, R.string.navigation_drawer_menu_bufferoos)
+            pushSectionFragment(BufferoosFragment.newInstance(), navigationDrawerMainActivityViewModel.currentSectionFragmentTag)
         } else {
             // After recreation (rotation)
             nv_navigation_drawer_navigation_view.menu.findItem(navigationDrawerMainActivityViewModel.currentMenuItemId)?.let {
@@ -191,7 +191,7 @@ class NavigationDrawerMainActivity : BaseActivity(), NavigationView.OnNavigation
         bufferoosViewModel.bufferoosNavigationEvent.observe(this, Observer { command ->
             when (command) {
                 GoToDetailsView -> {
-                    pushSectionFragment(BufferooDetailsFragment.newInstance(), BufferooDetailsFragment.TAG, R.string.bufferoo_details_title)
+                    pushSectionFragment(BufferooDetailsFragment.newInstance(), BufferooDetailsFragment.TAG)
                 }
             }
             // After pushing a fragment, show back button must be true
@@ -238,13 +238,11 @@ class NavigationDrawerMainActivity : BaseActivity(), NavigationView.OnNavigation
         // Push initial fragment for this section. Any new fragment pushed by this section
         // will be added to the back stack, and all of them will be removed when changing
         // section with clearBackStackInclusive() function.
-        pushSectionFragment(sectionFragment, navigationDrawerMainActivityViewModel.currentSectionFragmentTag, sectionTitleStringId)
+        pushSectionFragment(sectionFragment, navigationDrawerMainActivityViewModel.currentSectionFragmentTag)
     }
 
-    private fun pushSectionFragment(sectionFragment: BaseFragment, sectionTag: String, @StringRes sectionTitleStringId: Int) {
+    private fun pushSectionFragment(sectionFragment: BaseFragment, sectionTag: String) {
         // Push a fragment for current section that will be added to the back stack
         pushFragment(R.id.fl_navigation_drawer_main_content, sectionFragment, sectionTag)
-        // Update toolbar title
-        title = getString(sectionTitleStringId)
     }
 }
