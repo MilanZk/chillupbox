@@ -21,12 +21,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [X.X.X] - YYYY-MM-DD
 ### Added
+- A basic example with no navigation was included, too.
+- Navigation drawer example was finished.
+- An screen for selecting a navigation example was added.
 - Splash screen theme and activity were created.
 - Resource state definition was generalized adding a default implementation with a template. Tests were updated, since it is now impossible to have and error with data or a success with an error message.
 - Base fragment class defines lifecycle-aware initialization methods for every fragment in the app.
 - Leak Canary 2.0 was added to debug builds for detecting memory leaks.
-- Instrumental tests were updated and fixed.
-- Project was updated to Koin 2.0.
 - Back icon was added to tool bar when using navigation drawer.
 - Item details fragment was added and navigation between fragments implemented.
 - Section fragment switching was added.
@@ -37,6 +38,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - New mock server using Postman was created.
 
 ### Changed
+- Instrumental tests were updated to Koin 2.0 and fixed.
+- Project was updated to Koin 2.0.
 - Data module was split into domain and data with a new shared models module.
 - Android code style was updated.
 - Project dependencies were updated.

@@ -6,14 +6,13 @@
 - [ ] Add error management with retries.
 - [ ] Add NetViewModel for authentication errors.
 - [ ] Add authentication with login.
-- [ ] Add two independent examples: one with a navigation drawer and another with bottom navigation.
-- [ ] Add a selection screen for choosing navigation template. Add a navigator object.
+- [ ] Add bottom navigation example.
+- [x] Add navigation drawer example.
+- [x] Add a selection screen for choosing navigation template. Add a navigator object.
 - [x] Add a splash screen.
 - [x] Revise resource state management.
 - [x] Move initialization methods in lifecycle methods to a base fragment.
-- [x] Add Leak Canary memory leak detection library.
 - [x] Make instrumental tests work again.
-- [x] Update project to Koin 2.0.
 - [x] Add back icon to tool bar with navigation drawer.
 - [x] Add detail view and implement navigation.
 - [x] Add fragment switching.
@@ -42,6 +41,8 @@
 
 ### Update dependencies
 
+- [x] Add Leak Canary memory leak detection library.
+- [x] Update project to Koin 2.0.
 - [x] Migrate template from Android support to AndroidX.
 - [x] Update all dependencies.
 - [x] Add plugin for updating dependencies.

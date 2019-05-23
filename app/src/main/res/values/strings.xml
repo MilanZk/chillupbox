@@ -25,7 +25,7 @@
     <string name="navigation_drawer_menu_sign_out">Sign out</string>
     <string name="navigation_drawer_menu_footer_text">Version: %1$s</string>
 
-    <!-- Bufferoo details -->
+    <!-- Bufferoos -->
     <string name="bufferoo_master_title">@string/navigation_drawer_menu_bufferoos</string>
 
     <!-- Bufferoo details -->

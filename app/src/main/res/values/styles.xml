@@ -18,8 +18,17 @@
     </style>
 
     <!-- ToolBar -->
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar" />
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light" />
+    <style name="AppTheme.NavigationDrawer.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar" />
+    <style name="AppTheme.NavigationDrawer.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light" />
+
+    <!-- See: https://guides.codepath.com/android/using-the-app-toolbar -->
+    <style name="AppTheme.NoNavigation.Toolbar" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar">
+        <!-- android:textColorPrimary is the color of the title text in the Toolbar  -->
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <!-- Applies to views in their normal state. -->
+        <!-- Customize color of navigation drawer icon and back arrow -->
+        <item name="colorControlNormal">@android:color/white</item>
+    </style>
 
     <!-- Drawer -->
     <style name="AppTheme.DrawerHeader" parent="ThemeOverlay.MaterialComponents.Dark" />
