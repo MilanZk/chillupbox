@@ -42,11 +42,10 @@ class ChooseNavigationFragment : BaseFragment() {
         }
 
         btn_choose_navigation_no_navigation_button.setOnClickListener {
-            Snackbar.make(
-                cl_choose_navigation_container,
-                R.string.not_available_yet,
-                Snackbar.LENGTH_SHORT
-            ).show()
+            activity?.let { activity ->
+                Navigator.navigateToNoNavigationActivity(activity)
+                activity.finish()
+            }
         }
     }
 }

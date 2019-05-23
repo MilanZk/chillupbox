@@ -29,6 +29,9 @@
         <activity
             android:name="com.company.mobile.android.appname.app.main.navigationdrawer.NavigationDrawerMainActivity"
             android:theme="@style/SplashTheme" />
+        <activity
+            android:name=".main.nonavigation.NoNavigationMainActivity"
+            android:theme="@style/SplashTheme" />
 
     </application>
 

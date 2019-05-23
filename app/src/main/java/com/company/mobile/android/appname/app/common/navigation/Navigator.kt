@@ -4,6 +4,7 @@ import android.app.Activity
 import androidx.annotation.NonNull
 import com.company.mobile.android.appname.app.choosenavigation.ChooseNavigationActivity
 import com.company.mobile.android.appname.app.main.navigationdrawer.NavigationDrawerMainActivity
+import com.company.mobile.android.appname.app.main.nonavigation.NoNavigationMainActivity
 
 /**
  * Class used to navigate through activities.
@@ -29,6 +30,16 @@ object Navigator {
         val intentToLaunch = NavigationDrawerMainActivity.getCallingIntent(activity)
         // Forces a complete reopen of main activity
         // intentToLaunch.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        activity.startActivity(intentToLaunch)
+    }
+
+    /**
+     * Opens no navigation main screen.
+     *
+     * @param activity An [Activity] needed to open the destiny activity.
+     */
+    fun navigateToNoNavigationActivity(@NonNull activity: Activity) {
+        val intentToLaunch = NoNavigationMainActivity.getCallingIntent(activity)
         activity.startActivity(intentToLaunch)
     }
 }

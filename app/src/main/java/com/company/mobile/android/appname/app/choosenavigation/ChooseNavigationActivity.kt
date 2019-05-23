@@ -20,7 +20,7 @@ class ChooseNavigationActivity : BaseActivity() {
 
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.fl_choose_navigation_container, ChooseNavigationFragment.newInstance())
+                .replace(R.id.fl_choose_navigation_main_container, ChooseNavigationFragment.newInstance())
                 .commitNow()
         }
     }
