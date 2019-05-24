@@ -18,7 +18,7 @@ class SplashActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        Navigator.navigateToChooseNavigationActivity(this)
+        Navigator.navigateToSignInActivity(this)
         finish()
     }
 }

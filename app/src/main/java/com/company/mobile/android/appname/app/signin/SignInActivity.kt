@@ -1,4 +1,4 @@
-package com.company.mobile.android.appname.app.choosenavigation
+package com.company.mobile.android.appname.app.signin
 
 import android.content.Context
 import android.content.Intent
@@ -6,11 +6,11 @@ import android.os.Bundle
 import com.company.mobile.android.appname.app.R
 import com.company.mobile.android.appname.app.common.BaseActivity
 
-class ChooseNavigationActivity : BaseActivity() {
+class SignInActivity : BaseActivity() {
 
     companion object {
         fun getCallingIntent(context: Context): Intent {
-            return Intent(context, ChooseNavigationActivity::class.java)
+            return Intent(context, SignInActivity::class.java)
         }
     }
 
@@ -20,7 +20,7 @@ class ChooseNavigationActivity : BaseActivity() {
 
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.fl_basic_main_container, ChooseNavigationFragment.newInstance())
+                .replace(R.id.fl_basic_main_container, SignInFragment.newInstance())
                 .commitNow()
         }
     }

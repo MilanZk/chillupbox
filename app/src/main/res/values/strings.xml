@@ -16,6 +16,14 @@
     <string name="choose_navigation_bottom_navigation_option">Bottom navigation example</string>
     <string name="choose_navigation_no_navigation_option">No navigation example</string>
 
+    <!-- Sign in -->
+    <string name="sign_in_title">Welcome</string>
+    <string name="sign_in_usernane">username</string>
+    <string name="sign_in_password">password</string>
+    <string name="sign_in_forgot_password">Forgot your password?</string>
+    <string name="sign_in_click_here">Click here</string>
+    <string name="sign_in_action">Sign in</string>
+
     <!-- Drawer menu -->
     <string name="navigation_drawer_header_title">Navigation drawer example</string>
     <string name="navigation_drawer_menu_open">Open drawer menu</string>

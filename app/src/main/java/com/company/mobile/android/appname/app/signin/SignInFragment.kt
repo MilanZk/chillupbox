@@ -1,4 +1,4 @@
-package com.company.mobile.android.appname.app.choosenavigation
+package com.company.mobile.android.appname.app.signin
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,42 +7,44 @@ import android.view.ViewGroup
 import com.company.mobile.android.appname.app.R
 import com.company.mobile.android.appname.app.common.BaseFragment
 import com.company.mobile.android.appname.app.common.navigation.Navigator
+import com.company.mobile.android.appname.app.common.view.ClickActionFactory
+import com.company.mobile.android.appname.app.common.view.ClickableTextUtils
 import com.company.mobile.android.appname.app.common.view.ViewUtils
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.activity_basic.fl_basic_main_container
 import kotlinx.android.synthetic.main.fragment_choose_navigation.btn_choose_navigation_bottom_navigation_button
 import kotlinx.android.synthetic.main.fragment_choose_navigation.btn_choose_navigation_navigation_drawer_button
 import kotlinx.android.synthetic.main.fragment_choose_navigation.btn_choose_navigation_no_navigation_button
 import kotlinx.android.synthetic.main.fragment_choose_navigation.cl_choose_navigation_container
+import kotlinx.android.synthetic.main.fragment_sign_in.btn_sign_in_next
+import kotlinx.android.synthetic.main.fragment_sign_in.tv_sign_in_click_here
+import timber.log.Timber
 
-class ChooseNavigationFragment : BaseFragment() {
+class SignInFragment : BaseFragment() {
 
     companion object {
-        fun newInstance() = ChooseNavigationFragment()
+        fun newInstance() = SignInFragment()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        return inflater.inflate(R.layout.fragment_choose_navigation, container, false)
+        return inflater.inflate(R.layout.fragment_sign_in, container, false)
     }
 
     override fun initializeViews(savedInstanceState: Bundle?) {
         super.initializeViews(savedInstanceState)
 
-        btn_choose_navigation_navigation_drawer_button.setOnClickListener {
+        btn_sign_in_next.setOnClickListener {
             activity?.let { activity ->
-                Navigator.navigateToNavigationDrawerMainActivity(activity)
+                Navigator.navigateToChooseNavigationActivity(activity)
                 activity.finish()
             }
         }
 
-        btn_choose_navigation_bottom_navigation_button.setOnClickListener {
-            ViewUtils.showNotAvailableYetMessage(cl_choose_navigation_container)
-        }
-
-        btn_choose_navigation_no_navigation_button.setOnClickListener {
-            activity?.let { activity ->
-                Navigator.navigateToNoNavigationActivity(activity)
-                activity.finish()
+        val color = resources.getColor(R.color.colorPrimaryLinkText)
+        ClickableTextUtils.makeTextViewClickable(tv_sign_in_click_here, color, object : ClickActionFactory {
+            override fun onClickAction(widget: View) {
+                ViewUtils.showNotAvailableYetMessage(tv_sign_in_click_here)
             }
-        }
+        })
     }
 }

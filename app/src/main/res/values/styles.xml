@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <!-- Customize your theme here. -->
@@ -32,5 +32,56 @@
 
     <!-- Drawer -->
     <style name="AppTheme.DrawerHeader" parent="ThemeOverlay.MaterialComponents.Dark" />
+
+    <!-- Text -->
+    <style name="AppTheme.DefaultText" parent="Theme.MaterialComponents.Light">
+        <item name="android:textColor">@color/colorPrimaryText</item>
+    </style>
+
+    <style name="AppTheme.HeaderText" parent="AppTheme.DefaultText">
+        <item name="android:textAlignment" tools:targetApi="17">center</item>
+        <item name="android:textSize">@dimen/header_text_size</item>
+    </style>
+
+    <!-- Forms -->
+    <!-- TextInputLayout -->
+    <style name="AppTheme.TextInputLayout" parent="AppTheme.DefaultText">
+        <!-- Sets the color of the hint when the edit text is focused or not -->
+        <item name="android:textColorHint">@drawable/text_input_edit_text_hint_light</item>
+    </style>
+
+    <style name="AppTheme.ErrorText" parent="TextAppearance.AppCompat.Small">
+        <!-- Sets the color of the error text -->
+        <item name="android:textColor">@color/colorError</item>
+    </style>
+
+    <style name="AppTheme.HintAppearance" parent="TextAppearance.AppCompat">
+        <!-- Sets the color of the hint when the edit text is focused -->
+        <item name="android:textColor">@color/colorPrimaryText</item>
+    </style>
+
+    <!-- TextInputEditText -->
+    <style name="AppTheme.TextInputEditText" parent="AppTheme.DefaultText">
+        <!-- Sets the color of the written text -->
+        <item name="android:textColor">@color/colorPrimaryText</item>
+        <item name="android:drawablePadding">@dimen/forms_icon_padding</item>
+    </style>
+
+    <style name="AppTheme.TextInputEditTextTheme" parent="AppTheme.DefaultText">
+        <!-- Sets the color of the caret and underline when not focused -->
+        <item name="colorControlNormal">@color/colorPrimaryText</item>
+        <!-- Sets the color of the caret and underline when focused -->
+        <item name="colorControlActivated">@color/colorAccent</item>
+    </style>
+
+    <!-- Button -->
+    <style name="AppTheme.Button" parent="AppTheme.DefaultText">
+        <item name="android:textColor">@color/colorPrimaryTextLight</item>
+        <item name="colorButtonNormal">@color/colorAccent</item>
+        <item name="backgroundTint">@color/colorAccent</item>
+        <item name="colorControlHighlight">@color/colorAccentDark</item>
+        <item name="android:layout_height">@dimen/forms_button_height</item>
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Body2</item>
+    </style>
 
 </resources>

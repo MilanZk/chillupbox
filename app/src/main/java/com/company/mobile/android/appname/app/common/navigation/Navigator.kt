@@ -5,6 +5,7 @@ import androidx.annotation.NonNull
 import com.company.mobile.android.appname.app.choosenavigation.ChooseNavigationActivity
 import com.company.mobile.android.appname.app.main.navigationdrawer.NavigationDrawerMainActivity
 import com.company.mobile.android.appname.app.main.nonavigation.NoNavigationMainActivity
+import com.company.mobile.android.appname.app.signin.SignInActivity
 
 /**
  * Class used to navigate through activities.
@@ -12,7 +13,17 @@ import com.company.mobile.android.appname.app.main.nonavigation.NoNavigationMain
 object Navigator {
 
     /**
-     * Opens navigation drawer main screen.
+     * Opens sign in screen.
+     *
+     * @param activity An [Activity] needed to open the destiny activity.
+     */
+    fun navigateToSignInActivity(@NonNull activity: Activity) {
+        val intentToLaunch = SignInActivity.getCallingIntent(activity)
+        activity.startActivity(intentToLaunch)
+    }
+
+    /**
+     * Opens choose navigation example screen.
      *
      * @param activity An [Activity] needed to open the destiny activity.
      */
