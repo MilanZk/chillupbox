@@ -7,12 +7,10 @@ import android.view.ViewGroup
 import com.company.mobile.android.appname.app.R
 import com.company.mobile.android.appname.app.common.BaseFragment
 import com.company.mobile.android.appname.app.common.navigation.Navigator
-import com.company.mobile.android.appname.app.common.view.ViewUtils
-import com.google.android.material.snackbar.Snackbar
+import com.company.mobile.android.appname.app.common.view.showNotAvailableYetMessage
 import kotlinx.android.synthetic.main.fragment_choose_navigation.btn_choose_navigation_bottom_navigation_button
 import kotlinx.android.synthetic.main.fragment_choose_navigation.btn_choose_navigation_navigation_drawer_button
 import kotlinx.android.synthetic.main.fragment_choose_navigation.btn_choose_navigation_no_navigation_button
-import kotlinx.android.synthetic.main.fragment_choose_navigation.cl_choose_navigation_container
 
 class ChooseNavigationFragment : BaseFragment() {
 
@@ -35,7 +33,7 @@ class ChooseNavigationFragment : BaseFragment() {
         }
 
         btn_choose_navigation_bottom_navigation_button.setOnClickListener {
-            ViewUtils.showNotAvailableYetMessage(cl_choose_navigation_container)
+            btn_choose_navigation_bottom_navigation_button.showNotAvailableYetMessage()
         }
 
         btn_choose_navigation_no_navigation_button.setOnClickListener {

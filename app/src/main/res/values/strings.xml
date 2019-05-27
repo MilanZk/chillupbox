@@ -44,6 +44,12 @@
     <!-- About -->
     <string name="bufferoo_about_title">@string/navigation_drawer_menu_about</string>
 
+    <!-- About -->
+    <string name="error_empty">It cannot be empty</string>
+    <string name="error_invalid_username">This not a valid username</string>
+    <string name="error_invalid_password">6 or more alphanumeric and \'_\' characters</string>
+
+
     <!-- Deprecated -->
     <string name="label_empty_result">Oops, there are no results to display</string>
     <string name="label_error_result">Oops, there was an error fetching the data</string>
