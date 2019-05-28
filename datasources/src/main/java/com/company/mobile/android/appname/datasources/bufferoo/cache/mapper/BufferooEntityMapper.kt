@@ -2,6 +2,7 @@ package com.company.mobile.android.appname.datasources.bufferoo.cache.mapper
 
 import com.company.mobile.android.appname.model.bufferoo.Bufferoo
 import com.company.mobile.android.appname.datasources.bufferoo.cache.model.CachedBufferoo
+import com.company.mobile.android.appname.datasources.cache.mapper.EntityMapper
 
 /**
  * Map a [CachedBufferoo] instance to and from a [Bufferoo] instance when data is moving between

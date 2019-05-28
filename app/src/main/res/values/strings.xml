@@ -23,6 +23,8 @@
     <string name="sign_in_forgot_password">Forgot your password?</string>
     <string name="sign_in_click_here">Click here</string>
     <string name="sign_in_action">Sign in</string>
+    <string name="sign_in_user_id">User id is: \'%1$s\'</string>
+    <string name="sign_in_no_user_id">JWT body does not contain an \'id\' field.</string>
 
     <!-- Drawer menu -->
     <string name="navigation_drawer_header_title">Navigation drawer example</string>

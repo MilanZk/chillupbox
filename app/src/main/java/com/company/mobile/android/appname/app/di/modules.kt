@@ -5,6 +5,8 @@ import com.company.mobile.android.appname.app.BuildConfig
 import com.company.mobile.android.appname.app.UiThread
 import com.company.mobile.android.appname.app.bufferoos.master.BufferoosAdapter
 import com.company.mobile.android.appname.app.bufferoos.viewmodel.BufferoosViewModel
+import com.company.mobile.android.appname.app.main.navigationdrawer.NavigationDrawerMainActivityViewModel
+import com.company.mobile.android.appname.app.signin.SignInViewModel
 import com.company.mobile.android.appname.data.bufferoo.repository.BufferooDataRepository
 import com.company.mobile.android.appname.data.bufferoo.source.BufferooDataStore
 import com.company.mobile.android.appname.data.bufferoo.source.BufferooDataStoreFactory
@@ -15,11 +17,11 @@ import com.company.mobile.android.appname.datasources.bufferoo.cache.mapper.Buff
 import com.company.mobile.android.appname.datasources.bufferoo.remote.BufferooRemoteImpl
 import com.company.mobile.android.appname.datasources.bufferoo.remote.BufferooServiceFactory
 import com.company.mobile.android.appname.domain.bufferoo.interactor.GetBufferoos
+import com.company.mobile.android.appname.domain.bufferoo.interactor.SignInBufferoos
 import com.company.mobile.android.appname.domain.bufferoo.repository.BufferooRepository
 import com.company.mobile.android.appname.domain.executor.JobExecutor
 import com.company.mobile.android.appname.domain.executor.PostExecutionThread
 import com.company.mobile.android.appname.domain.executor.ThreadExecutor
-import com.company.mobile.android.appname.app.main.navigationdrawer.NavigationDrawerMainActivityViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
@@ -52,18 +54,23 @@ val applicationModule = module(override = true) {
     factory { get<BufferoosDatabase>().cachedBufferooDao() }
 
     // IMPORTANT: Named qualifiers must be unique inside the module
-    factory<BufferooDataStore>(named("remoteBufferooDataStore")) { BufferooRemoteImpl(get(), get()) }
+    factory<BufferooDataStore>(named("remoteBufferooDataStore")) { BufferooRemoteImpl(get(), get(), androidContext()) }
     factory<BufferooDataStore>(named("localBufferooDataStore")) { BufferooCacheImpl(get(), get(), get()) }
     factory { BufferooDataStoreFactory(get(named("localBufferooDataStore")), get(named("remoteBufferooDataStore"))) }
 
     factory { BufferooEntityMapper() }
-    factory { BufferooServiceFactory.makeBuffeooService(BuildConfig.DEBUG) }
+    factory { BufferooServiceFactory.makeBuffeooService(androidContext(), BuildConfig.DEBUG) }
 
     factory<BufferooRepository> { BufferooDataRepository(get()) }
 }
 
 val mainModule = module(override = true) {
     viewModel { NavigationDrawerMainActivityViewModel() }
+}
+
+val signInModule = module(override = true) {
+    factory { SignInBufferoos(get(), get(), get()) }
+    viewModel { SignInViewModel(get()) }
 }
 
 val bufferoosModule = module(override = true) {

@@ -1,4 +1,4 @@
-package com.company.mobile.android.appname.datasources.bufferoo.cache.mapper
+package com.company.mobile.android.appname.datasources.cache.mapper
 
 /**
  * Interface for model mappers. It provides helper methods that facilitate

@@ -16,7 +16,7 @@ import io.reactivex.disposables.Disposable
 
 typealias BufferoosState = ResourceState<List<Bufferoo>>
 
-class BufferoosViewModel(val getBufferoos: GetBufferoos) : ViewModel() {
+class BufferoosViewModel(val getBufferoosUseCase: GetBufferoos) : ViewModel() {
 
     private val bufferoosLiveData: MutableLiveData<BufferoosState> = MutableLiveData()
     private val selectedBufferooLiveData: MutableLiveData<Bufferoo> = MutableLiveData()
@@ -48,7 +48,7 @@ class BufferoosViewModel(val getBufferoos: GetBufferoos) : ViewModel() {
         // Do NOT use postValue(), since it will update the value asynchronously. Therefore, loading may not be seen by
         // the view just after setting it.
         bufferoosLiveData.value = Loading()
-        disposable = getBufferoos.execute()
+        disposable = getBufferoosUseCase.execute()
             .subscribe({
                 bufferoos = it
                 bufferoosLiveData.value = Success(bufferoos)

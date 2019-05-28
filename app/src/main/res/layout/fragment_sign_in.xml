@@ -142,8 +142,8 @@
             style="@style/AppTheme.Button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/horizontal_margin"
             android:layout_marginEnd="@dimen/horizontal_margin"
+            android:layout_marginStart="@dimen/horizontal_margin"
             android:text="@string/sign_in_action"
             android:theme="@style/AppTheme.Button"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -153,5 +153,18 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!--<include layout="@layout/view_loading" />-->
+
+    <ProgressBar
+        android:id="@+id/pb_sign_in_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone" />
+
+    <com.company.mobile.android.appname.app.common.widget.error.ErrorView
+        android:id="@+id/ev_sign_in_error_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
 
 </FrameLayout>
