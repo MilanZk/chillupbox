@@ -5,6 +5,7 @@ import com.company.mobile.android.appname.app.di.applicationModule
 import com.company.mobile.android.appname.app.di.bufferoosModule
 import com.company.mobile.android.appname.app.di.mainModule
 import com.company.mobile.android.appname.app.di.signInModule
+import com.company.mobile.android.appname.app.di.splashModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import timber.log.Timber
@@ -19,7 +20,7 @@ class BufferooApplication : Application() {
             // Android context
             androidContext(this@BufferooApplication)
             // modules
-            modules(listOf(applicationModule, mainModule, signInModule, bufferoosModule))
+            modules(listOf(applicationModule, splashModule, signInModule, mainModule, bufferoosModule))
         }
 
         setupTimber()

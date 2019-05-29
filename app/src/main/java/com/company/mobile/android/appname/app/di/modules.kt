@@ -8,6 +8,7 @@ import com.company.mobile.android.appname.app.bufferoos.viewmodel.BufferoosViewM
 import com.company.mobile.android.appname.app.main.navigationdrawer.NavigationDrawerMainActivityViewModel
 import com.company.mobile.android.appname.app.main.nonavigation.NoNavigationMainActivityViewModel
 import com.company.mobile.android.appname.app.signin.SignInViewModel
+import com.company.mobile.android.appname.app.splash.SplashActivityViewModel
 import com.company.mobile.android.appname.data.bufferoo.repository.BufferooDataRepository
 import com.company.mobile.android.appname.data.bufferoo.source.BufferooDataStore
 import com.company.mobile.android.appname.data.bufferoo.source.BufferooDataStoreFactory
@@ -18,6 +19,7 @@ import com.company.mobile.android.appname.datasources.bufferoo.cache.mapper.Buff
 import com.company.mobile.android.appname.datasources.bufferoo.remote.BufferooRemoteImpl
 import com.company.mobile.android.appname.datasources.bufferoo.remote.BufferooServiceFactory
 import com.company.mobile.android.appname.domain.bufferoo.interactor.GetBufferoos
+import com.company.mobile.android.appname.domain.bufferoo.interactor.GetCredentials
 import com.company.mobile.android.appname.domain.bufferoo.interactor.SignInBufferoos
 import com.company.mobile.android.appname.domain.bufferoo.interactor.SignOutBufferoos
 import com.company.mobile.android.appname.domain.bufferoo.repository.BufferooRepository
@@ -66,15 +68,20 @@ val applicationModule = module(override = true) {
     factory<BufferooRepository> { BufferooDataRepository(get()) }
 }
 
-val mainModule = module(override = true) {
-    factory { SignOutBufferoos(get(), get(), get()) }
-    viewModel { NavigationDrawerMainActivityViewModel(get()) }
-    viewModel { NoNavigationMainActivityViewModel(get()) }
+val splashModule = module(override = true) {
+    factory { GetCredentials(get(), get(), get()) }
+    viewModel { SplashActivityViewModel(get()) }
 }
 
 val signInModule = module(override = true) {
     factory { SignInBufferoos(get(), get(), get()) }
     viewModel { SignInViewModel(get()) }
+}
+
+val mainModule = module(override = true) {
+    factory { SignOutBufferoos(get(), get(), get()) }
+    viewModel { NavigationDrawerMainActivityViewModel(get()) }
+    viewModel { NoNavigationMainActivityViewModel(get()) }
 }
 
 val bufferoosModule = module(override = true) {

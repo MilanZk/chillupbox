@@ -5,12 +5,11 @@ import com.company.mobile.android.appname.data.bufferoo.source.BufferooDataStore
 import com.company.mobile.android.appname.datasources.bufferoo.remote.mapper.BufferooEntityMapper
 import com.company.mobile.android.appname.datasources.bufferoo.remote.model.PostCredentialsRequest
 import com.company.mobile.android.appname.model.bufferoo.Bufferoo
+import com.company.mobile.android.appname.model.bufferoo.Credentials
 import com.company.mobile.android.appname.model.bufferoo.SignedInBufferoo
 import com.company.mobile.android.appname.model.bufferoo.SignedOutBufferoo
 import io.reactivex.Completable
 import io.reactivex.Single
-import java.lang.Exception
-import java.lang.IllegalStateException
 import java.lang.ref.WeakReference
 
 /**
@@ -36,7 +35,7 @@ class BufferooRemoteImpl constructor(
                 // Before sign in, remove the old token, so that the authenticator does not find a token and it adds basic authentication header
                 contextWeakReference.get()?.let { context ->
                     BufferooCredentialsWallet.deleteAccessToken(context)
-                }
+                } ?: throw IllegalStateException("Context is null! Credentials cannot be deleted.")
             }
             .map { signInResponse ->
                 // Extract user id
@@ -50,11 +49,27 @@ class BufferooRemoteImpl constructor(
                     BufferooCredentialsWallet.setAccessToken(context, signInResponse.access_token)
                     BufferooCredentialsWallet.setExpirationTimestamp(context, tokenExpirationTimestamp)
                     BufferooCredentialsWallet.setRefreshToken(context, signInResponse.refresh_token ?: "")
-                }
 
-                // Return result
-                SignedInBufferoo(userId)
+                    // Return result
+                    SignedInBufferoo(userId)
+                } ?: throw IllegalStateException("Context is null! Credentials cannot be stored.")
             }
+    }
+
+    /**
+     * Retrieve [Credentials] from the [BufferooService].
+     */
+    override fun getCredentials(): Single<Credentials> {
+        return Single.defer {
+            contextWeakReference.get()?.let { context ->
+                Single.just(
+                    Credentials(
+                        BufferooCredentialsWallet.getUsername(context),
+                        BufferooCredentialsWallet.getId(context)
+                    )
+                )
+            } ?: Single.error(IllegalStateException("Context is null! Credentials cannot be loaded."))
+        }
     }
 
     /**

@@ -5,6 +5,7 @@ import com.company.mobile.android.appname.datasources.bufferoo.cache.db.Bufferoo
 import com.company.mobile.android.appname.datasources.bufferoo.cache.mapper.BufferooEntityMapper
 import com.company.mobile.android.appname.datasources.bufferoo.cache.model.CachedBufferoo
 import com.company.mobile.android.appname.model.bufferoo.Bufferoo
+import com.company.mobile.android.appname.model.bufferoo.Credentials
 import com.company.mobile.android.appname.model.bufferoo.SignedInBufferoo
 import com.company.mobile.android.appname.model.bufferoo.SignedOutBufferoo
 import io.reactivex.Completable
@@ -95,6 +96,10 @@ class BufferooCacheImpl constructor(
     }
 
     override fun signIn(username: String, password: String): Single<SignedInBufferoo> {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun getCredentials(): Single<Credentials> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
