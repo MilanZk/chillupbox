@@ -6,7 +6,7 @@
 - [ ] Exchange GSON for Moshi?
 - [ ] Add error management with retries.
 - [ ] Add NetViewModel for authentication errors.
-- [ ] Add a generic loading view.
+- [x] Display loading with a generic loading view instead of a progress bar.
 - [x] Add form validators and improve styles.
 - [x] Add sign in feature.
 - [ ] Add bottom navigation example.

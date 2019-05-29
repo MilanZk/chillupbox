@@ -40,6 +40,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - New mock server using Postman was created.
 
 ### Changed
+- Progress bar was exchanged for a loading view.
 - Instrumental tests were updated to Koin 2.0 and fixed.
 - Project was updated to Koin 2.0.
 - Data module was split into domain and data with a new shared models module.

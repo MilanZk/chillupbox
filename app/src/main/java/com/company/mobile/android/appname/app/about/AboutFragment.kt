@@ -8,7 +8,7 @@ import com.company.mobile.android.appname.app.R
 import com.company.mobile.android.appname.app.common.BaseFragment
 import kotlinx.android.synthetic.main.fragment_about.ev_about_empty_view
 import kotlinx.android.synthetic.main.fragment_about.ev_about_error_view
-import kotlinx.android.synthetic.main.fragment_about.pb_about_progress
+import kotlinx.android.synthetic.main.fragment_about.lv_about_loading_view
 
 class AboutFragment : BaseFragment() {
 
@@ -32,6 +32,6 @@ class AboutFragment : BaseFragment() {
 
         ev_about_error_view.visibility = View.GONE
         ev_about_empty_view.visibility = View.GONE
-        pb_about_progress.visibility = View.GONE
+        lv_about_loading_view.visibility = View.GONE
     }
 }

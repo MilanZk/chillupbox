@@ -15,11 +15,14 @@
             android:text="@string/navigation_drawer_menu_about" />
     </LinearLayout>
 
-    <ProgressBar
-        android:id="@+id/pb_about_progress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center" />
+    <!-- These views are clickable and focusable to block user interaction -->
+    <com.company.mobile.android.appname.app.common.widget.loading.LoadView
+        android:id="@+id/lv_about_loading_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone" />
 
     <com.company.mobile.android.appname.app.common.widget.empty.EmptyView
         android:id="@+id/ev_about_empty_view"

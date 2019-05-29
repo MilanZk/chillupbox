@@ -8,9 +8,9 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import com.company.mobile.android.appname.app.R
 import com.company.mobile.android.appname.app.common.BaseFragment
+import com.company.mobile.android.appname.app.common.model.ResourceState.Error
 import com.company.mobile.android.appname.app.common.model.ResourceState.Loading
 import com.company.mobile.android.appname.app.common.model.ResourceState.Success
-import com.company.mobile.android.appname.app.common.model.ResourceState.Error
 import com.company.mobile.android.appname.app.common.navigation.Navigator
 import com.company.mobile.android.appname.app.common.validation.EditTextRegexValidator
 import com.company.mobile.android.appname.app.common.validation.EditTextRequiredInputValidator
@@ -22,7 +22,7 @@ import com.company.mobile.android.appname.app.common.widget.error.ErrorListener
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_sign_in.btn_sign_in_next
 import kotlinx.android.synthetic.main.fragment_sign_in.ev_sign_in_error_view
-import kotlinx.android.synthetic.main.fragment_sign_in.pb_sign_in_progress
+import kotlinx.android.synthetic.main.fragment_sign_in.lv_sign_in_loading_view
 import kotlinx.android.synthetic.main.fragment_sign_in.tiet_sign_in_password
 import kotlinx.android.synthetic.main.fragment_sign_in.tiet_sign_in_username
 import kotlinx.android.synthetic.main.fragment_sign_in.tv_sign_in_click_here
@@ -118,13 +118,13 @@ class SignInFragment : BaseFragment() {
     }
 
     private fun setupScreenForLoadingState() {
-        pb_sign_in_progress.visibility = View.VISIBLE
+        lv_sign_in_loading_view.visibility = View.VISIBLE
         ev_sign_in_error_view.visibility = View.GONE
     }
 
     private fun setupScreenForSuccess(data: String) {
         ev_sign_in_error_view.visibility = View.GONE
-        pb_sign_in_progress.visibility = View.GONE
+        lv_sign_in_loading_view.visibility = View.GONE
         if (data.isNotEmpty()) {
             Timber.d("User id is: $data")
 
@@ -139,7 +139,7 @@ class SignInFragment : BaseFragment() {
     }
 
     private fun setupScreenForError(message: String?) {
-        pb_sign_in_progress.visibility = View.GONE
+        lv_sign_in_loading_view.visibility = View.GONE
         ev_sign_in_error_view.visibility = View.VISIBLE
     }
 

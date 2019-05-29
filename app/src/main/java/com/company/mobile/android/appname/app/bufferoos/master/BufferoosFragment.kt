@@ -19,7 +19,7 @@ import com.company.mobile.android.appname.app.common.widget.error.ErrorListener
 import com.company.mobile.android.appname.model.bufferoo.Bufferoo
 import kotlinx.android.synthetic.main.fragment_bufferoos.ev_bufferoos_empty_view
 import kotlinx.android.synthetic.main.fragment_bufferoos.ev_bufferoos_error_view
-import kotlinx.android.synthetic.main.fragment_bufferoos.pb_bufferoos_progress
+import kotlinx.android.synthetic.main.fragment_bufferoos.lv_bufferoos_loading_view
 import kotlinx.android.synthetic.main.fragment_bufferoos.rv_bufferoos
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
@@ -95,7 +95,7 @@ class BufferoosFragment : BaseFragment() {
     }
 
     private fun setupScreenForLoadingState() {
-        pb_bufferoos_progress.visibility = View.VISIBLE
+        lv_bufferoos_loading_view.visibility = View.VISIBLE
         rv_bufferoos.visibility = View.GONE
         ev_bufferoos_empty_view.visibility = View.GONE
         ev_bufferoos_error_view.visibility = View.GONE
@@ -103,7 +103,7 @@ class BufferoosFragment : BaseFragment() {
 
     private fun setupScreenForSuccess(data: List<Bufferoo>?) {
         ev_bufferoos_error_view.visibility = View.GONE
-        pb_bufferoos_progress.visibility = View.GONE
+        lv_bufferoos_loading_view.visibility = View.GONE
         if (data != null && data.isNotEmpty()) {
             updateListView(data)
             rv_bufferoos.visibility = View.VISIBLE
@@ -118,7 +118,7 @@ class BufferoosFragment : BaseFragment() {
     }
 
     private fun setupScreenForError(message: String?) {
-        pb_bufferoos_progress.visibility = View.GONE
+        lv_bufferoos_loading_view.visibility = View.GONE
         rv_bufferoos.visibility = View.GONE
         ev_bufferoos_empty_view.visibility = View.GONE
         ev_bufferoos_error_view.visibility = View.VISIBLE

@@ -14,7 +14,7 @@ import com.company.mobile.android.appname.model.bufferoo.Bufferoo
 import kotlinx.android.synthetic.main.fragment_bufferoo_details.ev_bufferoo_details_empty_view
 import kotlinx.android.synthetic.main.fragment_bufferoo_details.ev_bufferoo_details_error_view
 import kotlinx.android.synthetic.main.fragment_bufferoo_details.iv_bufferoo_details_avatar_image
-import kotlinx.android.synthetic.main.fragment_bufferoo_details.pb_bufferoo_details_progress
+import kotlinx.android.synthetic.main.fragment_bufferoo_details.lv_bufferoo_details_loading_view
 import kotlinx.android.synthetic.main.fragment_bufferoo_details.tv_bufferoo_details_name
 import kotlinx.android.synthetic.main.fragment_bufferoo_details.tv_bufferoo_details_title
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
@@ -43,7 +43,7 @@ class BufferooDetailsFragment : BaseFragment() {
 
         ev_bufferoo_details_error_view.visibility = View.GONE
         ev_bufferoo_details_empty_view.visibility = View.GONE
-        pb_bufferoo_details_progress.visibility = View.GONE
+        lv_bufferoo_details_loading_view.visibility = View.GONE
 
         // Link the fragment and the model view with "viewLifecycleOwner", so that observers
         // can be subscribed in onActivityCreated() and can be automatically unsubscribed

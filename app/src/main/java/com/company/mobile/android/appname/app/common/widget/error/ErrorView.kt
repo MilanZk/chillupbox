@@ -8,7 +8,7 @@ import com.company.mobile.android.appname.app.R
 import kotlinx.android.synthetic.main.view_error.view.bt_error_view_retry_button
 
 /**
- * Widget used to display an empty state to the user
+ * Widget used to display an error state to the user
  */
 class ErrorView : RelativeLayout {
 

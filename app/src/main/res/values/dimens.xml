@@ -25,6 +25,10 @@
     <dimen name="bufferoo_details_vertical_margin">16dp</dimen>
     <dimen name="bufferoo_details_horizontal_margin">16dp</dimen>
 
+    <!-- Home -->
+    <dimen name="loading_view_progress_bar_height">4dp</dimen>
+    <dimen name="loading_view_progress_bar_fill_size">8dp</dimen>
+
     <!-- Forms -->
     <dimen name="forms_icon_padding">8dp</dimen>
     <dimen name="forms_vertical_margin">24dp</dimen>
