@@ -1,10 +1,16 @@
 package com.company.mobile.android.appname.datasources.bufferoo.remote
 
-import com.company.mobile.android.appname.model.bufferoo.Bufferoo
+import android.content.Context
 import com.company.mobile.android.appname.data.bufferoo.source.BufferooDataStore
 import com.company.mobile.android.appname.datasources.bufferoo.remote.mapper.BufferooEntityMapper
+import com.company.mobile.android.appname.datasources.bufferoo.remote.model.PostCredentialsRequest
+import com.company.mobile.android.appname.model.bufferoo.Bufferoo
+import com.company.mobile.android.appname.model.bufferoo.Credentials
+import com.company.mobile.android.appname.model.bufferoo.SignedInBufferoo
+import com.company.mobile.android.appname.model.bufferoo.SignedOutBufferoo
 import io.reactivex.Completable
 import io.reactivex.Single
+import java.lang.ref.WeakReference
 
 /**
  * Remote implementation for retrieving Bufferoo instances. This class implements the
@@ -13,8 +19,58 @@ import io.reactivex.Single
  */
 class BufferooRemoteImpl constructor(
     private val bufferooService: BufferooService,
-    private val entityMapper: BufferooEntityMapper
+    private val bufferooEntityMapper: BufferooEntityMapper,
+    _context: Context
 ) : BufferooDataStore {
+
+    private val contextWeakReference = WeakReference<Context>(_context)
+
+    /**
+     * Sign in using the [BufferooService].
+     */
+    override fun signIn(username: String, password: String): Single<SignedInBufferoo> {
+        val signInRequest = PostCredentialsRequest(username, password)
+        return bufferooService.postCredentials(signInRequest)
+            .doOnSubscribe {
+                // Before sign in, remove the old token, so that the authenticator does not find a token and it adds basic authentication header
+                contextWeakReference.get()?.let { context ->
+                    BufferooCredentialsWallet.deleteAccessToken(context)
+                } ?: throw IllegalStateException("Context is null! Credentials cannot be deleted.")
+            }
+            .map { signInResponse ->
+                // Extract user id
+                val userId = signInResponse.getId()
+                val tokenExpirationTimestamp = signInResponse.getExpirationTimestamp()
+
+                // Store credentials
+                contextWeakReference.get()?.let { context ->
+                    BufferooCredentialsWallet.setUsername(context, username)
+                    BufferooCredentialsWallet.setId(context, userId)
+                    BufferooCredentialsWallet.setAccessToken(context, signInResponse.access_token)
+                    BufferooCredentialsWallet.setExpirationTimestamp(context, tokenExpirationTimestamp)
+                    BufferooCredentialsWallet.setRefreshToken(context, signInResponse.refresh_token ?: "")
+
+                    // Return result
+                    SignedInBufferoo(userId)
+                } ?: throw IllegalStateException("Context is null! Credentials cannot be stored.")
+            }
+    }
+
+    /**
+     * Retrieve [Credentials] from the [BufferooService].
+     */
+    override fun getCredentials(): Single<Credentials> {
+        return Single.defer {
+            contextWeakReference.get()?.let { context ->
+                Single.just(
+                    Credentials(
+                        BufferooCredentialsWallet.getUsername(context),
+                        BufferooCredentialsWallet.getId(context)
+                    )
+                )
+            } ?: Single.error(IllegalStateException("Context is null! Credentials cannot be loaded."))
+        }
+    }
 
     /**
      * Retrieve a list of [Bufferoo] instances from the [BufferooService].
@@ -22,11 +78,23 @@ class BufferooRemoteImpl constructor(
     override fun getBufferoos(): Single<List<Bufferoo>> {
         return bufferooService.getBufferoos()
             .map { it.team }
-            .map {
+            .map { bufferoos ->
                 val entities = mutableListOf<Bufferoo>()
-                it.forEach { entities.add(entityMapper.mapFromRemote(it)) }
+                bufferoos.forEach { bufferoo ->
+                    entities.add(bufferooEntityMapper.mapFromRemote(bufferoo))
+                }
                 entities
             }
+    }
+
+    override fun signOut(): Single<SignedOutBufferoo> {
+        return Single.defer {
+            contextWeakReference.get()?.let { context ->
+                val id = BufferooCredentialsWallet.getId(context)
+                BufferooCredentialsWallet.deleteCredentials(context)
+                Single.just(SignedOutBufferoo(id))
+            } ?: Single.error(IllegalStateException("Context is null! Credentials cannot be deleted."))
+        }
     }
 
     override fun clearBufferoos(): Completable {

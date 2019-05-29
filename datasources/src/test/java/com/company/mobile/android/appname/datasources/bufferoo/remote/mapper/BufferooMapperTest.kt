@@ -13,11 +13,11 @@ class BufferooMapperTest {
 
     @Test
     fun mapFromRemoteMapsData() {
-        val bufferooModel = BufferooFactory.makeBufferooModel()
-        val bufferooEntity = bufferooEntityMapper.mapFromRemote(bufferooModel)
+        val bufferooResponse = BufferooFactory.makeBufferooResponse()
+        val bufferooEntity = bufferooEntityMapper.mapFromRemote(bufferooResponse)
 
-        assertEquals(bufferooModel.name, bufferooEntity.name)
-        assertEquals(bufferooModel.title, bufferooEntity.title)
-        assertEquals(bufferooModel.avatar, bufferooEntity.avatar)
+        assertEquals(bufferooResponse.name, bufferooEntity.name)
+        assertEquals(bufferooResponse.title, bufferooEntity.title)
+        assertEquals(bufferooResponse.avatar, bufferooEntity.avatar)
     }
 }

@@ -1,5 +1,8 @@
 package com.company.mobile.android.appname.datasources.bufferoo.remote
 
+import android.content.Context
+import com.company.mobile.android.appname.datasources.remote.authentication.AccessTokenAuthenticator
+import com.company.mobile.android.appname.datasources.remote.authentication.AccessTokenInterceptor
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -16,8 +19,9 @@ import java.util.concurrent.TimeUnit
  */
 object BufferooServiceFactory {
 
-    fun makeBuffeooService(isDebug: Boolean): BufferooService {
+    fun makeBuffeooService(context: Context, isDebug: Boolean): BufferooService {
         val okHttpClient = makeOkHttpClient(
+            context,
             makeLoggingInterceptor(isDebug)
         )
         return makeBufferooService(okHttpClient, makeGson())
@@ -25,7 +29,7 @@ object BufferooServiceFactory {
 
     private fun makeBufferooService(okHttpClient: OkHttpClient, gson: Gson): BufferooService {
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://5178af27-2e3e-481f-ad80-7c5e7703f0ee.mock.pstmn.io")
+            .baseUrl(BufferooService.BASE_URL)
             .client(okHttpClient)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(gson))
@@ -33,8 +37,10 @@ object BufferooServiceFactory {
         return retrofit.create(BufferooService::class.java)
     }
 
-    private fun makeOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
+    private fun makeOkHttpClient(context: Context, httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
         return OkHttpClient.Builder()
+            .authenticator(AccessTokenAuthenticator(BufferooAccessTokenProvider(context)))
+            .addInterceptor(AccessTokenInterceptor(BufferooAccessTokenProvider(context)))
             .addInterceptor(httpLoggingInterceptor)
             .connectTimeout(120, TimeUnit.SECONDS)
             .readTimeout(120, TimeUnit.SECONDS)

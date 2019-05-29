@@ -21,6 +21,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [X.X.X] - YYYY-MM-DD
 ### Added
+- Form validators with styles were added.
+- Sign in activity was implemented.
 - A basic example with no navigation was included, too.
 - Navigation drawer example was finished.
 - An screen for selecting a navigation example was added.

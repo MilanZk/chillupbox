@@ -1,4 +1,4 @@
-package com.company.mobile.android.appname.datasources.bufferoo.remote.mapper
+package com.company.mobile.android.appname.datasources.remote.mapper
 
 /**
  * Interface for model mappers. It provides helper methods that facilitate

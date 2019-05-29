@@ -6,9 +6,9 @@ import androidx.lifecycle.ViewModel
 import com.company.mobile.android.appname.app.bufferoos.master.BufferoosNavigationCommand
 import com.company.mobile.android.appname.app.bufferoos.master.BufferoosNavigationCommand.GoToDetailsView
 import com.company.mobile.android.appname.app.common.model.ResourceState
-import com.company.mobile.android.appname.app.common.model.ResourceState.Success
 import com.company.mobile.android.appname.app.common.model.ResourceState.Error
 import com.company.mobile.android.appname.app.common.model.ResourceState.Loading
+import com.company.mobile.android.appname.app.common.model.ResourceState.Success
 import com.company.mobile.android.appname.app.common.viewmodel.SingleLiveEvent
 import com.company.mobile.android.appname.domain.bufferoo.interactor.GetBufferoos
 import com.company.mobile.android.appname.model.bufferoo.Bufferoo
@@ -16,7 +16,7 @@ import io.reactivex.disposables.Disposable
 
 typealias BufferoosState = ResourceState<List<Bufferoo>>
 
-class BufferoosViewModel(val getBufferoos: GetBufferoos) : ViewModel() {
+class BufferoosViewModel(private val getBufferoosUseCase: GetBufferoos) : ViewModel() {
 
     private val bufferoosLiveData: MutableLiveData<BufferoosState> = MutableLiveData()
     private val selectedBufferooLiveData: MutableLiveData<Bufferoo> = MutableLiveData()
@@ -26,6 +26,7 @@ class BufferoosViewModel(val getBufferoos: GetBufferoos) : ViewModel() {
 
     override fun onCleared() {
         disposable?.dispose()
+
         super.onCleared()
     }
 
@@ -48,7 +49,7 @@ class BufferoosViewModel(val getBufferoos: GetBufferoos) : ViewModel() {
         // Do NOT use postValue(), since it will update the value asynchronously. Therefore, loading may not be seen by
         // the view just after setting it.
         bufferoosLiveData.value = Loading()
-        disposable = getBufferoos.execute()
+        disposable = getBufferoosUseCase.execute()
             .subscribe({
                 bufferoos = it
                 bufferoosLiveData.value = Success(bufferoos)

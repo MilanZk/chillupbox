@@ -16,11 +16,11 @@ class ChooseNavigationActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_choose_navigation)
+        setContentView(R.layout.activity_basic)
 
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.fl_choose_navigation_main_container, ChooseNavigationFragment.newInstance())
+                .replace(R.id.fl_basic_main_container, ChooseNavigationFragment.newInstance())
                 .commitNow()
         }
     }

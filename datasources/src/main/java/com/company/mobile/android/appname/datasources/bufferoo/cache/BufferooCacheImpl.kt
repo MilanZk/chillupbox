@@ -1,10 +1,13 @@
 package com.company.mobile.android.appname.datasources.bufferoo.cache
 
-import com.company.mobile.android.appname.model.bufferoo.Bufferoo
 import com.company.mobile.android.appname.data.bufferoo.source.BufferooDataStore
 import com.company.mobile.android.appname.datasources.bufferoo.cache.db.BufferoosDatabase
 import com.company.mobile.android.appname.datasources.bufferoo.cache.mapper.BufferooEntityMapper
 import com.company.mobile.android.appname.datasources.bufferoo.cache.model.CachedBufferoo
+import com.company.mobile.android.appname.model.bufferoo.Bufferoo
+import com.company.mobile.android.appname.model.bufferoo.Credentials
+import com.company.mobile.android.appname.model.bufferoo.SignedInBufferoo
+import com.company.mobile.android.appname.model.bufferoo.SignedOutBufferoo
 import io.reactivex.Completable
 import io.reactivex.Single
 
@@ -31,12 +34,13 @@ class BufferooCacheImpl constructor(
     }
 
     /**
-     * Remove all the data from all the tables in the database.
+     * Retrieve a list of [Bufferoo] instances from the database.
      */
-    override fun clearBufferoos(): Completable {
-        return Completable.defer {
-            bufferoosDatabase.cachedBufferooDao().clearBufferoos()
-            Completable.complete()
+    override fun getBufferoos(): Single<List<Bufferoo>> {
+        return Single.defer {
+            Single.just(bufferoosDatabase.cachedBufferooDao().getBufferoos())
+        }.map {
+            it.map { entityMapper.mapFromCached(it) }
         }
     }
 
@@ -50,19 +54,18 @@ class BufferooCacheImpl constructor(
                     entityMapper.mapToCached(it)
                 )
             }
-            this.setLastCacheTime(System.currentTimeMillis())
+            setLastCacheTime(System.currentTimeMillis())
             Completable.complete()
         }
     }
 
     /**
-     * Retrieve a list of [Bufferoo] instances from the database.
+     * Remove all the data from all the tables in the database.
      */
-    override fun getBufferoos(): Single<List<Bufferoo>> {
-        return Single.defer {
-            Single.just(bufferoosDatabase.cachedBufferooDao().getBufferoos())
-        }.map {
-            it.map { entityMapper.mapFromCached(it) }
+    override fun clearBufferoos(): Completable {
+        return Completable.defer {
+            bufferoosDatabase.cachedBufferooDao().clearBufferoos()
+            Completable.complete()
         }
     }
 
@@ -72,7 +75,7 @@ class BufferooCacheImpl constructor(
     override fun isValidCache(): Single<Boolean> {
         return Single.defer {
             val currentTime = System.currentTimeMillis()
-            val lastUpdateTime = this.getLastCacheUpdateTimeMillis()
+            val lastUpdateTime = getLastCacheUpdateTimeMillis()
             val expired = currentTime - lastUpdateTime > EXPIRATION_TIME
             Single.just(bufferoosDatabase.cachedBufferooDao().getBufferoos().isNotEmpty() && !expired)
         }
@@ -90,5 +93,17 @@ class BufferooCacheImpl constructor(
      */
     private fun getLastCacheUpdateTimeMillis(): Long {
         return preferencesHelper.lastCacheTime
+    }
+
+    override fun signIn(username: String, password: String): Single<SignedInBufferoo> {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun getCredentials(): Single<Credentials> {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun signOut(): Single<SignedOutBufferoo> {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }

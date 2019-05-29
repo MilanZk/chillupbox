@@ -2,6 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="@id/dl_navidation_drawer_drawer_layout">
+
     <group
         android:id="@+id/main_drawer_menu"
         android:checkableBehavior="none">
@@ -16,6 +17,7 @@
         <item
             android:id="@+id/main_drawer_menu_sign_out"
             android:icon="@drawable/ic_sign_out"
-            android:title="@string/navigation_drawer_menu_sign_out" />
+            android:title="@string/sign_out_action" />
     </group>
+
 </menu>

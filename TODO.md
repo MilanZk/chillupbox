@@ -3,9 +3,12 @@
 ### General
 
 - [ ] Add and example with TypeAdapters?
+- [ ] Exchange GSON for Moshi?
 - [ ] Add error management with retries.
 - [ ] Add NetViewModel for authentication errors.
-- [ ] Add authentication with login.
+- [ ] Add a generic loading view.
+- [x] Add form validators and improve styles.
+- [x] Add sign in feature.
 - [ ] Add bottom navigation example.
 - [x] Add navigation drawer example.
 - [x] Add a selection screen for choosing navigation template. Add a navigator object.
