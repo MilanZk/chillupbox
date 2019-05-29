@@ -3,6 +3,7 @@ package com.company.mobile.android.appname.app.main.nonavigation
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBar
 import androidx.lifecycle.Observer
@@ -13,10 +14,15 @@ import com.company.mobile.android.appname.app.bufferoos.master.BufferoosNavigati
 import com.company.mobile.android.appname.app.bufferoos.viewmodel.BufferoosViewModel
 import com.company.mobile.android.appname.app.common.BaseActivity
 import com.company.mobile.android.appname.app.common.BaseFragment
+import com.company.mobile.android.appname.app.common.model.ResourceState.Error
+import com.company.mobile.android.appname.app.common.model.ResourceState.Loading
+import com.company.mobile.android.appname.app.common.model.ResourceState.Success
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_no_navigation_main.fl_no_navigation_main_container
 import kotlinx.android.synthetic.main.activity_no_navigation_main.tb_no_navigation_main_toolbar
+import kotlinx.android.synthetic.main.navigation_drawer_main_content.fl_navigation_drawer_main_content
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import timber.log.Timber
 
 class NoNavigationMainActivity : BaseActivity() {
 
@@ -26,6 +32,7 @@ class NoNavigationMainActivity : BaseActivity() {
         }
     }
 
+    private val noNavigationMainActivityViewModel: NoNavigationMainActivityViewModel by viewModel()
     private val bufferoosViewModel: BufferoosViewModel by viewModel()
     private lateinit var exitSnackBar: Snackbar
 
@@ -38,10 +45,21 @@ class NoNavigationMainActivity : BaseActivity() {
         initializeContents(savedInstanceState)
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        menuInflater.inflate(R.menu.no_navigation_tool_bar_menu, menu)
+
+        return super.onCreateOptionsMenu(menu)
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {
                 onBackPressed()
+                true
+            }
+            R.id.no_navigation_menu_sign_out -> {
+                noNavigationMainActivityViewModel.signOut()
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -97,6 +115,12 @@ class NoNavigationMainActivity : BaseActivity() {
             // After pushing a fragment, show back button must be true
             updateToolBarHomeIcon(true)
         })
+
+        noNavigationMainActivityViewModel.getSignOut().observe(this,
+            Observer<NoNavigationSignOutState> {
+                if (it != null) handleDataState(it)
+            }
+        )
     }
 
     private fun updateToolBarHomeIcon(showBackButton: Boolean) {
@@ -116,5 +140,14 @@ class NoNavigationMainActivity : BaseActivity() {
     private fun pushSectionFragment(sectionFragment: BaseFragment, sectionTag: String) {
         // Push a fragment for current section that will be added to the back stack
         pushFragment(R.id.fl_no_navigation_main_container, sectionFragment, sectionTag)
+    }
+
+    private fun handleDataState(noNavigationSignOutState: NoNavigationSignOutState) {
+        // This is half baked, it should be improved
+        when (noNavigationSignOutState) {
+            is Loading -> Timber.w("Loading not implemented")
+            is Success -> finish()
+            is Error -> Snackbar.make(fl_navigation_drawer_main_content, noNavigationSignOutState.message, Snackbar.LENGTH_SHORT).show()
+        }
     }
 }

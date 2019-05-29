@@ -20,13 +20,18 @@ import com.company.mobile.android.appname.app.bufferoos.master.BufferoosNavigati
 import com.company.mobile.android.appname.app.bufferoos.viewmodel.BufferoosViewModel
 import com.company.mobile.android.appname.app.common.BaseActivity
 import com.company.mobile.android.appname.app.common.BaseFragment
+import com.company.mobile.android.appname.app.common.model.ResourceState.Error
+import com.company.mobile.android.appname.app.common.model.ResourceState.Loading
+import com.company.mobile.android.appname.app.common.model.ResourceState.Success
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_navigation_drawer_main.dl_navidation_drawer_drawer_layout
 import kotlinx.android.synthetic.main.activity_navigation_drawer_main.nv_navigation_drawer_navigation_view
 import kotlinx.android.synthetic.main.activity_navigation_drawer_main.tv_navigation_drawer_footer_text
 import kotlinx.android.synthetic.main.navigation_drawer_main_app_bar.tb_navigation_drawer_main_toolbar
+import kotlinx.android.synthetic.main.navigation_drawer_main_content.fl_navigation_drawer_main_content
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import timber.log.Timber
 
 class NavigationDrawerMainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -164,7 +169,7 @@ class NavigationDrawerMainActivity : BaseActivity(), NavigationView.OnNavigation
                     changeSection(AboutFragment.TAG, AboutFragment.newInstance(), R.string.navigation_drawer_menu_about)
                 }
                 R.id.main_drawer_menu_sign_out -> {
-                    finish()
+                    navigationDrawerMainActivityViewModel.signOut()
                 }
             }
         }
@@ -197,6 +202,12 @@ class NavigationDrawerMainActivity : BaseActivity(), NavigationView.OnNavigation
             // After pushing a fragment, show back button must be true
             updateToolBarHomeIcon(true)
         })
+
+        navigationDrawerMainActivityViewModel.getSignOut().observe(this,
+            Observer<NavigationDrawerSignOutState> {
+                if (it != null) handleDataState(it)
+            }
+        )
     }
 
     private fun initializeState(savedInstanceState: Bundle?) {
@@ -244,5 +255,14 @@ class NavigationDrawerMainActivity : BaseActivity(), NavigationView.OnNavigation
     private fun pushSectionFragment(sectionFragment: BaseFragment, sectionTag: String) {
         // Push a fragment for current section that will be added to the back stack
         pushFragment(R.id.fl_navigation_drawer_main_content, sectionFragment, sectionTag)
+    }
+
+    private fun handleDataState(navigationDrawerSignOutState: NavigationDrawerSignOutState) {
+        // This is half baked, it should be improved
+        when (navigationDrawerSignOutState) {
+            is Loading -> Timber.w("Loading not implemented")
+            is Success -> finish()
+            is Error -> Snackbar.make(fl_navigation_drawer_main_content, navigationDrawerSignOutState.message, Snackbar.LENGTH_SHORT).show()
+        }
     }
 }

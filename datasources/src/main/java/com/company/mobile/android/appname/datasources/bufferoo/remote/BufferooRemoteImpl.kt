@@ -6,8 +6,11 @@ import com.company.mobile.android.appname.datasources.bufferoo.remote.mapper.Buf
 import com.company.mobile.android.appname.datasources.bufferoo.remote.model.PostCredentialsRequest
 import com.company.mobile.android.appname.model.bufferoo.Bufferoo
 import com.company.mobile.android.appname.model.bufferoo.SignedInBufferoo
+import com.company.mobile.android.appname.model.bufferoo.SignedOutBufferoo
 import io.reactivex.Completable
 import io.reactivex.Single
+import java.lang.Exception
+import java.lang.IllegalStateException
 import java.lang.ref.WeakReference
 
 /**
@@ -67,6 +70,16 @@ class BufferooRemoteImpl constructor(
                 }
                 entities
             }
+    }
+
+    override fun signOut(): Single<SignedOutBufferoo> {
+        return Single.defer {
+            contextWeakReference.get()?.let { context ->
+                val id = BufferooCredentialsWallet.getId(context)
+                BufferooCredentialsWallet.deleteCredentials(context)
+                Single.just(SignedOutBufferoo(id))
+            } ?: Single.error(IllegalStateException("Context is null! Credentials cannot be deleted."))
+        }
     }
 
     override fun clearBufferoos(): Completable {

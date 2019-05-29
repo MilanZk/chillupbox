@@ -6,6 +6,7 @@ import com.company.mobile.android.appname.app.UiThread
 import com.company.mobile.android.appname.app.bufferoos.master.BufferoosAdapter
 import com.company.mobile.android.appname.app.bufferoos.viewmodel.BufferoosViewModel
 import com.company.mobile.android.appname.app.main.navigationdrawer.NavigationDrawerMainActivityViewModel
+import com.company.mobile.android.appname.app.main.nonavigation.NoNavigationMainActivityViewModel
 import com.company.mobile.android.appname.app.signin.SignInViewModel
 import com.company.mobile.android.appname.data.bufferoo.repository.BufferooDataRepository
 import com.company.mobile.android.appname.data.bufferoo.source.BufferooDataStore
@@ -18,6 +19,7 @@ import com.company.mobile.android.appname.datasources.bufferoo.remote.BufferooRe
 import com.company.mobile.android.appname.datasources.bufferoo.remote.BufferooServiceFactory
 import com.company.mobile.android.appname.domain.bufferoo.interactor.GetBufferoos
 import com.company.mobile.android.appname.domain.bufferoo.interactor.SignInBufferoos
+import com.company.mobile.android.appname.domain.bufferoo.interactor.SignOutBufferoos
 import com.company.mobile.android.appname.domain.bufferoo.repository.BufferooRepository
 import com.company.mobile.android.appname.domain.executor.JobExecutor
 import com.company.mobile.android.appname.domain.executor.PostExecutionThread
@@ -65,7 +67,9 @@ val applicationModule = module(override = true) {
 }
 
 val mainModule = module(override = true) {
-    viewModel { NavigationDrawerMainActivityViewModel() }
+    factory { SignOutBufferoos(get(), get(), get()) }
+    viewModel { NavigationDrawerMainActivityViewModel(get()) }
+    viewModel { NoNavigationMainActivityViewModel(get()) }
 }
 
 val signInModule = module(override = true) {

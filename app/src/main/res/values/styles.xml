@@ -30,6 +30,11 @@
         <item name="colorControlNormal">@android:color/white</item>
     </style>
 
+    <style name="AppTheme.NoNavigation.Toolbar.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light" >
+        <item name="android:colorBackground">@color/colorLightBackground</item>
+        <item name="android:textColorPrimary">@color/colorPrimaryText</item>
+    </style>
+
     <!-- Drawer -->
     <style name="AppTheme.DrawerHeader" parent="ThemeOverlay.MaterialComponents.Dark" />
 

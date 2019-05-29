@@ -1,4 +1,4 @@
-package com.company.mobile.android.appname.app.main.navigationdrawer
+package com.company.mobile.android.appname.app.main.nonavigation
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -9,15 +9,11 @@ import com.company.mobile.android.appname.app.common.model.ResourceState.Success
 import com.company.mobile.android.appname.app.common.model.ResourceState.Error
 import com.company.mobile.android.appname.domain.bufferoo.interactor.SignOutBufferoos
 import io.reactivex.disposables.Disposable
-import kotlin.properties.Delegates
 
-typealias NavigationDrawerSignOutState = ResourceState<Void?>
+typealias NoNavigationSignOutState = ResourceState<Void?>
 
-class NavigationDrawerMainActivityViewModel(private val signOutBufferoosUseCase: SignOutBufferoos) : ViewModel() {
-    lateinit var currentSectionFragmentTag: String
-    var currentMenuItemId: Int by Delegates.notNull()
-
-    private val navigationDrawerSignOutLiveData: MutableLiveData<NavigationDrawerSignOutState> = MutableLiveData()
+class NoNavigationMainActivityViewModel(private val signOutBufferoosUseCase: SignOutBufferoos) : ViewModel() {
+    private val signOutLiveData: MutableLiveData<NoNavigationSignOutState> = MutableLiveData()
     private var disposable: Disposable? = null
 
     override fun onCleared() {
@@ -26,19 +22,19 @@ class NavigationDrawerMainActivityViewModel(private val signOutBufferoosUseCase:
         super.onCleared()
     }
 
-    fun getSignOut(): LiveData<NavigationDrawerSignOutState> {
-        return navigationDrawerSignOutLiveData
+    fun getSignOut(): LiveData<NoNavigationSignOutState> {
+        return signOutLiveData
     }
 
     fun signOut() {
         // Do NOT use postValue(), since it will update the value asynchronously. Therefore, loading may not be seen by
         // the view just after setting it.
-        navigationDrawerSignOutLiveData.value = Loading()
+        signOutLiveData.value = Loading()
         disposable = signOutBufferoosUseCase.execute()
             .subscribe({
-                navigationDrawerSignOutLiveData.value = Success(null)
+                signOutLiveData.value = Success(null)
             }, {
-                navigationDrawerSignOutLiveData.value = Error(it.message ?: "")
+                signOutLiveData.value = Error(it.message ?: "")
             })
     }
 }

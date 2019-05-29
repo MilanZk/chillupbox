@@ -26,13 +26,15 @@
     <string name="sign_in_user_id">User id is: \'%1$s\'</string>
     <string name="sign_in_no_user_id">JWT body does not contain an \'id\' field.</string>
 
+    <!-- Sign out -->
+    <string name="sign_out_action">Sign out</string>
+
     <!-- Drawer menu -->
     <string name="navigation_drawer_header_title">Navigation drawer example</string>
     <string name="navigation_drawer_menu_open">Open drawer menu</string>
     <string name="navigation_drawer_menu_close">Close drawer menu</string>
     <string name="navigation_drawer_menu_bufferoos">Bufferoos</string>
     <string name="navigation_drawer_menu_about">About</string>
-    <string name="navigation_drawer_menu_sign_out">Sign out</string>
     <string name="navigation_drawer_menu_footer_text">Version: %1$s</string>
 
     <!-- Bufferoos -->

@@ -6,6 +6,7 @@ import com.company.mobile.android.appname.datasources.bufferoo.cache.mapper.Buff
 import com.company.mobile.android.appname.datasources.bufferoo.cache.model.CachedBufferoo
 import com.company.mobile.android.appname.model.bufferoo.Bufferoo
 import com.company.mobile.android.appname.model.bufferoo.SignedInBufferoo
+import com.company.mobile.android.appname.model.bufferoo.SignedOutBufferoo
 import io.reactivex.Completable
 import io.reactivex.Single
 
@@ -29,10 +30,6 @@ class BufferooCacheImpl constructor(
      */
     internal fun getDatabase(): BufferoosDatabase {
         return bufferoosDatabase
-    }
-
-    override fun signIn(username: String, password: String): Single<SignedInBufferoo> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     /**
@@ -95,5 +92,13 @@ class BufferooCacheImpl constructor(
      */
     private fun getLastCacheUpdateTimeMillis(): Long {
         return preferencesHelper.lastCacheTime
+    }
+
+    override fun signIn(username: String, password: String): Single<SignedInBufferoo> {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun signOut(): Single<SignedOutBufferoo> {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }

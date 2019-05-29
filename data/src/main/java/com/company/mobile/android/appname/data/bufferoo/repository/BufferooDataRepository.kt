@@ -4,6 +4,7 @@ import com.company.mobile.android.appname.data.bufferoo.source.BufferooDataStore
 import com.company.mobile.android.appname.domain.bufferoo.repository.BufferooRepository
 import com.company.mobile.android.appname.model.bufferoo.Bufferoo
 import com.company.mobile.android.appname.model.bufferoo.SignedInBufferoo
+import com.company.mobile.android.appname.model.bufferoo.SignedOutBufferoo
 import io.reactivex.Completable
 import io.reactivex.Single
 
@@ -45,5 +46,9 @@ class BufferooDataRepository(private val factory: BufferooDataStoreFactory) : Bu
 
     override fun clearBufferoos(): Completable {
         return factory.retrieveCacheDataStore().clearBufferoos()
+    }
+
+    override fun signOut(): Single<SignedOutBufferoo> {
+        return factory.retrieveRemoteDataStore().signOut()
     }
 }
