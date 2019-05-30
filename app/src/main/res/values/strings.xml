@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Clean Arch Boilerplate</string>
 
-    <!-- General -->
+    <!-- region General -->
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
     <string name="loading">Loading&#8230;</string>
@@ -10,13 +10,15 @@
     <string name="not_available_yet">Not available yet</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <!-- endregion -->
 
-    <!-- Choose navigation -->
+    <!-- region Choose navigation -->
     <string name="choose_navigation_navigation_drawer_option">Navigation drawer example</string>
     <string name="choose_navigation_bottom_navigation_option">Bottom navigation example</string>
     <string name="choose_navigation_no_navigation_option">No navigation example</string>
+    <!-- endregion -->
 
-    <!-- Sign in -->
+    <!-- region Sign in -->
     <string name="sign_in_title">Welcome</string>
     <string name="sign_in_usernane">username</string>
     <string name="sign_in_password">password</string>
@@ -25,39 +27,48 @@
     <string name="sign_in_action">Sign in</string>
     <string name="sign_in_user_id">User id is: \'%1$s\'</string>
     <string name="sign_in_no_user_id">JWT body does not contain an \'id\' field.</string>
+    <!-- endregion -->
 
-    <!-- Sign out -->
+    <!-- region Sign out -->
     <string name="sign_out_action">Sign out</string>
+    <!-- endregion -->
 
-    <!-- Drawer menu -->
+    <!-- region Drawer menu -->
     <string name="navigation_drawer_header_title">Navigation drawer example</string>
     <string name="navigation_drawer_menu_open">Open drawer menu</string>
     <string name="navigation_drawer_menu_close">Close drawer menu</string>
     <string name="navigation_drawer_menu_bufferoos">Bufferoos</string>
     <string name="navigation_drawer_menu_about">About</string>
     <string name="navigation_drawer_menu_footer_text">Version: %1$s</string>
+    <!-- endregion -->
 
-    <!-- Bufferoos -->
+    <!-- region Bufferoos -->
     <string name="bufferoo_master_title">@string/navigation_drawer_menu_bufferoos</string>
+    <!-- endregion -->
 
-    <!-- Bufferoo details -->
+    <!-- region Bufferoo details -->
     <string name="bufferoo_details_title">Bufferoo</string>
     <string name="bufferoo_details_name">My name</string>
     <string name="bufferoo_details_position">My position</string>
+    <!-- endregion -->
 
-    <!-- About -->
+    <!-- region About -->
     <string name="bufferoo_about_title">@string/navigation_drawer_menu_about</string>
+    <!-- endregion -->
 
-    <!-- About -->
+    <!-- region Sign in -->
     <string name="error_empty">It cannot be empty</string>
     <string name="error_invalid_username">This not a valid username</string>
     <string name="error_invalid_password">6 or more alphanumeric and \'_\' characters</string>
+    <!-- endregion -->
 
-    <!-- Error -->
+    <!-- region Error -->
     <string name="error_default_message">Oops, there was an error fetching the data</string>
     <string name="error_try_again">Try again</string>
+    <!-- endregion -->
 
-    <!-- Empty -->
+    <!-- region Empty -->
     <string name="empty_default_message">Oops, there are no results to display</string>
     <string name="empty_check_again">Check again</string>
+    <!-- endregion -->
 </resources>

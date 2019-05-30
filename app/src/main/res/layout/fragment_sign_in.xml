@@ -152,6 +152,7 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <!-- region Loading, error and empty views -->
     <!-- These views are clickable and focusable to block user interaction -->
     <com.company.mobile.android.appname.app.common.widget.loading.LoadView
         android:id="@+id/lv_sign_in_loading_view"
@@ -169,5 +170,6 @@
         android:clickable="true"
         android:focusable="true"
         android:visibility="gone" />
+    <!-- endregion -->
 
 </FrameLayout>

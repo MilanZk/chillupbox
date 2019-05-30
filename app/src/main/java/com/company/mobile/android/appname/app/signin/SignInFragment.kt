@@ -117,7 +117,7 @@ class SignInFragment : BaseFragment() {
     }
     //endregion
 
-    //region Handle state
+    //region Handling state
     private fun handleDataState(signInState: SignInState) {
         when (signInState) {
             is Loading -> setupScreenForLoadingState()

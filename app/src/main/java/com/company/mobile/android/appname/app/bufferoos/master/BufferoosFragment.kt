@@ -41,6 +41,7 @@ class BufferoosFragment : BaseFragment() {
         }
     }
 
+    // region Lifecycle methods
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         return inflater.inflate(R.layout.fragment_bufferoos, container, false)
     }
@@ -85,7 +86,9 @@ class BufferoosFragment : BaseFragment() {
         bufferoosAdapter.setBufferoosAdapterListener(this.adapterListener)
         rv_bufferoos.adapter = bufferoosAdapter
     }
+    //endregion
 
+    //region Handling state
     private fun handleDataState(bufferoosState: BufferoosState) {
         when (bufferoosState) {
             is Loading -> setupScreenForLoadingState()
@@ -123,7 +126,9 @@ class BufferoosFragment : BaseFragment() {
         ev_bufferoos_empty_view.visibility = View.GONE
         ev_bufferoos_error_view.visibility = View.VISIBLE
     }
+    //endregion
 
+    //region Error and empty views
     private fun setupViewListeners() {
         ev_bufferoos_empty_view.emptyListener = emptyListener
         ev_bufferoos_error_view.errorListener = errorListener
@@ -140,4 +145,5 @@ class BufferoosFragment : BaseFragment() {
             bufferoosViewModel.fetchBufferoos()
         }
     }
+    //endregion
 }
