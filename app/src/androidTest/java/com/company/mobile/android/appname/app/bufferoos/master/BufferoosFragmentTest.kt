@@ -34,7 +34,7 @@ class BufferoosFragmentTest : KoinTest {
 
     @Before
     fun setUp() {
-        loadKoinModules(applicationModule, bufferoosModule)
+        loadKoinModules(listOf(applicationModule, bufferoosModule))
     }
 
     @Test
