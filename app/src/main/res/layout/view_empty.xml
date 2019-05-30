@@ -8,7 +8,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="@string/label_empty_result" />
+        android:text="@string/empty_default_message" />
 
     <Button
         android:id="@+id/bt_empty_view_retry_button"
@@ -17,6 +17,6 @@
         android:layout_below="@+id/tv_empty_view_message"
         android:layout_centerHorizontal="true"
         android:padding="16dp"
-        android:text="@string/button_try_again" />
+        android:text="@string/empty_check_again" />
 
 </merge>

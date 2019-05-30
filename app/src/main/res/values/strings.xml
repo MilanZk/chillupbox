@@ -53,10 +53,11 @@
     <string name="error_invalid_username">This not a valid username</string>
     <string name="error_invalid_password">6 or more alphanumeric and \'_\' characters</string>
 
+    <!-- Error -->
+    <string name="error_default_message">Oops, there was an error fetching the data</string>
+    <string name="error_try_again">Try again</string>
 
-    <!-- Deprecated -->
-    <string name="label_empty_result">Oops, there are no results to display</string>
-    <string name="label_error_result">Oops, there was an error fetching the data</string>
-    <string name="button_check_again">Check again</string>
-    <string name="button_try_again">Try again</string>
+    <!-- Empty -->
+    <string name="empty_default_message">Oops, there are no results to display</string>
+    <string name="empty_check_again">Check again</string>
 </resources>

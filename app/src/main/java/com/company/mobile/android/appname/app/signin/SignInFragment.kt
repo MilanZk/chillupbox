@@ -20,7 +20,7 @@ import com.company.mobile.android.appname.app.common.view.makeClickable
 import com.company.mobile.android.appname.app.common.view.showNotAvailableYetMessage
 import com.company.mobile.android.appname.app.common.widget.error.ErrorListener
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.fragment_sign_in.btn_sign_in_next
+import kotlinx.android.synthetic.main.fragment_sign_in.btn_sign_in_button
 import kotlinx.android.synthetic.main.fragment_sign_in.ev_sign_in_error_view
 import kotlinx.android.synthetic.main.fragment_sign_in.lv_sign_in_loading_view
 import kotlinx.android.synthetic.main.fragment_sign_in.tiet_sign_in_password
@@ -37,6 +37,7 @@ class SignInFragment : BaseFragment() {
 
     private val signInViewModel: SignInViewModel by sharedViewModel()
 
+    //region Lifecycle methods
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         return inflater.inflate(R.layout.fragment_sign_in, container, false)
     }
@@ -51,18 +52,8 @@ class SignInFragment : BaseFragment() {
         super.initializeViews(savedInstanceState)
 
         // Sign in button
-        btn_sign_in_next.setOnClickListener {
-            btn_sign_in_next.isEnabled = false
-
-            if (isValidInformation()) {
-                val username = tiet_sign_in_username.text.toString()
-                val password = tiet_sign_in_password.text.toString()
-
-                Timber.d("Sign in user \'%s\' with password \'%s\'.", username, password)
-                signInViewModel.signIn(username, password)
-            } else {
-                btn_sign_in_next.isEnabled = true
-            }
+        btn_sign_in_button.setOnClickListener {
+            signIn()
         }
 
         // Click here text
@@ -86,11 +77,13 @@ class SignInFragment : BaseFragment() {
         // See: https://medium.com/@BladeCoder/architecture-components-pitfalls-part-1-9300dd969808
         signInViewModel.getSignIn().observe(viewLifecycleOwner,
             Observer<SignInState> {
-                if (it != null) this.handleDataState(it)
+                if (it != null) handleDataState(it)
             }
         )
     }
+    //endregion
 
+    //region Sign in
     private fun isValidInformation(): Boolean {
         // All errors are checked:
         // 1) Test all fields independently, but cascading the result (field_check && valid)
@@ -109,11 +102,30 @@ class SignInFragment : BaseFragment() {
         return valid
     }
 
+    private fun signIn() {
+        btn_sign_in_button.isEnabled = false
+
+        if (isValidInformation()) {
+            val username = tiet_sign_in_username.text.toString()
+            val password = tiet_sign_in_password.text.toString()
+
+            Timber.d("Sign in user \'%s\' with password \'%s\'.", username, password)
+            signInViewModel.signIn(username, password)
+        } else {
+            btn_sign_in_button.isEnabled = true
+        }
+    }
+    //endregion
+
+    //region Handle state
     private fun handleDataState(signInState: SignInState) {
         when (signInState) {
             is Loading -> setupScreenForLoadingState()
             is Success -> setupScreenForSuccess(signInState.data)
             is Error -> setupScreenForError(signInState.message)
+        }
+        btn_sign_in_button?.apply {
+            isEnabled = true
         }
     }
 
@@ -134,7 +146,7 @@ class SignInFragment : BaseFragment() {
             }
         } else {
             Timber.w("User id is empty")
-            Snackbar.make(btn_sign_in_next, R.string.sign_in_no_user_id, Snackbar.LENGTH_LONG).show()
+            Snackbar.make(btn_sign_in_button, R.string.sign_in_no_user_id, Snackbar.LENGTH_LONG).show()
         }
     }
 
@@ -142,14 +154,17 @@ class SignInFragment : BaseFragment() {
         lv_sign_in_loading_view.visibility = View.GONE
         ev_sign_in_error_view.visibility = View.VISIBLE
     }
+    //endregion
 
+    //region Error and empty views
     private fun setupViewListeners() {
         ev_sign_in_error_view.errorListener = errorListener
     }
 
     private val errorListener = object : ErrorListener {
         override fun onTryAgainClicked() {
-            btn_sign_in_next.showNotAvailableYetMessage()
+            signIn()
         }
     }
+    //endregion
 }
