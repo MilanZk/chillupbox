@@ -4,12 +4,15 @@ import android.content.Context
 import com.company.mobile.android.appname.data.bufferoo.source.BufferooDataStore
 import com.company.mobile.android.appname.datasources.bufferoo.remote.mapper.BufferooEntityMapper
 import com.company.mobile.android.appname.datasources.bufferoo.remote.model.PostCredentialsRequest
+import com.company.mobile.android.appname.datasources.remote.exception.RemoteExceptionMapper
 import com.company.mobile.android.appname.model.bufferoo.Bufferoo
 import com.company.mobile.android.appname.model.bufferoo.Credentials
 import com.company.mobile.android.appname.model.bufferoo.SignedInBufferoo
 import com.company.mobile.android.appname.model.bufferoo.SignedOutBufferoo
+import com.company.mobile.android.appname.model.exception.HTTPException
 import io.reactivex.Completable
 import io.reactivex.Single
+import java.lang.Exception
 import java.lang.ref.WeakReference
 
 /**
@@ -31,6 +34,10 @@ class BufferooRemoteImpl constructor(
     override fun signIn(username: String, password: String): Single<SignedInBufferoo> {
         val signInRequest = PostCredentialsRequest(username, password)
         return bufferooService.postCredentials(signInRequest)
+            .onErrorResumeNext { throwable ->
+                // If remote request fails, use remote exception mapper to transform Retrofit exception to an app exception
+                Single.error(RemoteExceptionMapper.getException(throwable))
+            }
             .doOnSubscribe {
                 // Before sign in, remove the old token, so that the authenticator does not find a token and it adds basic authentication header
                 contextWeakReference.get()?.let { context ->
@@ -77,6 +84,10 @@ class BufferooRemoteImpl constructor(
      */
     override fun getBufferoos(): Single<List<Bufferoo>> {
         return bufferooService.getBufferoos()
+            .onErrorResumeNext { throwable ->
+                // If remote request fails, use remote exception mapper to transform Retrofit exception to an app exception
+                Single.error(RemoteExceptionMapper.getException(throwable))
+            }
             .map { it.team }
             .map { bufferoos ->
                 val entities = mutableListOf<Bufferoo>()
@@ -87,6 +98,9 @@ class BufferooRemoteImpl constructor(
             }
     }
 
+    /**
+     * Signs out deleting all user credentials and access token.
+     */
     override fun signOut(): Single<SignedOutBufferoo> {
         return Single.defer {
             contextWeakReference.get()?.let { context ->

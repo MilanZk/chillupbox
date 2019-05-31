@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.lifecycle.Observer
 import com.company.mobile.android.appname.app.R
@@ -17,6 +18,10 @@ import com.company.mobile.android.appname.app.common.BaseFragment
 import com.company.mobile.android.appname.app.common.model.ResourceState.Error
 import com.company.mobile.android.appname.app.common.model.ResourceState.Loading
 import com.company.mobile.android.appname.app.common.model.ResourceState.Success
+import com.company.mobile.android.appname.app.common.navigation.Navigator
+import com.company.mobile.android.appname.app.common.viewmodel.CommonEvent
+import com.company.mobile.android.appname.app.common.viewmodel.CommonEvent.Unauthorized
+import com.company.mobile.android.appname.app.common.viewmodel.SingleLiveEvent
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_no_navigation_main.fl_no_navigation_main_container
 import kotlinx.android.synthetic.main.activity_no_navigation_main.tb_no_navigation_main_toolbar
@@ -35,6 +40,7 @@ class NoNavigationMainActivity : BaseActivity() {
     private val noNavigationMainActivityViewModel: NoNavigationMainActivityViewModel by viewModel()
     private val bufferoosViewModel: BufferoosViewModel by viewModel()
     private lateinit var exitSnackBar: Snackbar
+    private val commonLiveEvent = SingleLiveEvent<CommonEvent>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -106,7 +112,7 @@ class NoNavigationMainActivity : BaseActivity() {
     }
 
     private fun initializeContents(savedInstanceState: Bundle?) {
-        bufferoosViewModel.bufferoosNavigationEvent.observe(this, Observer { command ->
+        bufferoosViewModel.bufferoosNavigationLiveEvent.observe(this, Observer { command ->
             when (command) {
                 GoToDetailsView -> {
                     pushSectionFragment(BufferooDetailsFragment.newInstance(), BufferooDetailsFragment.TAG)
@@ -121,6 +127,19 @@ class NoNavigationMainActivity : BaseActivity() {
                 if (it != null) handleDataState(it)
             }
         )
+
+        // Observe events communicated through the common navigation event channel shared by all the view models that inherit from CommonEventsViewModel
+        commonLiveEvent.observe(this, Observer {
+            when (it) {
+                Unauthorized -> {
+                    Toast.makeText(this, R.string.sign_out_unauthorized, Toast.LENGTH_LONG).show()
+                    noNavigationMainActivityViewModel.signOut()
+                }
+            }
+        })
+
+        // Set commonLiveEvent channel in every view model used by this activity that inherits from CommonEventsViewModel
+        bufferoosViewModel.commonLiveEvent = commonLiveEvent
     }
 
     private fun updateToolBarHomeIcon(showBackButton: Boolean) {
@@ -146,7 +165,10 @@ class NoNavigationMainActivity : BaseActivity() {
         // This is half baked, it should be improved
         when (noNavigationSignOutState) {
             is Loading -> Timber.w("Loading not implemented")
-            is Success -> finish()
+            is Success -> {
+                Navigator.navigateToSignInActivity(this)
+                finish()
+            }
             is Error -> Snackbar.make(fl_navigation_drawer_main_content, noNavigationSignOutState.message, Snackbar.LENGTH_SHORT).show()
         }
     }

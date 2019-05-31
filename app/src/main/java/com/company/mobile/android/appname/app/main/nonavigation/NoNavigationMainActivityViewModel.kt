@@ -4,15 +4,16 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.company.mobile.android.appname.app.common.model.ResourceState
+import com.company.mobile.android.appname.app.common.model.ResourceState.Error
 import com.company.mobile.android.appname.app.common.model.ResourceState.Loading
 import com.company.mobile.android.appname.app.common.model.ResourceState.Success
-import com.company.mobile.android.appname.app.common.model.ResourceState.Error
 import com.company.mobile.android.appname.domain.bufferoo.interactor.SignOutBufferoos
 import io.reactivex.disposables.Disposable
 
 typealias NoNavigationSignOutState = ResourceState<Void?>
 
 class NoNavigationMainActivityViewModel(private val signOutBufferoosUseCase: SignOutBufferoos) : ViewModel() {
+
     private val signOutLiveData: MutableLiveData<NoNavigationSignOutState> = MutableLiveData()
     private var disposable: Disposable? = null
 

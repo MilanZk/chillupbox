@@ -31,6 +31,7 @@
 
     <!-- region Sign out -->
     <string name="sign_out_action">Sign out</string>
+    <string name="sign_out_unauthorized">Your session has expired! Signing out&#8230;</string>
     <!-- endregion -->
 
     <!-- region Drawer menu -->
