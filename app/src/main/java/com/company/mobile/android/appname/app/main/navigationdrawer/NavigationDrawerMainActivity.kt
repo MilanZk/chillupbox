@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -23,6 +24,10 @@ import com.company.mobile.android.appname.app.common.BaseFragment
 import com.company.mobile.android.appname.app.common.model.ResourceState.Error
 import com.company.mobile.android.appname.app.common.model.ResourceState.Loading
 import com.company.mobile.android.appname.app.common.model.ResourceState.Success
+import com.company.mobile.android.appname.app.common.navigation.Navigator
+import com.company.mobile.android.appname.app.common.viewmodel.CommonEvent
+import com.company.mobile.android.appname.app.common.viewmodel.CommonEvent.Unauthorized
+import com.company.mobile.android.appname.app.common.viewmodel.SingleLiveEvent
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_navigation_drawer_main.dl_navidation_drawer_drawer_layout
@@ -48,6 +53,7 @@ class NavigationDrawerMainActivity : BaseActivity(), NavigationView.OnNavigation
     private lateinit var exitSnackBar: Snackbar
     private lateinit var drawerToggle: ActionBarDrawerToggle
     private var toolBarNavigationListenerIsRegistered = false
+    private val commonLiveEvent = SingleLiveEvent<CommonEvent>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -193,7 +199,7 @@ class NavigationDrawerMainActivity : BaseActivity(), NavigationView.OnNavigation
             }
         }
 
-        bufferoosViewModel.bufferoosNavigationEvent.observe(this, Observer { command ->
+        bufferoosViewModel.bufferoosNavigationLiveEvent.observe(this, Observer { command ->
             when (command) {
                 GoToDetailsView -> {
                     pushSectionFragment(BufferooDetailsFragment.newInstance(), BufferooDetailsFragment.TAG)
@@ -208,6 +214,19 @@ class NavigationDrawerMainActivity : BaseActivity(), NavigationView.OnNavigation
                 if (it != null) handleDataState(it)
             }
         )
+
+        // Observe events communicated through the common navigation event channel shared by all the view models that inherit from CommonEventsViewModel
+        commonLiveEvent.observe(this, Observer {
+            when (it) {
+                Unauthorized -> {
+                    Toast.makeText(this, R.string.sign_out_unauthorized, Toast.LENGTH_LONG).show()
+                    navigationDrawerMainActivityViewModel.signOut()
+                }
+            }
+        })
+
+        // Set commonLiveEvent channel in every view model used by this activity that inherits from CommonEventsViewModel
+        bufferoosViewModel.commonLiveEvent = commonLiveEvent
     }
 
     private fun initializeState(savedInstanceState: Bundle?) {
@@ -261,7 +280,10 @@ class NavigationDrawerMainActivity : BaseActivity(), NavigationView.OnNavigation
         // This is half baked, it should be improved
         when (navigationDrawerSignOutState) {
             is Loading -> Timber.w("Loading not implemented")
-            is Success -> finish()
+            is Success -> {
+                Navigator.navigateToSignInActivity(this)
+                finish()
+            }
             is Error -> Snackbar.make(fl_navigation_drawer_main_content, navigationDrawerSignOutState.message, Snackbar.LENGTH_SHORT).show()
         }
     }

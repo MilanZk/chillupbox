@@ -4,6 +4,8 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.company.mobile.android.appname.app.common.model.ResourceState.Error
 import com.company.mobile.android.appname.app.common.model.ResourceState.Loading
 import com.company.mobile.android.appname.app.common.model.ResourceState.Success
+import com.company.mobile.android.appname.app.common.viewmodel.CommonEvent
+import com.company.mobile.android.appname.app.common.viewmodel.SingleLiveEvent
 import com.company.mobile.android.appname.app.test.util.BufferooFactory
 import com.company.mobile.android.appname.app.test.util.DataFactory
 import com.company.mobile.android.appname.domain.bufferoo.interactor.GetBufferoos
@@ -18,9 +20,15 @@ class BufferoosViewModelTest {
 
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
-    val mockGetBufferoos = mock<GetBufferoos>()
+    private val mockGetBufferoos = mock<GetBufferoos>()
+    private val commonLiveEvent = mock<SingleLiveEvent<CommonEvent>>()
 
     private val bufferoosViewModel = BufferoosViewModel(mockGetBufferoos)
+
+    @Before
+    fun setUp() {
+        bufferoosViewModel.commonLiveEvent = commonLiveEvent
+    }
 
     //<editor-fold desc="Success">
     @Test
