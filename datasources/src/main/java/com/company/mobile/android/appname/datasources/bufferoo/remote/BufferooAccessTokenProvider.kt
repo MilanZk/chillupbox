@@ -5,7 +5,7 @@ import com.company.mobile.android.appname.datasources.remote.authentication.Acce
 import java.lang.ref.WeakReference
 import java.nio.charset.Charset
 
-class BufferooAccessTokenProvider(_context: Context): AccessTokenProvider {
+class BufferooAccessTokenProvider(_context: Context) : AccessTokenProvider {
 
     private val contextWeakReference = WeakReference<Context>(_context)
 

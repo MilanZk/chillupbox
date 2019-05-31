@@ -45,6 +45,7 @@ class AccessTokenAuthenticator(
                     .build()
             }
         }
+
         return null
     }
 }

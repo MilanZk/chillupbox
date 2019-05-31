@@ -128,7 +128,7 @@ class NoNavigationMainActivity : BaseActivity() {
             }
         )
 
-        // Observe events communicated through the common navigation event channel shared by all the view models that inherit from CommonEventsViewModel
+        // Observe events communicated through the common event channel shared by all the view models that inherit from CommonEventsViewModel
         commonLiveEvent.observe(this, Observer {
             when (it) {
                 Unauthorized -> {
