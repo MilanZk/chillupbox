@@ -67,8 +67,8 @@ class BufferooCacheImplTest {
         }
         insertBufferoos(cachedBufferoos)
 
-        //val testObserver = databaseHelper.getBufferoos().test()
-        //testObserver.assertValue(bufferooEntities)
+        val testObserver = databaseHelper.getBufferoos().test()
+        testObserver.assertValue(bufferooEntities)
     }
     //</editor-fold>
 
