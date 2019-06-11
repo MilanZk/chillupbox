@@ -15,20 +15,20 @@ object CurrencyUtils {
 
     private const val MAXIMUM_CURRENCY_FRACTION_DIGITS = 2
 
-    fun formatToCurrencyWithSymbol(amount: Double?, currency: String?): String {
+    fun formatToCurrencyWithSymbol(amount: Double, currency: String): String {
         val nf = NumberFormat.getCurrencyInstance()
         val decimalFormatSymbols = (nf as DecimalFormat).decimalFormatSymbols
         decimalFormatSymbols.currencySymbol = ""
         nf.setMaximumFractionDigits(MAXIMUM_CURRENCY_FRACTION_DIGITS)
         nf.decimalFormatSymbols = decimalFormatSymbols
         nf.setRoundingMode(RoundingMode.HALF_UP)
-        return if (currency == null || currency.isEmpty()) {
+        return if (currency.isEmpty()) {
             nf.format(amount)
         } else String.format("%s %s", currency, nf.format(amount))
     }
 
-    fun parseAmount(amountString: String): Double {
-        var amountString = amountString
+    fun parseAmount(amountAsText: String): Double {
+        var amountString = amountAsText
         val nf = DecimalFormat.getInstance(Locale.getDefault())
 
         val groupingSeperator = (nf as DecimalFormat).decimalFormatSymbols.groupingSeparator

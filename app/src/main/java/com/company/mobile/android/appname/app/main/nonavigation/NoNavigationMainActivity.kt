@@ -111,7 +111,7 @@ class NoNavigationMainActivity : BaseActivity() {
         exitSnackBar = Snackbar.make(fl_no_navigation_main_container, R.string.press_back_again, Snackbar.LENGTH_SHORT)
     }
 
-    private fun initializeContents(savedInstanceState: Bundle?) {
+    private fun initializeContents(@Suppress("UNUSED_PARAMETER") savedInstanceState: Bundle?) {
         bufferoosViewModel.bufferoosNavigationLiveEvent.observe(this, Observer { command ->
             when (command) {
                 GoToDetailsView -> {

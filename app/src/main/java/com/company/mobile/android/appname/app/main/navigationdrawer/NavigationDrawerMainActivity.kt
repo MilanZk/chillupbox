@@ -169,10 +169,10 @@ class NavigationDrawerMainActivity : BaseActivity(), NavigationView.OnNavigation
             // Handle navigation view item clicks here
             when (item.itemId) {
                 R.id.main_drawer_menu_bufferoos -> {
-                    changeSection(BufferoosFragment.TAG, BufferoosFragment.newInstance(), R.string.navigation_drawer_menu_bufferoos)
+                    changeSection(BufferoosFragment.TAG, BufferoosFragment.newInstance())
                 }
                 R.id.main_drawer_menu_about -> {
-                    changeSection(AboutFragment.TAG, AboutFragment.newInstance(), R.string.navigation_drawer_menu_about)
+                    changeSection(AboutFragment.TAG, AboutFragment.newInstance())
                 }
                 R.id.main_drawer_menu_sign_out -> {
                     navigationDrawerMainActivityViewModel.signOut()
@@ -229,10 +229,10 @@ class NavigationDrawerMainActivity : BaseActivity(), NavigationView.OnNavigation
         bufferoosViewModel.commonLiveEvent = commonLiveEvent
     }
 
-    private fun initializeState(savedInstanceState: Bundle?) {
+    private fun initializeState(@Suppress("UNUSED_PARAMETER") savedInstanceState: Bundle?) {
     }
 
-    private fun initializeViews(savedInstanceState: Bundle?) {
+    private fun initializeViews(@Suppress("UNUSED_PARAMETER") savedInstanceState: Bundle?) {
         // Initialize toolbar
         setSupportActionBar(tb_navigation_drawer_main_toolbar)
         val actionbar: ActionBar? = supportActionBar
@@ -259,7 +259,7 @@ class NavigationDrawerMainActivity : BaseActivity(), NavigationView.OnNavigation
         exitSnackBar = Snackbar.make(nv_navigation_drawer_navigation_view, R.string.press_back_again, Snackbar.LENGTH_SHORT)
     }
 
-    private fun changeSection(sectionTag: String, sectionFragment: BaseFragment, @StringRes sectionTitleStringId: Int) {
+    private fun changeSection(sectionTag: String, sectionFragment: BaseFragment) {
         // Clear completely the back stack (not a single transition should remain)
         clearBackStackInclusive(navigationDrawerMainActivityViewModel.currentSectionFragmentTag)
         // Store current fragment tag to completely clear the back stack when another menu
