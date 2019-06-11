@@ -13,7 +13,7 @@ ext {
     def kotlinVersion = rootProject.ext.kotlin_version
 
     // Libraries
-    annotationVersion = '1.0.2'
+    annotationVersion = '1.1.0'
     appcompatVersion = '1.0.2'
     recyclerViewVersion = '1.0.0'
     constraintLayoutVersion = '1.1.3'
