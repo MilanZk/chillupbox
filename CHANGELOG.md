@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [X.X.X] - YYYY-MM-DD
 ### Added
+- Error management and retries for multiple actions in a single screen were added.
 - Common events view model was implemented. The first common event is the unauthorized error of remote requests.
 - Form validators with styles were added.
 - Sign in activity was implemented.

@@ -2,10 +2,10 @@ package com.company.mobile.android.appname.app.common.navigation
 
 import android.app.Activity
 import androidx.annotation.NonNull
+import com.company.mobile.android.appname.app.account.SignInActivity
 import com.company.mobile.android.appname.app.choosenavigation.ChooseNavigationActivity
 import com.company.mobile.android.appname.app.main.navigationdrawer.NavigationDrawerMainActivity
 import com.company.mobile.android.appname.app.main.nonavigation.NoNavigationMainActivity
-import com.company.mobile.android.appname.app.signin.SignInActivity
 
 /**
  * Class used to navigate through activities.

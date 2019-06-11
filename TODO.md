@@ -4,7 +4,8 @@
 
 - [ ] Add and example with TypeAdapters?
 - [ ] Exchange GSON for Moshi?
-- [ ] Add error management with retries.
+- [ ] Remove any hardcoded dimensions.
+- [x] Add error management with retries.
 - [x] Add a common events view model starting with authentication error.
 - [x] Display loading with a generic loading view instead of a progress bar.
 - [x] Add form validators and improve styles.

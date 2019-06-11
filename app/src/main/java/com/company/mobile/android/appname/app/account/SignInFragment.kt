@@ -1,13 +1,22 @@
-package com.company.mobile.android.appname.app.signin
+package com.company.mobile.android.appname.app.account
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
 import com.company.mobile.android.appname.app.R
 import com.company.mobile.android.appname.app.common.BaseFragment
+import com.company.mobile.android.appname.app.common.exception.AppAction
+import com.company.mobile.android.appname.app.common.exception.AppAction.SIGN_IN
+import com.company.mobile.android.appname.app.common.exception.AppError.NO_INTERNET
+import com.company.mobile.android.appname.app.common.exception.AppError.TIMEOUT
+import com.company.mobile.android.appname.app.common.exception.ErrorBundle
+import com.company.mobile.android.appname.app.common.exception.ErrorDialogFragment
+import com.company.mobile.android.appname.app.common.exception.ErrorDialogFragment.ErrorDialogFragmentListener
+import com.company.mobile.android.appname.app.common.exception.ErrorUtils
 import com.company.mobile.android.appname.app.common.model.ResourceState.Error
 import com.company.mobile.android.appname.app.common.model.ResourceState.Loading
 import com.company.mobile.android.appname.app.common.model.ResourceState.Success
@@ -29,9 +38,12 @@ import kotlinx.android.synthetic.main.fragment_sign_in.tv_sign_in_click_here
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import timber.log.Timber
 
-class SignInFragment : BaseFragment() {
+class SignInFragment : BaseFragment(), ErrorDialogFragmentListener {
 
     companion object {
+
+        private const val ERROR_DIALOG_REQUEST_CODE = 0
+
         fun newInstance() = SignInFragment()
     }
 
@@ -122,7 +134,7 @@ class SignInFragment : BaseFragment() {
         when (signInState) {
             is Loading -> setupScreenForLoadingState()
             is Success -> setupScreenForSuccess(signInState.data)
-            is Error -> setupScreenForError(signInState.message)
+            is Error -> setupScreenForError(signInState.errorBundle)
         }
         btn_sign_in_button?.apply {
             isEnabled = true
@@ -150,9 +162,16 @@ class SignInFragment : BaseFragment() {
         }
     }
 
-    private fun setupScreenForError(message: String?) {
+    private fun setupScreenForError(errorBundle: ErrorBundle) {
         lv_sign_in_loading_view.visibility = View.GONE
-        ev_sign_in_error_view.visibility = View.VISIBLE
+
+        if (errorBundle.appError == NO_INTERNET || errorBundle.appError == TIMEOUT) {
+            // Example of using a custom error view as part of the fragment view
+            showErrorView(errorBundle)
+        } else {
+            // Example of using an error fragment dialog
+            showErrorDialog(errorBundle)
+        }
     }
     //endregion
 
@@ -162,9 +181,69 @@ class SignInFragment : BaseFragment() {
     }
 
     private val errorListener = object : ErrorListener {
-        override fun onTryAgainClicked() {
-            signIn()
+        override fun onRetry(errorBundle: ErrorBundle) {
+            retry(errorBundle.appAction)
         }
+    }
+
+    private fun retry(appAction: AppAction) {
+        when (appAction) {
+            SIGN_IN -> signIn()
+            else -> Timber.e("Unknown action code")
+        }
+    }
+
+    private fun showErrorView(errorBundle: ErrorBundle) {
+        activity?.let { activity ->
+            ev_sign_in_error_view.visibility = View.VISIBLE
+            ev_sign_in_error_view.errorBundle = errorBundle
+            ev_sign_in_error_view.setErrorMessage(ErrorUtils.buildErrorMessageForDialog(activity, errorBundle).message)
+        } ?: Timber.e("Activity is null")
+    }
+
+    private fun showErrorDialog(errorBundle: ErrorBundle) {
+        val tag = ErrorDialogFragment.TAG
+        activity?.let { activity ->
+            activity.supportFragmentManager?.let { fragmentManager ->
+                val previousDialogFragment = fragmentManager.findFragmentByTag(tag) as? DialogFragment
+
+                // Check that error dialog is not already shown after a screen rotation
+                if (previousDialogFragment != null
+                    && previousDialogFragment.dialog != null
+                    && previousDialogFragment.dialog.isShowing
+                    && !previousDialogFragment.isRemoving
+                ) {
+                    // Error dialog is shown
+                    Timber.w("Error dialog is already shown")
+                } else {
+                    // Error dialog is not shown
+                    val errorDialogFragment = ErrorDialogFragment.newInstance(
+                        ErrorUtils.buildErrorMessageForDialog(activity, errorBundle),
+                        true
+                    )
+                    if (!fragmentManager.isDestroyed && !fragmentManager.isStateSaved) {
+                        // Sets the target fragment for using later when sending results
+                        errorDialogFragment.setTargetFragment(this@SignInFragment, ERROR_DIALOG_REQUEST_CODE)
+                        // Fragment contains the dialog and dialog should be controlled from fragment interface.
+                        // See: https://stackoverflow.com/a/8921129/5189200
+                        errorDialogFragment.isCancelable = false
+                        errorDialogFragment.show(fragmentManager, tag)
+                    }
+                }
+            } ?: Timber.e("Support fragment manager is null")
+        } ?: Timber.e("Activity is null")
+    }
+
+    override fun onErrorDialogAccepted(action: Long, retry: Boolean) {
+        if (retry) {
+            retry(AppAction.fromCode(action))
+        } else {
+            Timber.d("There was no retry option for action \'$action\' given to the user.")
+        }
+    }
+
+    override fun onErrorDialogCancelled(action: Long) {
+        Timber.d("User cancelled error dialog")
     }
     //endregion
 }

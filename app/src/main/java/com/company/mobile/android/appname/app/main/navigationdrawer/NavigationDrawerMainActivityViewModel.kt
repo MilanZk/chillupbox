@@ -3,6 +3,8 @@ package com.company.mobile.android.appname.app.main.navigationdrawer
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.company.mobile.android.appname.app.common.exception.AppAction.SIGN_OUT
+import com.company.mobile.android.appname.app.common.exception.ErrorBundleBuilder
 import com.company.mobile.android.appname.app.common.model.ResourceState
 import com.company.mobile.android.appname.app.common.model.ResourceState.Loading
 import com.company.mobile.android.appname.app.common.model.ResourceState.Success
@@ -13,7 +15,7 @@ import kotlin.properties.Delegates
 
 typealias NavigationDrawerSignOutState = ResourceState<Void?>
 
-class NavigationDrawerMainActivityViewModel(private val signOutBufferoosUseCase: SignOutBufferoos) : ViewModel() {
+class NavigationDrawerMainActivityViewModel(private val signOutBufferoosUseCase: SignOutBufferoos, private val errorBundleBuilder: ErrorBundleBuilder) : ViewModel() {
     lateinit var currentSectionFragmentTag: String
     var currentMenuItemId: Int by Delegates.notNull()
 
@@ -38,7 +40,7 @@ class NavigationDrawerMainActivityViewModel(private val signOutBufferoosUseCase:
             .subscribe({
                 navigationDrawerSignOutLiveData.value = Success(null)
             }, {
-                navigationDrawerSignOutLiveData.value = Error(it.message ?: "")
+                navigationDrawerSignOutLiveData.value = Error(errorBundleBuilder.build(it, SIGN_OUT))
             })
     }
 }

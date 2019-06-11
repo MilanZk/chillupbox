@@ -1,4 +1,4 @@
-package com.company.mobile.android.appname.app.signin
+package com.company.mobile.android.appname.app.account
 
 import android.content.Context
 import android.content.Intent

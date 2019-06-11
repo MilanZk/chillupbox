@@ -284,7 +284,7 @@ class NavigationDrawerMainActivity : BaseActivity(), NavigationView.OnNavigation
                 Navigator.navigateToSignInActivity(this)
                 finish()
             }
-            is Error -> Snackbar.make(fl_navigation_drawer_main_content, navigationDrawerSignOutState.message, Snackbar.LENGTH_SHORT).show()
+            is Error -> Snackbar.make(fl_navigation_drawer_main_content, navigationDrawerSignOutState.errorBundle.stringId, Snackbar.LENGTH_SHORT).show()
         }
     }
 }

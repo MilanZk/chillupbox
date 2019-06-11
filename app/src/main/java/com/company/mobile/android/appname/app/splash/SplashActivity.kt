@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.text.TextUtils
 import androidx.lifecycle.Observer
 import com.company.mobile.android.appname.app.common.BaseActivity
+import com.company.mobile.android.appname.app.common.exception.ErrorDialogFragment.ErrorDialogFragmentListener
 import com.company.mobile.android.appname.app.common.model.ResourceState.Error
 import com.company.mobile.android.appname.app.common.model.ResourceState.Loading
 import com.company.mobile.android.appname.app.common.model.ResourceState.Success
@@ -15,7 +16,7 @@ import kotlinx.android.synthetic.main.navigation_drawer_main_content.fl_navigati
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
-class SplashActivity : BaseActivity() {
+class SplashActivity : BaseActivity(), ErrorDialogFragmentListener {
 
     companion object {
         fun getCallingIntent(context: Context): Intent {
@@ -48,7 +49,17 @@ class SplashActivity : BaseActivity() {
                 }
                 finish()
             }
-            is Error -> Snackbar.make(fl_navigation_drawer_main_content, credentialsState.message, Snackbar.LENGTH_SHORT).show()
+            is Error -> Snackbar.make(fl_navigation_drawer_main_content, credentialsState.errorBundle.stringId, Snackbar.LENGTH_SHORT).show()
         }
+    }
+
+    override fun onErrorDialogAccepted(action: Long, retry: Boolean) {
+        // TODO: Implement
+        Timber.d("User accepted error dialog")
+    }
+
+    override fun onErrorDialogCancelled(action: Long) {
+        // TODO: Implement
+        Timber.d("User cancelled error dialog")
     }
 }

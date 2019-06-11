@@ -169,7 +169,7 @@ class NoNavigationMainActivity : BaseActivity() {
                 Navigator.navigateToSignInActivity(this)
                 finish()
             }
-            is Error -> Snackbar.make(fl_navigation_drawer_main_content, noNavigationSignOutState.message, Snackbar.LENGTH_SHORT).show()
+            is Error -> Snackbar.make(fl_navigation_drawer_main_content, noNavigationSignOutState.errorBundle.stringId, Snackbar.LENGTH_SHORT).show()
         }
     }
 }

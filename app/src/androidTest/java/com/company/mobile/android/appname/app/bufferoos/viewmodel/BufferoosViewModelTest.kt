@@ -23,7 +23,8 @@ class BufferoosViewModelTest {
     private val mockGetBufferoos = mock<GetBufferoos>()
     private val commonLiveEvent = mock<SingleLiveEvent<CommonEvent>>()
 
-    private val bufferoosViewModel = BufferoosViewModel(mockGetBufferoos)
+    private val testErrorBundleBuilder = TestErrorBundleBuilder()
+    private val bufferoosViewModel = BufferoosViewModel(mockGetBufferoos, testErrorBundleBuilder)
 
     @Before
     fun setUp() {
@@ -67,7 +68,7 @@ class BufferoosViewModelTest {
         bufferoosViewModel.fetchBufferoos()
 
         val result = bufferoosViewModel.getBufferoos().value
-        Assert.assertTrue(result is Error && result.message == errorMessage)
+        Assert.assertTrue(result is Error && result.errorBundle.debugMessage == errorMessage)
     }
     //</editor-fold>
 

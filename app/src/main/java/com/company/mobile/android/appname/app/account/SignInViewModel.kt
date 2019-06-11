@@ -1,8 +1,10 @@
-package com.company.mobile.android.appname.app.signin
+package com.company.mobile.android.appname.app.account
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.company.mobile.android.appname.app.common.exception.AppAction.SIGN_IN
+import com.company.mobile.android.appname.app.common.exception.ErrorBundleBuilder
 import com.company.mobile.android.appname.app.common.model.ResourceState
 import com.company.mobile.android.appname.app.common.model.ResourceState.Error
 import com.company.mobile.android.appname.app.common.model.ResourceState.Loading
@@ -13,7 +15,7 @@ import io.reactivex.disposables.Disposable
 
 typealias SignInState = ResourceState<String>
 
-class SignInViewModel(val signInBufferoosUseCase: SignInBufferoos) : ViewModel() {
+class SignInViewModel(private val signInBufferoosUseCase: SignInBufferoos, private val errorBundleBuilder: ErrorBundleBuilder) : ViewModel() {
 
     private val signInLiveData: MutableLiveData<SignInState> = MutableLiveData()
     private var disposable: Disposable? = null
@@ -36,7 +38,7 @@ class SignInViewModel(val signInBufferoosUseCase: SignInBufferoos) : ViewModel()
             .subscribe({
                 signInLiveData.value = Success(it.id)
             }, {
-                signInLiveData.value = Error(it.message ?: "")
+                signInLiveData.value = Error(errorBundleBuilder.build(it, SIGN_IN))
             })
     }
 }

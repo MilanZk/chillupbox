@@ -33,5 +33,6 @@
     <dimen name="forms_icon_padding">8dp</dimen>
     <dimen name="forms_vertical_margin">24dp</dimen>
     <dimen name="forms_button_height">60dp</dimen>
+    <dimen name="forms_big_button_padding">16dp</dimen>
 
 </resources>

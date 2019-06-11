@@ -4,6 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.company.mobile.android.appname.app.bufferoos.master.BufferoosNavigationCommand
 import com.company.mobile.android.appname.app.bufferoos.master.BufferoosNavigationCommand.GoToDetailsView
+import com.company.mobile.android.appname.app.common.exception.AppAction.GET_BUFFEROOS
+import com.company.mobile.android.appname.app.common.exception.ErrorBundleBuilder
 import com.company.mobile.android.appname.app.common.model.ResourceState
 import com.company.mobile.android.appname.app.common.model.ResourceState.Error
 import com.company.mobile.android.appname.app.common.model.ResourceState.Loading
@@ -16,7 +18,7 @@ import io.reactivex.disposables.Disposable
 
 typealias BufferoosState = ResourceState<List<Bufferoo>>
 
-class BufferoosViewModel(private val getBufferoosUseCase: GetBufferoos) : CommonEventsViewModel() {
+class BufferoosViewModel(private val getBufferoosUseCase: GetBufferoos, private val errorBundleBuilder: ErrorBundleBuilder) : CommonEventsViewModel() {
 
     private val bufferoosLiveData: MutableLiveData<BufferoosState> = MutableLiveData()
     private val selectedBufferooLiveData: MutableLiveData<Bufferoo> = MutableLiveData()
@@ -52,13 +54,13 @@ class BufferoosViewModel(private val getBufferoosUseCase: GetBufferoos) : Common
         disposable = getBufferoosUseCase.execute()
             .subscribeWith(
                 object : SingleRemoteInterceptor<List<Bufferoo>>(commonLiveEvent) {
-                    override fun onSuccess(bufferoos: List<Bufferoo>) {
-                        this@BufferoosViewModel.bufferoos = bufferoos
-                        bufferoosLiveData.value = Success(bufferoos)
+                    override fun onSuccess(t: List<Bufferoo>) {
+                        this@BufferoosViewModel.bufferoos = t
+                        bufferoosLiveData.value = Success(this@BufferoosViewModel.bufferoos)
                     }
 
                     override fun onRegularError(e: Throwable) {
-                        bufferoosLiveData.value = Error(e.message ?: "")
+                        bufferoosLiveData.value = Error(errorBundleBuilder.build(e, GET_BUFFEROOS))
                     }
                 }
             )

@@ -3,6 +3,8 @@ package com.company.mobile.android.appname.app.splash
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.company.mobile.android.appname.app.common.exception.AppAction.GET_CREDENTIALS
+import com.company.mobile.android.appname.app.common.exception.ErrorBundleBuilder
 import com.company.mobile.android.appname.app.common.model.ResourceState
 import com.company.mobile.android.appname.app.common.model.ResourceState.Error
 import com.company.mobile.android.appname.app.common.model.ResourceState.Loading
@@ -13,7 +15,7 @@ import io.reactivex.disposables.Disposable
 
 typealias CredentialsState = ResourceState<Credentials>
 
-class SplashActivityViewModel(private val getCredentialsUseCase: GetCredentials) : ViewModel() {
+class SplashActivityViewModel(private val getCredentialsUseCase: GetCredentials, private val errorBundleBuilder: ErrorBundleBuilder) : ViewModel() {
     private val credentialsLiveData: MutableLiveData<CredentialsState> = MutableLiveData()
     private var disposable: Disposable? = null
 
@@ -35,7 +37,7 @@ class SplashActivityViewModel(private val getCredentialsUseCase: GetCredentials)
             .subscribe({
                 credentialsLiveData.value = Success(it)
             }, {
-                credentialsLiveData.value = Error(it.message ?: "")
+                credentialsLiveData.value = Error(errorBundleBuilder.build(it, GET_CREDENTIALS))
             })
     }
 }

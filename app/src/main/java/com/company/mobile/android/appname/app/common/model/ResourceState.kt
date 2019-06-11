@@ -1,5 +1,7 @@
 package com.company.mobile.android.appname.app.common.model
 
+import com.company.mobile.android.appname.app.common.exception.ErrorBundle
+
 /**
  * A generic class that serves as default implementation for a resource state class.
  *
@@ -10,5 +12,5 @@ sealed class ResourceState<out T> {
 
     class Loading<T> : ResourceState<T>() // Loading can NOT be an object inside a class with a generic type
     data class Success<T>(val data: T) : ResourceState<T>()
-    data class Error<T>(val message: String) : ResourceState<T>()
+    data class Error<T>(val errorBundle: ErrorBundle) : ResourceState<T>()
 }
