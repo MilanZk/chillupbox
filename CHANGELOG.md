@@ -53,6 +53,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - 
 
 ### Fixed
+- Cache unit tests were fixed.
 - Instrumental tests were updated to Koin 2.0 and fixed.
 
 ## [0.1.0] - 2018-11-28
