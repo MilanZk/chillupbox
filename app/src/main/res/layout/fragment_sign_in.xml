@@ -123,7 +123,6 @@
                     style="@style/AppTheme.DefaultText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
                     android:text="@string/sign_in_click_here"
                     app:layout_constraintBottom_toBottomOf="@+id/tv_sign_in_forgot_password"
                     app:layout_constraintEnd_toEndOf="parent"

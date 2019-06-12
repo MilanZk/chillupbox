@@ -42,8 +42,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - New mock server using Postman was created.
 
 ### Changed
+- Hardcoded dimensions defined in XML files were exchanged for dimensions defined in dimens.xml file.
 - Progress bar was exchanged for a loading view.
-- Instrumental tests were updated to Koin 2.0 and fixed.
 - Project was updated to Koin 2.0.
 - Data module was split into domain and data with a new shared models module.
 - Android code style was updated.
@@ -53,7 +53,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - 
 
 ### Fixed
-- 
+- Instrumental tests were updated to Koin 2.0 and fixed.
 
 ## [0.1.0] - 2018-11-28
 ### Added

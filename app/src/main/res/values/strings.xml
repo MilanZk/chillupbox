@@ -22,7 +22,7 @@
     <string name="sign_in_title">Welcome</string>
     <string name="sign_in_usernane">username</string>
     <string name="sign_in_password">password</string>
-    <string name="sign_in_forgot_password">Forgot your password?</string>
+    <string name="sign_in_forgot_password">"Forgot your password? "</string>
     <string name="sign_in_click_here">Click here</string>
     <string name="sign_in_action">Sign in</string>
     <string name="sign_in_user_id">User id is: \'%1$s\'</string>

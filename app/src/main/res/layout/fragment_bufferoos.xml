@@ -8,8 +8,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
-        android:paddingBottom="8dp"
-        android:paddingTop="8dp"
+        android:paddingBottom="@dimen/bufferoo_master_list_padding"
+        android:paddingTop="@dimen/bufferoo_master_list_padding"
         android:scrollbars="vertical" />
 
     <!-- region Loading, error and empty views -->
