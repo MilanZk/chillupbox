@@ -3,8 +3,8 @@ package com.company.mobile.android.appname.app.main.nonavigation
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.company.mobile.android.appname.app.common.exception.AppAction.SIGN_OUT
-import com.company.mobile.android.appname.app.common.exception.ErrorBundleBuilder
+import com.company.mobile.android.appname.app.common.errorhandling.AppAction.SIGN_OUT
+import com.company.mobile.android.appname.app.common.errorhandling.ErrorBundleBuilder
 import com.company.mobile.android.appname.app.common.model.ResourceState
 import com.company.mobile.android.appname.app.common.model.ResourceState.Error
 import com.company.mobile.android.appname.app.common.model.ResourceState.Loading

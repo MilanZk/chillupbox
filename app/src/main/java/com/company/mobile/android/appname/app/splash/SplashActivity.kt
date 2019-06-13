@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.text.TextUtils
 import androidx.lifecycle.Observer
 import com.company.mobile.android.appname.app.common.BaseActivity
-import com.company.mobile.android.appname.app.common.exception.ErrorDialogFragment.ErrorDialogFragmentListener
+import com.company.mobile.android.appname.app.common.errorhandling.ErrorDialogFragment.ErrorDialogFragmentListener
 import com.company.mobile.android.appname.app.common.model.ResourceState.Error
 import com.company.mobile.android.appname.app.common.model.ResourceState.Loading
 import com.company.mobile.android.appname.app.common.model.ResourceState.Success

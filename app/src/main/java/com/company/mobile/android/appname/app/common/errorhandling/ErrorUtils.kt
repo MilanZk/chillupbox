@@ -1,4 +1,4 @@
-package com.company.mobile.android.appname.app.common.exception
+package com.company.mobile.android.appname.app.common.errorhandling
 
 import android.content.Context
 import com.company.mobile.android.appname.app.R

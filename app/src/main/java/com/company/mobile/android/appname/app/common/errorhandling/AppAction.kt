@@ -1,4 +1,4 @@
-package com.company.mobile.android.appname.app.common.exception
+package com.company.mobile.android.appname.app.common.errorhandling
 
 enum class AppAction constructor(val code: Long) {
     UNKNOWN(-1L),

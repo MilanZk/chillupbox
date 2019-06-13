@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.company.mobile.android.appname.app.bufferoos.master.BufferoosNavigationCommand
 import com.company.mobile.android.appname.app.bufferoos.master.BufferoosNavigationCommand.GoToDetailsView
-import com.company.mobile.android.appname.app.common.exception.AppAction.GET_BUFFEROOS
-import com.company.mobile.android.appname.app.common.exception.ErrorBundleBuilder
+import com.company.mobile.android.appname.app.common.errorhandling.AppAction.GET_BUFFEROOS
+import com.company.mobile.android.appname.app.common.errorhandling.ErrorBundleBuilder
 import com.company.mobile.android.appname.app.common.model.ResourceState
 import com.company.mobile.android.appname.app.common.model.ResourceState.Error
 import com.company.mobile.android.appname.app.common.model.ResourceState.Loading

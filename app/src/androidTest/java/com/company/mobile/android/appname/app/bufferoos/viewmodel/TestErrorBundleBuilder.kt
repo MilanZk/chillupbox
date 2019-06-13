@@ -1,10 +1,10 @@
 package com.company.mobile.android.appname.app.bufferoos.viewmodel
 
 import com.company.mobile.android.appname.app.R
-import com.company.mobile.android.appname.app.common.exception.AppAction
-import com.company.mobile.android.appname.app.common.exception.AppError
-import com.company.mobile.android.appname.app.common.exception.ErrorBundle
-import com.company.mobile.android.appname.app.common.exception.ErrorBundleBuilder
+import com.company.mobile.android.appname.app.common.errorhandling.AppAction
+import com.company.mobile.android.appname.app.common.errorhandling.AppError
+import com.company.mobile.android.appname.app.common.errorhandling.ErrorBundle
+import com.company.mobile.android.appname.app.common.errorhandling.ErrorBundleBuilder
 
 /**
  * Factory used to create error bundles from an Exception as source.

@@ -8,7 +8,7 @@ import com.company.mobile.android.appname.app.account.SignInViewModel
 import com.company.mobile.android.appname.app.bufferoos.master.BufferoosAdapter
 import com.company.mobile.android.appname.app.bufferoos.viewmodel.BufferoosErrorBundleBuilder
 import com.company.mobile.android.appname.app.bufferoos.viewmodel.BufferoosViewModel
-import com.company.mobile.android.appname.app.common.exception.ErrorBundleBuilder
+import com.company.mobile.android.appname.app.common.errorhandling.ErrorBundleBuilder
 import com.company.mobile.android.appname.app.main.navigationdrawer.NavigationDrawerMainActivityViewModel
 import com.company.mobile.android.appname.app.main.nonavigation.NoNavigationMainActivityViewModel
 import com.company.mobile.android.appname.app.splash.SplashActivityViewModel

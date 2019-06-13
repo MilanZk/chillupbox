@@ -5,7 +5,7 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.RelativeLayout
 import com.company.mobile.android.appname.app.R
-import com.company.mobile.android.appname.app.common.exception.ErrorBundle
+import com.company.mobile.android.appname.app.common.errorhandling.ErrorBundle
 import kotlinx.android.synthetic.main.view_error.view.bt_error_view_retry_button
 import kotlinx.android.synthetic.main.view_error.view.tv_error_view_message
 import timber.log.Timber

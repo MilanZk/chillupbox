@@ -1,4 +1,4 @@
-package com.company.mobile.android.appname.datasources.remote.exception
+package com.company.mobile.android.appname.datasources.remote.errorhandling
 
 import com.company.mobile.android.appname.model.exception.HTTPException
 import io.reactivex.annotations.NonNull

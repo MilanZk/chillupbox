@@ -4,15 +4,13 @@ import android.content.Context
 import com.company.mobile.android.appname.data.bufferoo.source.BufferooDataStore
 import com.company.mobile.android.appname.datasources.bufferoo.remote.mapper.BufferooEntityMapper
 import com.company.mobile.android.appname.datasources.bufferoo.remote.model.PostCredentialsRequest
-import com.company.mobile.android.appname.datasources.remote.exception.RemoteExceptionMapper
+import com.company.mobile.android.appname.datasources.remote.errorhandling.RemoteExceptionMapper
 import com.company.mobile.android.appname.model.bufferoo.Bufferoo
 import com.company.mobile.android.appname.model.bufferoo.Credentials
 import com.company.mobile.android.appname.model.bufferoo.SignedInBufferoo
 import com.company.mobile.android.appname.model.bufferoo.SignedOutBufferoo
-import com.company.mobile.android.appname.model.exception.HTTPException
 import io.reactivex.Completable
 import io.reactivex.Single
-import java.lang.Exception
 import java.lang.ref.WeakReference
 
 /**

@@ -1,10 +1,10 @@
 package com.company.mobile.android.appname.app.splash
 
 import com.company.mobile.android.appname.app.R
-import com.company.mobile.android.appname.app.common.exception.AppAction
-import com.company.mobile.android.appname.app.common.exception.AppError
-import com.company.mobile.android.appname.app.common.exception.ErrorBundle
-import com.company.mobile.android.appname.app.common.exception.ErrorBundleBuilder
+import com.company.mobile.android.appname.app.common.errorhandling.AppAction
+import com.company.mobile.android.appname.app.common.errorhandling.AppError
+import com.company.mobile.android.appname.app.common.errorhandling.ErrorBundle
+import com.company.mobile.android.appname.app.common.errorhandling.ErrorBundleBuilder
 import com.company.mobile.android.appname.model.exception.HTTPException
 import java.net.UnknownHostException
 import java.util.concurrent.TimeoutException

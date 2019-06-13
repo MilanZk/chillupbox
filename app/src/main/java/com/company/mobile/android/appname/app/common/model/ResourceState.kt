@@ -1,6 +1,6 @@
 package com.company.mobile.android.appname.app.common.model
 
-import com.company.mobile.android.appname.app.common.exception.ErrorBundle
+import com.company.mobile.android.appname.app.common.errorhandling.ErrorBundle
 
 /**
  * A generic class that serves as default implementation for a resource state class.
