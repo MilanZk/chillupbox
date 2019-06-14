@@ -1,9 +1,9 @@
-package com.company.mobile.android.appname.domain.interactor
+package org.buffer.android.boilerplate.data.interactor
 
-import com.company.mobile.android.appname.domain.executor.PostExecutionThread
-import com.company.mobile.android.appname.domain.executor.ThreadExecutor
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
+import org.buffer.android.boilerplate.data.executor.PostExecutionThread
+import org.buffer.android.boilerplate.data.executor.ThreadExecutor
 
 /**
  * Abstract class for a UseCase that returns an instance of a [Single].
@@ -20,11 +20,8 @@ abstract class SingleUseCase<T, in Params> constructor(
 
     /**
      * Executes the current use case.
-     *
-     * This function is open in order to be mockeable from instrumental tests, which do not allow to mock final classes
-     * or functions.
      */
-    open fun execute(params: Params? = null): Single<T> {
+    fun execute(params: Params? = null): Single<T> {
         return this.buildUseCaseObservable(params)
             .subscribeOn(Schedulers.from(threadExecutor))
             .observeOn(postExecutionThread.scheduler)

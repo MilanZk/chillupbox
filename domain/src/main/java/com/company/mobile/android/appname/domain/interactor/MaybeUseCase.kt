@@ -1,9 +1,9 @@
-package com.company.mobile.android.appname.domain.interactor
+package org.buffer.android.boilerplate.data.interactor
 
-import com.company.mobile.android.appname.domain.executor.PostExecutionThread
-import com.company.mobile.android.appname.domain.executor.ThreadExecutor
 import io.reactivex.Maybe
 import io.reactivex.schedulers.Schedulers
+import org.buffer.android.boilerplate.data.executor.PostExecutionThread
+import org.buffer.android.boilerplate.data.executor.ThreadExecutor
 
 /**
  * Abstract class for a UseCase that returns an instance of a [Maybe].

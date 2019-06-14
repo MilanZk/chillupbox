@@ -21,6 +21,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [X.X.X] - YYYY-MM-DD
 ### Added
+- 
+
+### Changed
+- 
+
+### Removed
+- 
+
+### Fixed
+- 
+
+## [0.2.0] - 2019-06-14
+### Added
 - Error management and retries for multiple actions in a single screen were added.
 - Common events view model was implemented. The first common event is the unauthorized error of remote requests.
 - Form validators with styles were added.
@@ -48,9 +61,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Data module was split into domain and data with a new shared models module.
 - Android code style was updated.
 - Project dependencies were updated.
-
-### Removed
-- 
 
 ### Fixed
 - Cache unit tests were fixed.
