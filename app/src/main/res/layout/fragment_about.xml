@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/ll_about_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_about_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/navigation_drawer_menu_about" />
+    </LinearLayout>
+
+    <!-- region Loading, error and empty views -->
+    <!-- These views are clickable and focusable to block user interaction -->
+    <com.company.mobile.android.appname.app.common.widget.loading.LoadView
+        android:id="@+id/lv_about_loading_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone" />
+
+    <com.company.mobile.android.appname.app.common.widget.empty.EmptyView
+        android:id="@+id/ev_about_empty_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorLightBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone" />
+
+    <com.company.mobile.android.appname.app.common.widget.error.ErrorView
+        android:id="@+id/ev_about_error_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorLightBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone" />
+    <!-- endregion -->
+
+</FrameLayout>

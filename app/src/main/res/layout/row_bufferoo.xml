@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/iv_bufferoo_row_avatar_image"
+        android:layout_width="@dimen/bufferoo_master_icon_size"
+        android:layout_height="@dimen/bufferoo_master_icon_size"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:padding="@dimen/bufferoo_master_icon_padding" />
+
+    <TextView
+        android:id="@+id/tv_bufferoo_row_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/bufferoo_master_name_horizontal_margin"
+        android:layout_marginTop="@dimen/bufferoo_master_name_vertical_margin"
+        android:layout_toEndOf="@+id/iv_bufferoo_row_avatar_image"
+        android:textSize="@dimen/text_title" />
+
+    <TextView
+        android:id="@+id/tv_bufferoo_row_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/tv_bufferoo_row_name"
+        android:layout_below="@+id/tv_bufferoo_row_name"
+        android:textSize="@dimen/text_body" />
+
+</RelativeLayout>

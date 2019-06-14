@@ -6,14 +6,65 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 [//]: # (## [X.X.X] - YYYY-MM-DD)
 [//]: # (### Added)
-[//]: # (- Add new things.)
+[//]: # (- Add new features)
 [//]: # (### Changed)
-[//]: # (- Add breaking changes!)
-[//]: # (- Add changes.)
+[//]: # (- Add breaking changes first!)
+[//]: # (- Add changes in existing functionality)
+[//]: # (### Deprecated)
+[//]: # (- Add soon-to-be removed features)
 [//]: # (### Removed)
-[//]: # (- Add deprecated things.)
+[//]: # (- Add now removed features)
 [//]: # (### Fixed)
-[//]: # (- Add fixes.)
+[//]: # (- Add any bug fixes)
+[//]: # (### Security)
+[//]: # (- Add vulnerabilities)
+
+## [X.X.X] - YYYY-MM-DD
+### Added
+- 
+
+### Changed
+- 
+
+### Removed
+- 
+
+### Fixed
+- 
+
+## [0.2.0] - 2019-06-14
+### Added
+- Error management and retries for multiple actions in a single screen were added.
+- Common events view model was implemented. The first common event is the unauthorized error of remote requests.
+- Form validators with styles were added.
+- Sign in activity was implemented.
+- A basic example with no navigation was included, too.
+- Navigation drawer example was finished.
+- An screen for selecting a navigation example was added.
+- Splash screen theme and activity were created.
+- Resource state definition was generalized adding a default implementation with a template. Tests were updated, since it is now impossible to have and error with data or a success with an error message.
+- Base fragment class defines lifecycle-aware initialization methods for every fragment in the app.
+- Leak Canary 2.0 was added to debug builds for detecting memory leaks.
+- Back icon was added to tool bar when using navigation drawer.
+- Item details fragment was added and navigation between fragments implemented.
+- Section fragment switching was added.
+- Double back button tap is needed to close the app.
+- App version is shown in navigation drawer menu footer.
+- Navigation drawer was implemented.
+- App bundle generation files were included.
+- New mock server using Postman was created.
+
+### Changed
+- Hardcoded dimensions defined in XML files were exchanged for dimensions defined in dimens.xml file.
+- Progress bar was exchanged for a loading view.
+- Project was updated to Koin 2.0.
+- Data module was split into domain and data with a new shared models module.
+- Android code style was updated.
+- Project dependencies were updated.
+
+### Fixed
+- Cache unit tests were fixed.
+- Instrumental tests were updated to Koin 2.0 and fixed.
 
 ## [0.1.0] - 2018-11-28
 ### Added

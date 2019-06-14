@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="text_hero">32sp</dimen>
+    <dimen name="text_headline">24sp</dimen>
+    <dimen name="text_title">20sp</dimen>
+    <dimen name="text_large_body">18sp</dimen>
+    <dimen name="text_body">16sp</dimen>
+    <dimen name="text_small_body">14sp</dimen>
+    <dimen name="text_smaller_body">12sp</dimen>
+    <dimen name="text_tiny_body">10sp</dimen>
+
+    <!-- Defaults -->
+    <dimen name="horizontal_margin">30dp</dimen>
+    <dimen name="vertical_margin">30dp</dimen>
+    <dimen name="header_text_size">26sp</dimen>
+
+    <!-- Drawer -->
+    <dimen name="main_drawer_header_padding">16dp</dimen>
+    <dimen name="main_drawer_header_vertical_spacing">8dp</dimen>
+    <dimen name="main_drawer_footer_spacing">16dp</dimen>
+
+    <!-- Bufferoo master -->
+    <dimen name="bufferoo_master_list_padding">8dp</dimen>
+    <dimen name="bufferoo_master_icon_size">80dp</dimen>
+    <dimen name="bufferoo_master_icon_padding">12dp</dimen>
+    <dimen name="bufferoo_master_name_horizontal_margin">12dp</dimen>
+    <dimen name="bufferoo_master_name_vertical_margin">16dp</dimen>
+
+    <!-- Bufferoo details -->
+    <dimen name="bufferoo_details_icon_size">80dp</dimen>
+    <dimen name="bufferoo_details_vertical_margin">16dp</dimen>
+    <dimen name="bufferoo_details_horizontal_margin">16dp</dimen>
+
+    <!-- Home -->
+    <dimen name="loading_view_progress_bar_height">4dp</dimen>
+    <dimen name="loading_view_progress_bar_fill_size">8dp</dimen>
+
+    <!-- Forms -->
+    <dimen name="forms_icon_padding">8dp</dimen>
+    <dimen name="forms_vertical_margin">24dp</dimen>
+    <dimen name="forms_button_height">60dp</dimen>
+    <dimen name="forms_big_button_padding">16dp</dimen>
+
+</resources>

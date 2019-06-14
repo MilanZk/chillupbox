@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.company.mobile.android.appname.app">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:name="com.company.mobile.android.appname.app.BufferooApplication"
+        android:allowBackup="false"
+        android:fullBackupContent="false"
+        android:hardwareAccelerated="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme.NoActionBar">
+
+        <activity
+            android:name="com.company.mobile.android.appname.app.splash.SplashActivity"
+            android:theme="@style/SplashTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.company.mobile.android.appname.app.choosenavigation.ChooseNavigationActivity"
+            android:theme="@style/SplashTheme" />
+        <activity
+            android:name="com.company.mobile.android.appname.app.account.SignInActivity"
+            android:theme="@style/SplashTheme" />
+        <activity
+            android:name="com.company.mobile.android.appname.app.main.navigationdrawer.NavigationDrawerMainActivity"
+            android:theme="@style/SplashTheme" />
+        <activity
+            android:name="com.company.mobile.android.appname.app.main.nonavigation.NoNavigationMainActivity"
+            android:theme="@style/SplashTheme" />
+    </application>
+
+</manifest>

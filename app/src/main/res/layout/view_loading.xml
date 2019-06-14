@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <FrameLayout
+        android:id="@+id/fl_loading_view_progress_bar_container"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/loading_view_progress_bar_height"
+        android:visibility="visible">
+
+        <androidx.core.widget.ContentLoadingProgressBar
+            android:id="@+id/pb_loading_view_progress_bar"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/loading_view_progress_bar_fill_size"
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            android:scaleY="3.0" />
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tv_loading_view_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/fl_loading_view_progress_bar_container"
+        android:text="@string/loading"
+        android:textColor="@color/colorAccent"
+        android:visibility="gone" />
+
+</merge>

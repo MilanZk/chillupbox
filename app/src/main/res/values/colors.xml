@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccentDark">#E0205C</color>
+
+    <color name="colorLightBackground">#E8E8E8</color>
+    <color name="colorPrimaryText">#000000</color>
+    <color name="colorPrimaryTextDisabled">@android:color/darker_gray</color>
+    <color name="colorPrimaryTextLight">#FFFFFF</color>
+    <color name="colorPrimaryTextLightDisabled">@android:color/darker_gray</color>
+    <color name="colorPrimaryLinkText">@android:color/holo_blue_dark</color>
+    <color name="colorError">#f44336</color>
+</resources>

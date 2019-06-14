@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_sign_in_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorLightBackground">
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nsv_sign_in"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/btn_sign_in_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_sign_in"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/horizontal_margin"
+                android:layout_marginEnd="@dimen/vertical_margin"
+                android:layout_marginStart="@dimen/vertical_margin"
+                android:layout_marginTop="@dimen/horizontal_margin"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/tv_sign_in_title"
+                    style="@style/AppTheme.HeaderText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/sign_in_title"
+                    app:layout_constraintBottom_toTopOf="@+id/til_sign_in_username"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_sign_in_username"
+                    style="@style/AppTheme.TextInputLayout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/vertical_margin"
+                    android:hint="@string/sign_in_usernane"
+                    android:inputType="text"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/AppTheme.ErrorText"
+                    app:hintTextAppearance="@style/AppTheme.HintAppearance"
+                    app:layout_constraintBottom_toTopOf="@+id/til_sign_in_password"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_sign_in_title">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tiet_sign_in_username"
+                        style="@style/AppTheme.TextInputEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:drawableStart="@drawable/selector_username_drawable"
+                        android:inputType="textEmailAddress"
+                        android:theme="@style/AppTheme.TextInputEditTextTheme" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_sign_in_password"
+                    style="@style/AppTheme.TextInputLayout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/forms_vertical_margin"
+                    android:hint="@string/sign_in_password"
+                    android:inputType="text"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/AppTheme.ErrorText"
+                    app:hintTextAppearance="@style/AppTheme.HintAppearance"
+                    app:layout_constraintBottom_toTopOf="@+id/tv_sign_in_forgot_password"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/til_sign_in_username"
+                    app:passwordToggleEnabled="true"
+                    app:passwordToggleTint="@color/colorPrimaryText">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tiet_sign_in_password"
+                        style="@style/AppTheme.TextInputEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:drawableStart="@drawable/selector_lock_drawable"
+                        android:inputType="textPassword"
+                        android:theme="@style/AppTheme.TextInputEditTextTheme" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tv_sign_in_forgot_password"
+                    style="@style/AppTheme.DefaultText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/forms_button_height"
+                    android:layout_marginTop="@dimen/forms_vertical_margin"
+                    android:text="@string/sign_in_forgot_password"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/til_sign_in_password" />
+
+                <TextView
+                    android:id="@+id/tv_sign_in_click_here"
+                    style="@style/AppTheme.DefaultText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sign_in_click_here"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_sign_in_forgot_password"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/tv_sign_in_forgot_password"
+                    app:layout_constraintTop_toTopOf="@+id/tv_sign_in_forgot_password"
+                    app:layout_constraintVertical_bias="0.0" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <!-- Style and theme are used for making ripple effect work -->
+        <Button
+            android:id="@+id/btn_sign_in_button"
+            style="@style/AppTheme.Button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/horizontal_margin"
+            android:layout_marginStart="@dimen/horizontal_margin"
+            android:text="@string/sign_in_action"
+            android:theme="@style/AppTheme.Button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- region Loading, error and empty views -->
+    <!-- These views are clickable and focusable to block user interaction -->
+    <com.company.mobile.android.appname.app.common.widget.loading.LoadView
+        android:id="@+id/lv_sign_in_loading_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone" />
+
+    <com.company.mobile.android.appname.app.common.widget.error.ErrorView
+        android:id="@+id/ev_sign_in_error_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorLightBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone" />
+    <!-- endregion -->
+
+</FrameLayout>

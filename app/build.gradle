@@ -1,0 +1,141 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    def globalConfiguration = rootProject.extensions.getByName("ext")
+
+    compileSdkVersion globalConfiguration["androidCompileSdkVersion"]
+    testOptions.unitTests.includeAndroidResources = true
+
+    defaultConfig {
+        minSdkVersion globalConfiguration["androidMinSdkVersion"]
+        targetSdkVersion globalConfiguration["androidTargetSdkVersion"]
+
+        applicationId globalConfiguration["androidApplicationId"]
+        versionCode globalConfiguration["androidVersionCode"]
+        versionName globalConfiguration["androidVersionName"]
+
+        testInstrumentationRunner "com.company.mobile.android.appname.app.test.TestRunner"
+    }
+
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    packagingOptions {
+        exclude 'LICENSE.txt'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/ASL2.0'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+    }
+
+    lintOptions {
+        quiet true
+        abortOnError false
+        ignoreWarnings true
+        disable 'GoogleAppIndexingWarning'  //For removing warning about deep linking in Manifest, because this app do not use deep links
+    }
+
+    signingConfigs {
+        release {
+            keyAlias 'key0'
+            keyPassword 'ndrddvlpr_2019'
+            storeFile file('../extras/release/keyStore/hiberus.jks')
+            storePassword 'ndrddvlpr_2019'
+        }
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        release {
+            signingConfig signingConfigs.release
+
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    def appDependencies = rootProject.ext.appDependencies
+    def appTestDependencies = rootProject.ext.appTestDependencies
+    def developmentDependencies = rootProject.ext.developmentDependencies
+
+    implementation project(':model')
+    implementation project(':domain')
+    implementation project(':data')
+    implementation project(':datasources')
+
+    implementation appDependencies.kotlin
+    implementation appDependencies.koin
+    implementation appDependencies.koinCompile
+    implementation appDependencies.koinArch
+    implementation appDependencies.androidAnnotation
+    implementation appDependencies.appcompat
+    implementation appDependencies.recyclerView
+    implementation appDependencies.constraintLayout
+    implementation appDependencies.materialDesign
+    implementation appDependencies.lifecycleExtensions
+    implementation appDependencies.lifecycleCommonJava8
+    implementation appDependencies.roomRuntime
+    implementation appDependencies.rxJava
+    implementation appDependencies.rxAndroid
+    implementation appDependencies.rxKotlin
+    implementation appDependencies.glide
+    implementation appDependencies.timber
+
+    // Unit test dependencies
+    testImplementation appTestDependencies.kotlinJUnit
+    testImplementation appTestDependencies.mockitoKotlin
+    testImplementation appTestDependencies.mockitoInline
+
+    // Instrumentation test dependencies
+    androidTestImplementation appTestDependencies.junit
+    androidTestImplementation appTestDependencies.lifecycleTest
+    androidTestImplementation(appTestDependencies.koinTest, {
+        exclude group: 'org.jetbrains.kotlin'
+        exclude group: 'org.mockito'
+    })
+    androidTestImplementation(appTestDependencies.mockitoKotlin, {
+        exclude group: 'org.jetbrains.kotlin'
+        exclude group: 'org.mockito'
+    })
+    androidTestImplementation appTestDependencies.mockitoAndroid
+    androidTestImplementation appTestDependencies.androidJUnit
+    androidTestImplementation(appTestDependencies.espressoCore) {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+    androidTestImplementation(appTestDependencies.androidRunner) {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+    androidTestImplementation(appTestDependencies.androidRules) {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+    androidTestImplementation(appTestDependencies.espressoIntents) {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+    androidTestImplementation(appTestDependencies.espressoContrib) {
+        exclude module: 'appcompat'
+        exclude module: 'appcompat-v7'
+        exclude module: 'support-v4'
+        exclude module: 'support-v13'
+        exclude module: 'support-annotations'
+        exclude module: 'recyclerview-v7'
+        exclude module: 'design'
+    }
+
+    //Development
+    debugImplementation developmentDependencies.leakCanary
+}
