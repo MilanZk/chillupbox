@@ -11,8 +11,8 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.company.mobile.android.appname.app.R
 import com.company.mobile.android.appname.app.bufferoos.master.BufferoosAdapter.ViewHolder
-import com.company.mobile.android.appname.model.bufferoo.Bufferoo
 import com.company.mobile.android.appname.app.common.view.OnSingleClickListener
+import com.company.mobile.android.appname.model.bufferoo.Bufferoo
 import java.lang.ref.WeakReference
 
 class BufferoosAdapter : RecyclerView.Adapter<ViewHolder>() {

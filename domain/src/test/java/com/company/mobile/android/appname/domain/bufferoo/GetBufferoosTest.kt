@@ -1,9 +1,9 @@
 package com.company.mobile.android.appname.domain.bufferoo
 
 import com.company.mobile.android.appname.domain.bufferoo.interactor.GetBufferoos
+import com.company.mobile.android.appname.domain.bufferoo.repository.BufferooRepository
 import com.company.mobile.android.appname.domain.executor.PostExecutionThread
 import com.company.mobile.android.appname.domain.executor.ThreadExecutor
-import com.company.mobile.android.appname.domain.bufferoo.repository.BufferooRepository
 import com.company.mobile.android.appname.domain.test.factory.BufferooFactory
 import com.company.mobile.android.appname.model.bufferoo.Bufferoo
 import com.nhaarman.mockitokotlin2.mock

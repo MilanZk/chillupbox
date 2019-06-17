@@ -5,7 +5,6 @@ import com.google.gson.annotations.SerializedName
 import org.json.JSONException
 import timber.log.Timber
 import java.io.UnsupportedEncodingException
-import java.lang.NumberFormatException
 
 // JSON Web Token. See: https://jwt.io/introduction/
 data class PostCredentialsResponse(
@@ -18,7 +17,8 @@ data class PostCredentialsResponse(
     @SerializedName("refresh_token")
     val refresh_token: String? = "",
     @SerializedName("scope")
-    val scope: String? = "") {
+    val scope: String? = ""
+) {
 
     fun getId(): String {
         return try {

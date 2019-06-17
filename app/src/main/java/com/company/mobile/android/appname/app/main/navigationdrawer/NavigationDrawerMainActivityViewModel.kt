@@ -6,9 +6,9 @@ import androidx.lifecycle.ViewModel
 import com.company.mobile.android.appname.app.common.errorhandling.AppAction.SIGN_OUT
 import com.company.mobile.android.appname.app.common.errorhandling.ErrorBundleBuilder
 import com.company.mobile.android.appname.app.common.model.ResourceState
+import com.company.mobile.android.appname.app.common.model.ResourceState.Error
 import com.company.mobile.android.appname.app.common.model.ResourceState.Loading
 import com.company.mobile.android.appname.app.common.model.ResourceState.Success
-import com.company.mobile.android.appname.app.common.model.ResourceState.Error
 import com.company.mobile.android.appname.domain.bufferoo.interactor.SignOutBufferoos
 import io.reactivex.disposables.Disposable
 import kotlin.properties.Delegates

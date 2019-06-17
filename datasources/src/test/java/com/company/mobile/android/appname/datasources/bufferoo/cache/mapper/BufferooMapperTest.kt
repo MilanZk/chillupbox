@@ -1,8 +1,8 @@
 package com.company.mobile.android.appname.datasources.bufferoo.cache.mapper
 
-import com.company.mobile.android.appname.model.bufferoo.Bufferoo
 import com.company.mobile.android.appname.datasources.bufferoo.cache.model.CachedBufferoo
 import com.company.mobile.android.appname.datasources.bufferoo.cache.test.factory.BufferooFactory
+import com.company.mobile.android.appname.model.bufferoo.Bufferoo
 import org.junit.*
 import org.junit.runner.*
 import org.junit.runners.*
