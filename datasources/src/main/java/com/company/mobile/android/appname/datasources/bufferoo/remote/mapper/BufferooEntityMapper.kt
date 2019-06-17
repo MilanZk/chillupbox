@@ -1,8 +1,8 @@
 package com.company.mobile.android.appname.datasources.bufferoo.remote.mapper
 
-import com.company.mobile.android.appname.model.bufferoo.Bufferoo
 import com.company.mobile.android.appname.datasources.bufferoo.remote.model.BufferooResponse
 import com.company.mobile.android.appname.datasources.remote.mapper.EntityMapper
+import com.company.mobile.android.appname.model.bufferoo.Bufferoo
 
 /**
  * Map a [BufferooResponse] to and from a [Bufferoo] instance when data is moving between

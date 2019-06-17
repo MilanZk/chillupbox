@@ -1,12 +1,11 @@
 package com.company.mobile.android.appname.app.common.validation
 
+import timber.log.Timber
 import java.math.RoundingMode
 import java.text.DecimalFormat
-import java.text.DecimalFormatSymbols
 import java.text.NumberFormat
 import java.text.ParseException
 import java.util.Locale
-import timber.log.Timber
 
 /**
  * Created by Daniel on 9/2/2015.
