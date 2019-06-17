@@ -6,9 +6,9 @@ import com.company.mobile.android.appname.app.common.errorhandling.AppError
 import com.company.mobile.android.appname.app.common.errorhandling.ErrorBundle
 import com.company.mobile.android.appname.app.common.errorhandling.ErrorBundleBuilder
 import com.company.mobile.android.appname.model.exception.HTTPException
+import timber.log.Timber
 import java.net.UnknownHostException
 import java.util.concurrent.TimeoutException
-import timber.log.Timber
 
 /**
  * Factory used to create error bundles from an Exception as source.

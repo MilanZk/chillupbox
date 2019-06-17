@@ -46,13 +46,15 @@ class ErrorDialogFragment : DialogFragment() {
         builder.setTitle(errorMessageForDialog.title)
             .setMessage(HtmlCompat.fromHtml(styledMessage, HtmlCompat.FROM_HTML_MODE_LEGACY))
             .setCancelable(true)
-            .setPositiveButton(acceptStringId) { _: DialogInterface, _: Int -> // dialog: DialogInterface, buttonId: Int
+            .setPositiveButton(acceptStringId) { _: DialogInterface, _: Int ->
+                // dialog: DialogInterface, buttonId: Int
                 accepted = true
                 sendResultBack()
             }
         if (retry) {
             builder
-                .setNegativeButton(R.string.cancel) { _: DialogInterface, _: Int -> // dialog: DialogInterface, buttonId: Int
+                .setNegativeButton(R.string.cancel) { _: DialogInterface, _: Int ->
+                    // dialog: DialogInterface, buttonId: Int
                     cancelled = true
                     sendResultBack()
                 }

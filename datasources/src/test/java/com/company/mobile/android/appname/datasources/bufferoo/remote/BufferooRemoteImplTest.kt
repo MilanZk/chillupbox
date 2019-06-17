@@ -2,9 +2,9 @@ package com.company.mobile.android.appname.datasources.bufferoo.remote
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
-import com.company.mobile.android.appname.model.bufferoo.Bufferoo
 import com.company.mobile.android.appname.datasources.bufferoo.remote.mapper.BufferooEntityMapper
 import com.company.mobile.android.appname.datasources.bufferoo.remote.test.factory.BufferooFactory
+import com.company.mobile.android.appname.model.bufferoo.Bufferoo
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
 import io.reactivex.Single
