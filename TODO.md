@@ -4,6 +4,7 @@
 
 - [ ] Add and example with TypeAdapters?
 - [ ] Exchange GSON for Moshi?
+- [ ] Fix data store interface problem. It forces a given implementation to implement functions that will never be used (use iOS template variant?).
 - [x] Remove any hardcoded dimensions.
 - [x] Add error management with retries.
 - [x] Add a common events view model starting with authentication error.
