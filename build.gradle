@@ -51,7 +51,7 @@ allprojects {
 
     ext {
         androidApplicationId = 'com.company.mobile.android.appname'
-        androidVersionCode = versionMajor * 10000 + versionMinor * 1000 + versionPatch * 100 + versionBuild
+        androidVersionCode = versionMajor * 1000000 + versionMinor * 10000 + versionPatch * 100 + versionBuild
         androidVersionName = "${versionMajor}.${versionMinor}.${versionPatch}"
     }
 }
