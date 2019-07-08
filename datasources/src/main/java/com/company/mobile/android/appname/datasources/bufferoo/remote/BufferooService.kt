@@ -18,12 +18,12 @@ interface BufferooService {
     }
 
     class BufferoosResponse {
-        lateinit var team: List<BufferooResponse>
+        lateinit var items: List<BufferooResponse>
     }
 
     @POST("oauth/token")
     fun postCredentials(@Body postCredentialsRequest: PostCredentialsRequest): Single<PostCredentialsResponse>
 
-    @GET("users")
+    @GET("items")
     fun getBufferoos(): Single<BufferoosResponse>
 }

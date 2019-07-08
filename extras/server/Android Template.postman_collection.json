@@ -140,7 +140,7 @@
 						},
 						{
 							"key": "Date",
-							"value": "Thu, 23 May 2019 15:59:37 GMT"
+							"value": "Wed, 29 May 2019 13:58:06 GMT"
 						},
 						{
 							"key": "ETag",
@@ -164,7 +164,7 @@
 						},
 						{
 							"key": "Content-Length",
-							"value": "158"
+							"value": "369"
 						},
 						{
 							"key": "Connection",
@@ -172,12 +172,12 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"access_token\": \"abc123456\",\n    \"token_type\": \"bearer\",\n    \"expires_in\": 3600,\n    \"refresh_token\": null,\n    \"scope\": null\n}"
+					"body": "{\n    \"access_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE1NTg5NTU4MjUsImV4cCI6MTU5MDQ5MTgyNSwiYXVkIjoiaHR0cDovL2p3dGJ1aWxkZXIuamFtaWVrdXJ0ei5jb20iLCJzdWIiOiJqcm9ja2V0QGV4YW1wbGUuY29tIiwiaWQiOiI1MDdmMWY3N2JjZjg2Y2Q3OTk0MzkwMTEifQ.x5Ln84ACT6F7BpmgCf8BBGAE--lMoFaCsK-vNcNcn1c\",\n    \"token_type\": \"bearer\",\n    \"expires_in\": 86400,\n    \"refresh_token\": \"IwOGYzYTlmM2YxOTQ5MGE3YmNmMDFkNTVk\",\n    \"scope\": null\n}"
 				}
 			]
 		},
 		{
-			"name": "Get Bufferoos",
+			"name": "Get Items",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -185,14 +185,14 @@
 				"method": "GET",
 				"header": [
 					{
-						"key": "Authorization",
-						"value": "Bearer {{token}}",
-						"type": "text"
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json; charset=utf-8"
 					},
 					{
-						"key": "Accept",
-						"value": "application/json; charset=utf-8",
-						"type": "text"
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer {{token}}"
 					}
 				],
 				"body": {
@@ -211,13 +211,18 @@
 			},
 			"response": [
 				{
-					"name": "Bufferoos example",
+					"name": "Items example",
 					"originalRequest": {
 						"method": "GET",
 						"header": [
 							{
 								"key": "Accept",
 								"value": "application/json; charset=utf-8",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
 								"type": "text"
 							}
 						],
@@ -226,12 +231,12 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{url}}/users",
+							"raw": "{{url}}/items",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
-								"users"
+								"items"
 							],
 							"query": [
 								{
@@ -242,6 +247,7 @@
 							]
 						}
 					},
+					"status": "OK",
 					"code": 200,
 					"_postman_previewlanguage": null,
 					"header": [
@@ -253,7 +259,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n  \"team\": [\n    {\n      \"id\": 1,\n      \"name\": \"Michael Jackson\",\n      \"title\": \"King of pop\",\n      \"avatar\": \"https://www.songhall.org/images/made/images/uploads/exhibits/Michael_Jackson_656_656_85_s_c1.jpg\"\n    },\n    {\n      \"id\": 2,\n      \"name\": \"Iron Maiden\",\n      \"title\": \"Up the irons!\",\n      \"avatar\": \"https://rovimusic.rovicorp.com/image.jpg?c=_6-e-kurWtjAkmScGr_b9lWnbEN5fCjifro6xhIBuB4=&f=5\"\n    },\n    {\n      \"id\": 3,\n      \"name\": \"Queen\",\n      \"title\": \"Kings of rock\",\n      \"avatar\": \"https://rovimusic.rovicorp.com/image.jpg?c=8-D0mOFwepvJX92pzmZQzA4Q1ghY8VaPylnm7PwcKNY=&f=5\"\n    },\n    {\n      \"id\": 4,\n      \"name\": \"Nirvana\",\n      \"title\": \"Come as you are\",\n      \"avatar\": \"https://rovimusic.rovicorp.com/image.jpg?c=acvsVjEpmg3_YGn55ucRmipQg_7iAU1wjqLgK_xGXts=&f=5\"\n    },\n\n    {\n      \"id\": 5,\n      \"name\": \"Depeche Mode\",\n      \"title\": \"Electro pop wizards\",\n      \"avatar\": \"https://rovimusic.rovicorp.com/image.jpg?c=RADi4whS7S1y-Ku1atkK25hUoDg0hsvx4F4sL4oO-nA=&f=5\"\n    },\n    {\n      \"id\": 6,\n      \"name\": \"Metallica\",\n      \"title\": \"Metal masters\",\n      \"avatar\": \"https://cps-static.rovicorp.com/3/JPG_500/MI0001/412/MI0001412393.jpg?partner=allrovi.com\"\n    },\n    {\n      \"id\": 7,\n      \"name\": \"Katatonia\",\n      \"title\": \"Doom rock heroes\",\n      \"avatar\": \"https://cps-static.rovicorp.com/3/JPG_500/MI0001/578/MI0001578529.jpg?partner=allrovi.com\"\n    },\n    {\n      \"id\": 8,\n      \"name\": \"Tool\",\n      \"title\": \"13 years waiting for a new album...\",\n      \"avatar\": \"https://cdn-s3.allmusic.com/release-covers/500/0000/891/0000891314.jpg\"\n    },\n    {\n      \"id\": 9,\n      \"name\": \"Chemical Brothers\",\n      \"title\": \"Hey boy, hey girl, here we go!\",\n      \"avatar\": \"https://rovimusic.rovicorp.com/image.jpg?c=2Q6YpS77Cxzcd2Ge65VtzR_TZlp6n_cq-Emr2zx15tU=&f=5\"\n    },\n    {\n      \"id\": 10,\n      \"name\": \"Foo fighters\",\n      \"title\": \"Everlong\",\n      \"avatar\": \"https://cdn-s3.allmusic.com/release-covers/500/0000/359/0000359297.jpg\"\n    },\n    {\n      \"id\": 11,\n      \"name\": \"Manic Street Preachers\",\n      \"title\": \"If you tolerate this, your coworker will be next\",\n      \"avatar\": \"https://rovimusic.rovicorp.com/image.jpg?c=ZoZJ26z9K54tTGmoyvV4dIAf7E_1E-2MlBBPmPAXRBU=&f=5\"\n    },\n    {\n      \"id\": 12,\n      \"name\": \"MC Hammer\",\n      \"title\": \"I told you boy, u can't touch this!\",\n      \"avatar\": \"https://cps-static.rovicorp.com/3/JPG_400/MI0001/394/MI0001394424.jpg?partner=allrovi.com\"\n    },\n    {\n      \"id\": 13,\n      \"name\": \"Rick Astley\",\n      \"title\": \"Never gonna give you up...\",\n      \"avatar\": \"https://cdn-s3.allmusic.com/release-covers/500/0000/502/0000502381.jpg\"\n    }\n  ]\n}"
+					"body": "{\n  \"items\": [\n    {\n      \"id\": 1,\n      \"name\": \"Michael Jackson\",\n      \"title\": \"King of pop\",\n      \"avatar\": \"https://www.songhall.org/images/made/images/uploads/exhibits/Michael_Jackson_656_656_85_s_c1.jpg\"\n    },\n    {\n      \"id\": 2,\n      \"name\": \"Iron Maiden\",\n      \"title\": \"Up the irons!\",\n      \"avatar\": \"https://rovimusic.rovicorp.com/image.jpg?c=_6-e-kurWtjAkmScGr_b9lWnbEN5fCjifro6xhIBuB4=&f=5\"\n    },\n    {\n      \"id\": 3,\n      \"name\": \"Queen\",\n      \"title\": \"Kings of rock\",\n      \"avatar\": \"https://rovimusic.rovicorp.com/image.jpg?c=8-D0mOFwepvJX92pzmZQzA4Q1ghY8VaPylnm7PwcKNY=&f=5\"\n    },\n    {\n      \"id\": 4,\n      \"name\": \"Nirvana\",\n      \"title\": \"Come as you are\",\n      \"avatar\": \"https://rovimusic.rovicorp.com/image.jpg?c=acvsVjEpmg3_YGn55ucRmipQg_7iAU1wjqLgK_xGXts=&f=5\"\n    },\n\n    {\n      \"id\": 5,\n      \"name\": \"Depeche Mode\",\n      \"title\": \"Electro pop wizards\",\n      \"avatar\": \"https://rovimusic.rovicorp.com/image.jpg?c=RADi4whS7S1y-Ku1atkK25hUoDg0hsvx4F4sL4oO-nA=&f=5\"\n    },\n    {\n      \"id\": 6,\n      \"name\": \"Metallica\",\n      \"title\": \"Metal masters\",\n      \"avatar\": \"https://cps-static.rovicorp.com/3/JPG_500/MI0001/412/MI0001412393.jpg?partner=allrovi.com\"\n    },\n    {\n      \"id\": 7,\n      \"name\": \"Katatonia\",\n      \"title\": \"Doom rock heroes\",\n      \"avatar\": \"https://cps-static.rovicorp.com/3/JPG_500/MI0001/578/MI0001578529.jpg?partner=allrovi.com\"\n    },\n    {\n      \"id\": 8,\n      \"name\": \"Tool\",\n      \"title\": \"13 years waiting for a new album...\",\n      \"avatar\": \"https://cdn-s3.allmusic.com/release-covers/500/0000/891/0000891314.jpg\"\n    },\n    {\n      \"id\": 9,\n      \"name\": \"Chemical Brothers\",\n      \"title\": \"Hey boy, hey girl, here we go!\",\n      \"avatar\": \"https://rovimusic.rovicorp.com/image.jpg?c=2Q6YpS77Cxzcd2Ge65VtzR_TZlp6n_cq-Emr2zx15tU=&f=5\"\n    },\n    {\n      \"id\": 10,\n      \"name\": \"Foo fighters\",\n      \"title\": \"Everlong\",\n      \"avatar\": \"https://cdn-s3.allmusic.com/release-covers/500/0000/359/0000359297.jpg\"\n    },\n    {\n      \"id\": 11,\n      \"name\": \"Manic Street Preachers\",\n      \"title\": \"If you tolerate this, your coworker will be next\",\n      \"avatar\": \"https://rovimusic.rovicorp.com/image.jpg?c=ZoZJ26z9K54tTGmoyvV4dIAf7E_1E-2MlBBPmPAXRBU=&f=5\"\n    },\n    {\n      \"id\": 12,\n      \"name\": \"MC Hammer\",\n      \"title\": \"I told you boy, u can't touch this!\",\n      \"avatar\": \"https://cps-static.rovicorp.com/3/JPG_400/MI0001/394/MI0001394424.jpg?partner=allrovi.com\"\n    },\n    {\n      \"id\": 13,\n      \"name\": \"Rick Astley\",\n      \"title\": \"Never gonna give you up...\",\n      \"avatar\": \"https://cdn-s3.allmusic.com/release-covers/500/0000/502/0000502381.jpg\"\n    }\n  ]\n}"
 				}
 			]
 		}

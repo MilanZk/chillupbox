@@ -86,7 +86,7 @@ class BufferooRemoteImpl constructor(
                 // If remote request fails, use remote exception mapper to transform Retrofit exception to an app exception
                 Single.error(RemoteExceptionMapper.getException(throwable))
             }
-            .map { it.team }
+            .map { it.items }
             .map { bufferoos ->
                 val entities = mutableListOf<Bufferoo>()
                 bufferoos.forEach { bufferoo ->
