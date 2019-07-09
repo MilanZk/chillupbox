@@ -9,8 +9,8 @@ import io.reactivex.schedulers.Schedulers
  * Abstract class for a UseCase that returns an instance of a [Observable].
  */
 abstract class ObservableUseCase<T, in Params> constructor(
-    private val threadExecutor: ThreadExecutor,
-    private val postExecutionThread: PostExecutionThread
+        private val threadExecutor: ThreadExecutor,
+        private val postExecutionThread: PostExecutionThread
 ) {
 
     /**
@@ -20,10 +20,13 @@ abstract class ObservableUseCase<T, in Params> constructor(
 
     /**
      * Executes the current use case.
+     *
+     * This function is open in order to be mockeable in instrumental tests, which do not allow to mock final classes
+     * or functions.
      */
-    fun execute(params: Params? = null): Observable<T> {
+    open fun execute(params: Params? = null): Observable<T> {
         return this.buildUseCaseObservable(params)
-            .subscribeOn(Schedulers.from(threadExecutor))
-            .observeOn(postExecutionThread.scheduler)
+                .subscribeOn(Schedulers.from(threadExecutor))
+                .observeOn(postExecutionThread.scheduler)
     }
 }
