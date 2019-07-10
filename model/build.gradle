@@ -2,3 +2,9 @@ apply plugin: 'kotlin'
 
 sourceCompatibility = "8"
 targetCompatibility = "8"
+
+dependencies {
+    def modelDependencies = rootProject.ext.modelDependencies
+
+    implementation modelDependencies.kotlin
+}

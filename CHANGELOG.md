@@ -24,13 +24,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - 
 
 ### Changed
-- 
+- Project dependencies were updated.
+- Mock server was updated.
 
 ### Removed
 - 
 
 ### Fixed
-- 
+- View model tests were fixed.
+- Version code computation was fixed.
+- Package name problems were fixed.
 
 ## [0.2.0] - 2019-06-14
 ### Added

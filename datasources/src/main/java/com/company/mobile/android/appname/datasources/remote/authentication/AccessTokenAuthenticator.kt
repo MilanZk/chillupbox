@@ -24,11 +24,11 @@ class AccessTokenAuthenticator(
             val newToken = tokenProvider.token()
 
             // Check if the request made was previously made as an authenticated request.
-            if (response.request().header("Authorization") != null) {
+            if (response.request.header("Authorization") != null) {
 
                 // If the token has changed since the request was made, use the new token.
                 if (newToken != token) {
-                    return response.request()
+                    return response.request
                         .newBuilder()
                         .removeHeader("Authorization")
                         .addHeader("Authorization", "Bearer $newToken")
@@ -38,7 +38,7 @@ class AccessTokenAuthenticator(
                 val updatedToken = tokenProvider.refreshToken() ?: return null
 
                 // Retry the request with the new token.
-                return response.request()
+                return response.request
                     .newBuilder()
                     .removeHeader("Authorization")
                     .addHeader("Authorization", "Bearer $updatedToken")
