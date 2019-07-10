@@ -14,7 +14,7 @@ class BufferooFactory {
 
         fun makeBufferoosResponse(): BufferooService.BufferoosResponse {
             val bufferoosResponse = BufferooService.BufferoosResponse()
-            bufferoosResponse.team = makeBufferooResponseList(5)
+            bufferoosResponse.items = makeBufferooResponseList(5)
             return bufferoosResponse
         }
 

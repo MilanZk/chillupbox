@@ -21,7 +21,7 @@ object RemoteExceptionMapper {
             // Map Retrofit HTTP exception
             is HttpException -> {
                 val statusCode = throwable.code()
-                val responseBody = throwable.response().errorBody()
+                val responseBody = throwable.response()?.errorBody()
                 responseBody?.let {
                     try {
                         HTTPException(responseBody.string(), throwable, statusCode)

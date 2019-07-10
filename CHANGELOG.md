@@ -32,6 +32,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - 
 
+## [0.2.2] - 2019-07-10
+### Changed
+- Project dependencies were updated.
+- Mock server was updated.
+
+### Fixed
+- View model tests were fixed.
+- Version code computation was fixed.
+- Package name problems were fixed.
+
 ## [0.2.0] - 2019-06-14
 ### Added
 - Error management and retries for multiple actions in a single screen were added.

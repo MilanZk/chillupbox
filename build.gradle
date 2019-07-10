@@ -1,14 +1,14 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    ext.kotlin_version = '1.3.31'
+    ext.kotlin_version = '1.3.41'
 
     repositories {
         google()
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.4.1'
+        classpath 'com.android.tools.build:gradle:3.4.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
         // NOTE: Do not place your application dependencies here; they belong
@@ -40,7 +40,7 @@ apply plugin: 'com.github.ben-manes.versions'
 
 def versionMajor = 0
 def versionMinor = 2
-def versionPatch = 1
+def versionPatch = 2
 def versionBuild = 0 // bump for dogfood builds, public betas, etc.
 
 allprojects {
@@ -51,7 +51,7 @@ allprojects {
 
     ext {
         androidApplicationId = 'com.company.mobile.android.appname'
-        androidVersionCode = versionMajor * 10000 + versionMinor * 1000 + versionPatch * 100 + versionBuild
+        androidVersionCode = versionMajor * 1000000 + versionMinor * 10000 + versionPatch * 100 + versionBuild
         androidVersionName = "${versionMajor}.${versionMinor}.${versionPatch}"
     }
 }

@@ -32,7 +32,7 @@ class BufferooRemoteImplTest {
         val bufferooResponse = BufferooFactory.makeBufferoosResponse()
         stubBufferooServiceGetBufferoos(Single.just(bufferooResponse))
         val bufferooEntities = mutableListOf<Bufferoo>()
-        bufferooResponse.team.forEach {
+        bufferooResponse.items.forEach {
             bufferooEntities.add(entityMapper.mapFromRemote(it))
         }
 
