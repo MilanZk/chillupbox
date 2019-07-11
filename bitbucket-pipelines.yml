@@ -1,0 +1,28 @@
+image: mingc/android-build-box:latest
+
+options:
+  size: 2x # just to make sure we have enough resources
+
+pipelines:
+  default:
+    - step:
+        caches:
+          - gradle
+        script: 
+          # set up necessities
+          - sdkmanager "system-images;android-28;google_apis;x86"
+          - sdkmanager --update
+          - echo yes | sdkmanager --licenses
+          - echo no | avdmanager create avd --force --name test_device --package "system-images;android-28;google_apis;x86" -c 100M
+          - $ANDROID_HOME/emulator/emulator -no-window -no-audio -avd test_device -no-snapshot-load -no-snapshot-save &
+          # build and execute unit tests while waiting for device to be completely started
+          - bash ./gradlew build
+          - bash ./gradlew assembleDebug
+          # unit tests
+          - bash ./gradlew test
+          # make sure the device is completely started before proceed
+          - while [ "`adb shell getprop init.svc.bootanim | tr -d '\r' `" != "stopped" ] ; do sleep 1 && adb shell getprop init.svc.bootanim | tr -d '\r' ; done
+          # unlocking the screen
+          - adb shell input keyevent 82
+          # instrumental tests
+          - bash ./gradlew connectedAndroidTest
