@@ -12,7 +12,7 @@ pipelines:
           - androidavd
         script: 
           # set up necessities
-          - sdkmanager "system-images;android-28;google_apis;x86"
+          - echo "y" | sdkmanager "system-images;android-28;google_apis;x86"
           - sdkmanager --update
           - echo yes | sdkmanager --licenses
           - echo "y" | avdmanager create avd --force -n test_emulator_28 -k "system-images;android-28;google_apis;x86" -c 100M
