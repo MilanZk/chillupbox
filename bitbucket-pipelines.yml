@@ -8,13 +8,19 @@ pipelines:
     - step:
         caches:
           - gradle
+          - gradlewrapper
+          - androidavd
         script: 
           # set up necessities
-          - sdkmanager "system-images;android-25;google_apis;armeabi-v7a"
+          - sdkmanager "system-images;android-24;default;armeabi-v7a"
           - sdkmanager --update
           - echo yes | sdkmanager --licenses
-          - echo no | avdmanager create avd --force --name test_device --package "system-images;android-25;google_apis;armeabi-v7a" -c 100M
-          - $ANDROID_HOME/emulator/emulator -no-window -no-audio -avd test_device -no-snapshot-load -no-snapshot-save &
+          - echo "no" | avdmanager create avd \
+                -n test_emulator_28 \
+                -k "system-images;android-24;default;armeabi-v7a" \
+                -c 100M \
+                --force
+          - $ANDROID_HOME/emulator/emulator -avd test_emulator_24 -no-skin -no-audio -no-window -no-boot-anim -gpu off &
           # build and execute unit tests while waiting for device to be completely started
           - bash ./gradlew build
           - bash ./gradlew assembleDebug
@@ -26,3 +32,8 @@ pipelines:
           - adb shell input keyevent 82
           # instrumental tests
           - bash ./gradlew connectedAndroidTest
+          
+definitions:
+  caches:
+    gradlewrapper: ~/.gradle/wrapper
+    androidavd: $ANDROID_HOME/.android/avd
