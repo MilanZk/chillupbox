@@ -12,10 +12,10 @@ pipelines:
           - androidavd
         script: 
           # set up necessities
-          - sdkmanager "system-images;android-24;default;armeabi-v7a"
+          - sdkmanager "system-images;android-28;google_apis;x86"
           - sdkmanager --update
           - echo yes | sdkmanager --licenses
-          - echo "y" | avdmanager create avd --force -n test_emulator_28 -k "system-images;android-24;default;armeabi-v7a" -c 100M
+          - echo "y" | avdmanager create avd --force -n test_emulator_28 -k "system-images;android-28;google_apis;x86" -c 100M
           - $ANDROID_HOME/emulator/emulator -avd test_emulator_24 -no-skin -no-audio -no-window -no-boot-anim -gpu off &
           # build and execute unit tests while waiting for device to be completely started
           - bash ./gradlew build
