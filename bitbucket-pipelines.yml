@@ -13,7 +13,7 @@ pipelines:
           - sdkmanager "system-images;android-28;google_apis;x86"
           - sdkmanager --update
           - echo yes | sdkmanager --licenses
-          - echo no | avdmanager create avd --force --name test_device --package "system-images;android-28;google_apis;x86" -c 100M
+          - echo no | avdmanager create avd --force --name test_device --package "add-ons;addon-google_apis-google-28" -c 100M
           - $ANDROID_HOME/emulator/emulator -no-window -no-audio -avd test_device -no-snapshot-load -no-snapshot-save &
           # build and execute unit tests while waiting for device to be completely started
           - bash ./gradlew build
