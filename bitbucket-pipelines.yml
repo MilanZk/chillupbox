@@ -17,7 +17,7 @@ pipelines:
           - echo yes | sdkmanager --licenses
           - echo "no" | avdmanager create avd --force -n test_emulator_28 -k "system-images;android-28;google_apis;x86" -d 1 -c 100M
           - echo yes | sdkmanager --licenses
-          - $ANDROID_HOME/emulator/emulator -avd test_emulator_24 -no-skin -no-audio -no-window -no-boot-anim -gpu off &
+          - $ANDROID_HOME/emulator/emulator -avd test_emulator_28 -no-skin -no-audio -no-window -no-boot-anim -gpu off &
           # build and execute unit tests while waiting for device to be completely started
           - bash ./gradlew build
           - bash ./gradlew assembleDebug
