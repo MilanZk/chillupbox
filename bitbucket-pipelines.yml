@@ -24,9 +24,9 @@ pipelines:
           # unit tests
           - bash ./gradlew test
           # make sure the device is completely started before proceed
-          # - while [ "`adb shell getprop init.svc.bootanim | tr -d '\r' `" != "stopped" ] ; do sleep 1 && adb shell getprop init.svc.bootanim | tr -d '\r' ; done
+          - while [ "`adb shell getprop init.svc.bootanim | tr -d '\r' `" != "stopped" ] ; do sleep 1 && adb shell getprop init.svc.bootanim | tr -d '\r' ; done
           # unlocking the screen
-          # - adb shell input keyevent 82
+          - adb shell input keyevent 82
           # instrumental tests
           - bash ./gradlew connectedAndroidTest
 
