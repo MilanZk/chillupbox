@@ -3,7 +3,7 @@ pipelines:
   default:
     - step:
         script:
+          - yes | sdkmanager --licenses && yes | sdkmanager --update
           - echo y | android update sdk --filter "build-tools-24.0.3,android-25,extra-android-m2repository,extra-android-support,extra-google-google_play_services,extra-google-m2repository" --no-ui -a
           - ./gradlew assembleDebug
-          - echo yes | sdkmanager --licenses
           - ./gradlew connectedAndroidTest
