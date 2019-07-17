@@ -1,36 +1,8 @@
-image: mingc/android-build-box:latest
-
-options:
-  size: 2x # just to make sure we have enough resources
-
+image: uber/android-build-environment:latest
 pipelines:
   default:
     - step:
-        caches:
-          - gradle
-          - gradlewrapper
-          - androidavd
-        script: 
-          # set up necessities
-          - echo "y" | sdkmanager "system-images;android-28;google_apis;x86"
-          - sdkmanager --update
-          - echo yes | sdkmanager --licenses
-          - echo "no" | avdmanager create avd --force -n test_emulator_28 -k "system-images;android-28;google_apis;x86" -d 1 -c 100M
-          - echo yes | sdkmanager --licenses
-          - $ANDROID_HOME/emulator/emulator -avd test_emulator_28 -no-skin -no-audio -no-window -no-boot-anim -gpu off &
-          # build and execute unit tests while waiting for device to be completely started
-          - bash ./gradlew build
-          - bash ./gradlew assembleDebug
-          # unit tests
-          - bash ./gradlew test
-          # make sure the device is completely started before proceed
-          - while [ "`adb shell getprop init.svc.bootanim | tr -d '\r' `" != "stopped" ] ; do sleep 1 && adb shell getprop init.svc.bootanim | tr -d '\r' ; done
-          # unlocking the screen
-          - adb shell input keyevent 82
-          # instrumental tests
-          - bash ./gradlew connectedAndroidTest
-          
-definitions:
-  caches:
-    gradlewrapper: ~/.gradle/wrapper
-    androidavd: $ANDROID_HOME/.android/avd
+        script:
+          - echo y | android update sdk --filter "build-tools-24.0.3,android-25,extra-android-m2repository,extra-android-support,extra-google-google_play_services,extra-google-m2repository" --no-ui -a
+          - ./gradlew assembleDebug
+          - ./gradlew connectedAndroidTest
