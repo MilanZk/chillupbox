@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.company.mobile.android.appname.app">
+    package="com.zgz.mobile.android.prepexam.app">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name="com.company.mobile.android.appname.app.BufferooApplication"
+        android:name="com.zgz.mobile.android.prepexam.app.BufferooApplication"
         android:allowBackup="false"
         android:fullBackupContent="false"
         android:hardwareAccelerated="true"
@@ -15,7 +15,7 @@
         android:theme="@style/AppTheme.NoActionBar">
 
         <activity
-            android:name="com.company.mobile.android.appname.app.splash.SplashActivity"
+            android:name="com.zgz.mobile.android.prepexam.app.splash.SplashActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,16 +24,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.company.mobile.android.appname.app.choosenavigation.ChooseNavigationActivity"
+            android:name="com.zgz.mobile.android.prepexam.app.choosenavigation.ChooseNavigationActivity"
             android:theme="@style/SplashTheme" />
         <activity
-            android:name="com.company.mobile.android.appname.app.account.SignInActivity"
+            android:name="com.zgz.mobile.android.prepexam.app.account.SignInActivity"
             android:theme="@style/SplashTheme" />
         <activity
-            android:name="com.company.mobile.android.appname.app.main.navigationdrawer.NavigationDrawerMainActivity"
+            android:name="com.zgz.mobile.android.prepexam.app.main.navigationdrawer.NavigationDrawerMainActivity"
             android:theme="@style/SplashTheme" />
         <activity
-            android:name="com.company.mobile.android.appname.app.main.nonavigation.NoNavigationMainActivity"
+            android:name="com.zgz.mobile.android.prepexam.app.main.nonavigation.NoNavigationMainActivity"
             android:theme="@style/SplashTheme" />
     </application>
 
