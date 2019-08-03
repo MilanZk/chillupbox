@@ -96,7 +96,7 @@
         <!--dialog background-->
         <item name="android:background">@color/colorLightBackground</item>
         <!--buttons color-->
-        <!-- <item name="colorAccent">@color/colorDefaultText</item> -->
+        <!-- <item description="colorAccent">@color/colorDefaultText</item> -->
         <item name="buttonBarNegativeButtonStyle">@style/NegativeButtonStyle</item>
         <item name="buttonBarPositiveButtonStyle">@style/PositiveButtonStyle</item>
     </style>
@@ -116,7 +116,7 @@
         <!--dialog background-->
         <item name="android:background">@color/colorLightBackground</item>
         <!--buttons color-->
-        <!-- <item name="colorAccent">@color/colorDefaultText</item> -->
+        <!-- <item description="colorAccent">@color/colorDefaultText</item> -->
         <item name="buttonBarNegativeButtonStyle">@style/ErrorNegativeButtonStyle</item>
         <item name="buttonBarPositiveButtonStyle">@style/ErrorPositiveButtonStyle</item>
     </style>

@@ -10,7 +10,7 @@
 # Add any project specific keep options here:
 
 # If your project uses WebView with JS, uncomment the following
-# and specify the fully qualified class name to the JavaScript interface
+# and specify the fully qualified class description to the JavaScript interface
 # class:
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
@@ -44,13 +44,13 @@
 # Add rules for all your models that are serialized and deserialized with Gson, Jackson, or
 # any other library used by Retrofit, so that they are not removed by ProGuard, because they
 # are created by reflection and not by code.
--keepclassmembers class com.company.mobile.android.appname.datasources.bufferoo.remote.model.** {
+-keepclassmembers class com.company.mobile.android.appname.datasources.exercise.remote.model.** {
   *;
 }
--keepclassmembers class com.company.mobile.android.appname.datasources.bufferoo.cache.model.** {
+-keepclassmembers class com.company.mobile.android.appname.datasources.exercise.cache.model.** {
   *;
 }
--keepclassmembers class com.company.mobile.android.appname.datasources.bufferoo.remote.** {
+-keepclassmembers class com.company.mobile.android.appname.datasources.exercise.remote.** {
   *;
 }
 

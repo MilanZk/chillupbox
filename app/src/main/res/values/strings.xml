@@ -47,7 +47,7 @@
     <string name="bufferoo_master_title">@string/navigation_drawer_menu_bufferoos</string>
     <!-- endregion -->
 
-    <!-- region Bufferoo details -->
+    <!-- region Exercise details -->
     <string name="bufferoo_details_title">Bufferoo</string>
     <string name="bufferoo_details_name">My name</string>
     <string name="bufferoo_details_position">My position</string>

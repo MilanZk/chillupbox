@@ -29,6 +29,7 @@ ext {
     roomVersion = '2.0.0'
     timberVersion = '4.7.1'
     glideVersion = '4.9.0'
+    cardViewVersion = '1.0.0'
 
     // Testing
     testCoreVersion = '1.2.0'
@@ -62,7 +63,8 @@ ext {
             rxAndroid           : "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
             rxKotlin            : "io.reactivex.rxjava2:rxkotlin:${rxKotlinVersion}",
             glide               : "com.github.bumptech.glide:glide:${glideVersion}",
-            timber              : "com.jakewharton.timber:timber:${timberVersion}"
+            timber              : "com.jakewharton.timber:timber:${timberVersion}",
+            cardView            : "com.jakewharton.timber:timber:${cardViewVersion}",
     ]
 
     appTestDependencies = [
@@ -89,7 +91,7 @@ ext {
     ]
 
     modelDependencies = [
-            kotlin   : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}"
+            kotlin: "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}"
     ]
 
     domainTestDependencies = [

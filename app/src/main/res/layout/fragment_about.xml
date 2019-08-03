@@ -17,7 +17,7 @@
 
     <!-- region Loading, error and empty views -->
     <!-- These views are clickable and focusable to block user interaction -->
-    <com.zgz.mobile.android.prepexam.app.common.widget.loading.LoadView
+    <com.hopovo.mobile.android.prepexam.app.common.widget.loading.LoadView
         android:id="@+id/lv_about_loading_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -25,7 +25,7 @@
         android:focusable="true"
         android:visibility="gone" />
 
-    <com.zgz.mobile.android.prepexam.app.common.widget.empty.EmptyView
+    <com.hopovo.mobile.android.prepexam.app.common.widget.empty.EmptyView
         android:id="@+id/ev_about_empty_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -34,7 +34,7 @@
         android:focusable="true"
         android:visibility="gone" />
 
-    <com.zgz.mobile.android.prepexam.app.common.widget.error.ErrorView
+    <com.hopovo.mobile.android.prepexam.app.common.widget.error.ErrorView
         android:id="@+id/ev_about_error_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

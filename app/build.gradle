@@ -95,6 +95,7 @@ dependencies {
     implementation appDependencies.rxKotlin
     implementation appDependencies.glide
     implementation appDependencies.timber
+    implementation appDependencies.cardView
 
     // Unit test dependencies
     testImplementation appTestDependencies.kotlinJUnit
