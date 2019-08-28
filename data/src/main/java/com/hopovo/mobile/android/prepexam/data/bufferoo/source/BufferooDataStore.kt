@@ -22,6 +22,8 @@ interface BufferooDataStore {
 
     fun saveBufferoos(exercises: List<Exercise>): Completable
 
+    fun saveExercise(exercise: Exercise): Completable
+
     fun clearBufferoos(): Completable
 
     fun isValidCache(): Single<Boolean>

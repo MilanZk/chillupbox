@@ -9,7 +9,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.hopovo.mobile.android.prepexam.app.R
 import com.hopovo.mobile.android.prepexam.app.common.BaseFragment
-import com.hopovo.mobile.android.prepexam.app.exerciselist.ExerciseListViewModel
+import com.hopovo.mobile.android.prepexam.app.exercise.master.ExerciseViewModel
 import com.hopovo.mobile.android.prepexam.model.exercise.Exercise
 import kotlinx.android.synthetic.main.fragment_bufferoo_details.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
@@ -21,7 +21,7 @@ class BufferooDetailsFragment : BaseFragment() {
         fun newInstance() = BufferooDetailsFragment()
     }
 
-    private val exerciseListViewModel: ExerciseListViewModel by sharedViewModel()
+    private val mExerciseViewModel: ExerciseViewModel by sharedViewModel()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         return inflater.inflate(R.layout.fragment_bufferoo_details, container, false)
@@ -45,7 +45,7 @@ class BufferooDetailsFragment : BaseFragment() {
         // in onDestroyView().
         // IMPORTANT: Never use "this" as lifecycle owner.
         // See: https://medium.com/@BladeCoder/architecture-components-pitfalls-part-1-9300dd969808
-        exerciseListViewModel.getSelectedExercise().observe(viewLifecycleOwner,
+        mExerciseViewModel.getSelectedExercise().observe(viewLifecycleOwner,
             Observer<Exercise> {
                 this.handleData(it)
             }
@@ -58,7 +58,7 @@ class BufferooDetailsFragment : BaseFragment() {
         } else {
             // Map data to UI
             tv_bufferoo_details_name.text = data.description
-            tv_bufferoo_details_title.text = data.title
+            tv_bufferoo_details_title.text = data.word
             context?.let {
                 Glide.with(it)
                     .load(data.image)

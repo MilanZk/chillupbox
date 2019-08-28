@@ -5,7 +5,7 @@ import android.os.Parcelable
 
 // TODO: In the future it can be used @Parcelize from Kotlin extensions
 data class ErrorMessageForDialog(
-    val title: String, // Dialog title
+    val title: String, // Dialog word
     val message: String, // Dialog message
     val debugMessage: String, // Debug message
     val actionCode: Long, // Action that caused the error

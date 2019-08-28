@@ -14,6 +14,6 @@ open class ExerciseRemoteMapper : EntityMapper<ExerciseResponse, Exercise> {
      * Map an instance of a [ExerciseResponse] to a [Exercise] model
      */
     override fun mapFromRemote(type: ExerciseResponse): Exercise {
-        return Exercise(type.id, type.description, type.title, type.image, type.level, type.time)
+        return Exercise(type.id, type.description, type.title, type.image, type.level)
     }
 }

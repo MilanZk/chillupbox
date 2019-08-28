@@ -6,15 +6,15 @@ import com.hopovo.mobile.android.prepexam.app.UiThread
 import com.hopovo.mobile.android.prepexam.app.account.AccountErrorBundleBuilder
 import com.hopovo.mobile.android.prepexam.app.account.SignInViewModel
 import com.hopovo.mobile.android.prepexam.app.common.errorhandling.ErrorBundleBuilder
-import com.hopovo.mobile.android.prepexam.app.exerciselist.ExerciseErrorBundleBuilder
-import com.hopovo.mobile.android.prepexam.app.exerciselist.ExerciseListAdapter
-import com.hopovo.mobile.android.prepexam.app.exerciselist.ExerciseListViewModel
+import com.hopovo.mobile.android.prepexam.app.exercise.master.ExerciseErrorBundleBuilder
+import com.hopovo.mobile.android.prepexam.app.exercise.master.ExerciseListAdapter
+import com.hopovo.mobile.android.prepexam.app.exercise.master.ExerciseViewModel
 import com.hopovo.mobile.android.prepexam.app.splash.SplashActivityViewModel
 import com.hopovo.mobile.android.prepexam.app.splash.SplashErrorBundleBuilder
-import com.hopovo.mobile.android.prepexam.data.bufferoo.repository.BufferooDataRepository
+import com.hopovo.mobile.android.prepexam.data.bufferoo.repository.ExerciseDataRepository
 import com.hopovo.mobile.android.prepexam.data.bufferoo.source.BufferooDataStore
 import com.hopovo.mobile.android.prepexam.data.bufferoo.source.BufferooDataStoreFactory
-import com.hopovo.mobile.android.prepexam.datasources.exercise.cache.BufferooCacheImpl
+import com.hopovo.mobile.android.prepexam.datasources.exercise.cache.ExerciseCacheImpl
 import com.hopovo.mobile.android.prepexam.datasources.exercise.cache.PreferencesHelper
 import com.hopovo.mobile.android.prepexam.datasources.exercise.cache.db.BufferoosDatabase
 import com.hopovo.mobile.android.prepexam.datasources.exercise.cache.mapper.BufferooEntityMapper
@@ -29,6 +29,7 @@ import com.hopovo.mobile.android.prepexam.domain.bufferoo.repository.BufferooRep
 import com.hopovo.mobile.android.prepexam.domain.executor.JobExecutor
 import com.hopovo.mobile.android.prepexam.domain.executor.PostExecutionThread
 import com.hopovo.mobile.android.prepexam.domain.executor.ThreadExecutor
+import com.hopovo.mobile.android.prepexam.domain.exercise.interactor.SaveExercise
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
@@ -62,13 +63,13 @@ val applicationModule = module(override = true) {
 
     // IMPORTANT: Named qualifiers must be unique inside the module
     factory<BufferooDataStore>(named("remoteBufferooDataStore")) { BufferooRemoteImpl(get(), get(), androidContext()) }
-    factory<BufferooDataStore>(named("localBufferooDataStore")) { BufferooCacheImpl(get(), get(), get()) }
+    factory<BufferooDataStore>(named("localBufferooDataStore")) { ExerciseCacheImpl(get(), get(), get()) }
     factory { BufferooDataStoreFactory(get(named("localBufferooDataStore")), get(named("remoteBufferooDataStore"))) }
 
     factory { BufferooEntityMapper() }
     factory { BufferooServiceFactory.makeBuffeooService(androidContext(), BuildConfig.DEBUG) }
 
-    factory<BufferooRepository> { BufferooDataRepository(get()) }
+    factory<BufferooRepository> { ExerciseDataRepository(get()) }
 }
 
 val splashModule = module(override = true) {
@@ -91,6 +92,7 @@ val mainModule = module(override = true) {
 val exerciseListModule = module(override = true) {
     factory { ExerciseListAdapter() }
     factory { GetExercises(get(), get(), get()) }
+    factory { SaveExercise(get(), get(), get()) }
     factory<ErrorBundleBuilder>(named("bufferoosErrorBundleBuilder")) { ExerciseErrorBundleBuilder() }
-    viewModel { ExerciseListViewModel(get(), get(named("bufferoosErrorBundleBuilder"))) }
+    viewModel { ExerciseViewModel(get(), get(named("bufferoosErrorBundleBuilder")), get()) }
 }

@@ -35,7 +35,7 @@ class ExerciseMapperTest {
             exerciseDbModel: ExerciseDbModel
     ) {
         assertEquals(exercise.description, exerciseDbModel.description)
-        assertEquals(exercise.title, exerciseDbModel.title)
+        assertEquals(exercise.word, exerciseDbModel.word)
         assertEquals(exercise.image, exerciseDbModel.image)
     }
 }

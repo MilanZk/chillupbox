@@ -3,14 +3,39 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_bufferoos"
+    <RelativeLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clipToPadding="false"
-        android:paddingBottom="@dimen/bufferoo_master_list_padding"
-        android:paddingTop="@dimen/bufferoo_master_list_padding"
-        android:scrollbars="vertical" />
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_bufferoos"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingBottom="@dimen/bufferoo_master_list_padding"
+            android:paddingTop="@dimen/bufferoo_master_list_padding"
+            android:scrollbars="vertical" />
+
+        <com.hopovo.mobile.android.prepexam.app.common.widget.empty.EmptyView
+            android:id="@+id/ev_bufferoos_empty_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorLightBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:visibility="gone" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_add_exercise"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="30dp"
+            android:src="@drawable/ic_add_circle_24dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
 
     <!-- region Loading, error and empty views -->
     <!-- These views are clickable and focusable to block user interaction -->
@@ -18,15 +43,6 @@
         android:id="@+id/lv_bufferoos_loading_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clickable="true"
-        android:focusable="true"
-        android:visibility="gone" />
-
-    <com.hopovo.mobile.android.prepexam.app.common.widget.empty.EmptyView
-        android:id="@+id/ev_bufferoos_empty_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorLightBackground"
         android:clickable="true"
         android:focusable="true"
         android:visibility="gone" />

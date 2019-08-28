@@ -20,4 +20,6 @@ interface BufferooRepository {
     fun clearBufferoos(): Completable
 
     fun signOut(): Single<SignedOutBufferoo>
+
+    fun saveExercise(exercise: Exercise): Completable
 }

@@ -7,7 +7,7 @@ import com.hopovo.mobile.android.prepexam.datasources.exercise.cache.db.Bufferoo
 import com.hopovo.mobile.android.prepexam.datasources.exercise.cache.mapper.BufferooEntityMapper
 import com.hopovo.mobile.android.prepexam.datasources.exercise.cache.model.ExerciseDbModel
 import com.hopovo.mobile.android.prepexam.datasources.bufferoo.cache.test.factory.BufferooFactory
-import com.hopovo.mobile.android.prepexam.datasources.exercise.cache.BufferooCacheImpl
+import com.hopovo.mobile.android.prepexam.datasources.exercise.cache.ExerciseCacheImpl
 import com.hopovo.mobile.android.prepexam.datasources.exercise.cache.PreferencesHelper
 import org.junit.*
 import org.junit.runner.*
@@ -23,7 +23,7 @@ class ExerciseCacheImplTest {
     private var entityMapper = BufferooEntityMapper()
     private var preferencesHelper = PreferencesHelper(ApplicationProvider.getApplicationContext())
 
-    private val databaseHelper = BufferooCacheImpl(
+    private val databaseHelper = ExerciseCacheImpl(
             bufferoosDatabase,
             entityMapper, preferencesHelper
     )

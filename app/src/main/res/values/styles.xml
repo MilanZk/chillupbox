@@ -23,7 +23,7 @@
 
     <!-- See: https://guides.codepath.com/android/using-the-app-toolbar -->
     <style name="AppTheme.NoNavigation.Toolbar" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar">
-        <!-- android:textColorPrimary is the color of the title text in the Toolbar  -->
+        <!-- android:textColorPrimary is the color of the word text in the Toolbar  -->
         <item name="android:textColorPrimary">@android:color/white</item>
         <!-- Applies to views in their normal state. -->
         <!-- Customize color of navigation drawer icon and back arrow -->
@@ -91,7 +91,7 @@
 
     <!-- General alert dialog -->
     <style name="AppTheme.AlertDialog" parent="Theme.MaterialComponents.Light.Dialog.Alert">
-        <!--title and message color-->
+        <!--word and message color-->
         <item name="android:textColorPrimary">@color/colorPrimaryText</item>
         <!--dialog background-->
         <item name="android:background">@color/colorLightBackground</item>
@@ -111,7 +111,7 @@
 
     <!-- Error alert dialog -->
     <style name="customErrorAlertDialog" parent="Theme.MaterialComponents.Light.Dialog.Alert">
-        <!--title and message color-->
+        <!--word and message color-->
         <item name="android:textColorPrimary">@color/colorPrimaryText</item>
         <!--dialog background-->
         <item name="android:background">@color/colorLightBackground</item>

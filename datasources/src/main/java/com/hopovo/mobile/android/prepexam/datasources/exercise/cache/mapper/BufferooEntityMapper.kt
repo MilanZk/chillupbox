@@ -14,13 +14,13 @@ open class BufferooEntityMapper : EntityMapper<ExerciseDbModel, Exercise> {
      * Map a [Exercise] instance to a [ExerciseDbModel] instance
      */
     override fun mapToCached(type: Exercise): ExerciseDbModel {
-        return ExerciseDbModel(type.id, type.description, type.title, type.image, type.level, type.time)
+        return ExerciseDbModel(type.id, type.description, type.word, type.image, type.translation)
     }
 
     /**
      * Map a [ExerciseDbModel] instance to a [Exercise] instance
      */
     override fun mapFromCached(type: ExerciseDbModel): Exercise {
-        return Exercise(type.id, type.description, type.title, type.image, type.level, type.time)
+        return Exercise(type.id, type.description, type.word, type.image, type.translation)
     }
 }

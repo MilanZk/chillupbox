@@ -6,6 +6,7 @@ import com.hopovo.mobile.android.prepexam.app.common.model.ResourceState.Loading
 import com.hopovo.mobile.android.prepexam.app.common.model.ResourceState.Success
 import com.hopovo.mobile.android.prepexam.app.common.viewmodel.CommonEvent
 import com.hopovo.mobile.android.prepexam.app.common.viewmodel.SingleLiveEvent
+import com.hopovo.mobile.android.prepexam.app.exercise.master.ExerciseViewModel
 import com.hopovo.mobile.android.prepexam.app.test.util.BufferooFactory
 import com.hopovo.mobile.android.prepexam.app.test.util.DataFactory
 import com.hopovo.mobile.android.prepexam.domain.bufferoo.interactor.GetExercises
@@ -16,7 +17,7 @@ import io.reactivex.Single
 import org.junit.*
 import java.util.concurrent.TimeUnit
 
-class ExerciseListViewModelTest {
+class ExerciseViewModelTest {
 
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
@@ -24,7 +25,7 @@ class ExerciseListViewModelTest {
     private val commonLiveEvent = mock<SingleLiveEvent<CommonEvent>>()
 
     private val testErrorBundleBuilder = TestErrorBundleBuilder()
-    private val bufferoosViewModel = ExerciseListViewModel(mockGetBufferoos, testErrorBundleBuilder)
+    private val bufferoosViewModel = ExerciseViewModel(mockGetBufferoos, testErrorBundleBuilder)
 
     @Before
     fun setUp() {

@@ -9,11 +9,9 @@ import com.hopovo.mobile.android.prepexam.datasources.exercise.cache.db.constant
  */
 @Entity(tableName = ExerciseConstants.TABLE_NAME)
 data class ExerciseDbModel(
-        @PrimaryKey
-    var id: Long,
+        @PrimaryKey(autoGenerate = true)
+        var id: Long,
         val description: String,
-        val title: String,
+        val word: String,
         val image: String,
-        val level: String,
-        val time: String
-)
+        val translation: String)

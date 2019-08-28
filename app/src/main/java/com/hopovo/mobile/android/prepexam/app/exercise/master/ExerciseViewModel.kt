@@ -1,4 +1,4 @@
-package com.hopovo.mobile.android.prepexam.app.exerciselist
+package com.hopovo.mobile.android.prepexam.app.exercise.master
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -11,12 +11,15 @@ import com.hopovo.mobile.android.prepexam.app.common.model.ResourceState.*
 import com.hopovo.mobile.android.prepexam.app.common.viewmodel.CommonEventsViewModel
 import com.hopovo.mobile.android.prepexam.app.common.viewmodel.SingleLiveEvent
 import com.hopovo.mobile.android.prepexam.domain.bufferoo.interactor.GetExercises
+import com.hopovo.mobile.android.prepexam.domain.exercise.interactor.SaveExercise
 import com.hopovo.mobile.android.prepexam.model.exercise.Exercise
 import io.reactivex.disposables.Disposable
 
 typealias ExerciseListState = ResourceState<List<Exercise>>
 
-class ExerciseListViewModel(private val getExercisesUseCase: GetExercises, private val errorBundleBuilder: ErrorBundleBuilder) : CommonEventsViewModel() {
+class ExerciseViewModel(private val getExercisesUseCase: GetExercises,
+                        private val errorBundleBuilder: ErrorBundleBuilder,
+                        private val saveExercise: SaveExercise) : CommonEventsViewModel() {
 
     private val exerciseListLiveData: MutableLiveData<ExerciseListState> = MutableLiveData()
     private val selectedExerciseLiveData: MutableLiveData<Exercise> = MutableLiveData()
@@ -43,14 +46,18 @@ class ExerciseListViewModel(private val getExercisesUseCase: GetExercises, priva
         exerciseListNavigationLiveEvent.value = GoToDetailsView
     }
 
+    fun openAddExercise(){
+        exerciseListNavigationLiveEvent.value = GoToDetailsView
+    }
+
     fun fetchExercises() {
         exerciseListLiveData.value = Loading()
         disposable = getExercisesUseCase.execute()
                 .subscribeWith(
                         object : SingleRemoteInterceptor<List<Exercise>>(commonLiveEvent) {
                             override fun onSuccess(t: List<Exercise>) {
-                                this@ExerciseListViewModel.exercises = t
-                                exerciseListLiveData.value = Success(this@ExerciseListViewModel.exercises)
+                                this@ExerciseViewModel.exercises = t
+                                exerciseListLiveData.value = Success(this@ExerciseViewModel.exercises)
                             }
 
                             override fun onRegularError(e: Throwable) {
@@ -58,5 +65,20 @@ class ExerciseListViewModel(private val getExercisesUseCase: GetExercises, priva
                             }
                         }
                 )
+    }
+
+    fun saveExercise(exercise: Exercise) {
+        disposable = saveExercise.execute(params = exercise).subscribeWith(
+                object : CompletableRemoteInterceptor(commonLiveEvent) {
+                    override fun onComplete() {
+                        exerciseListLiveData.value = Success(this@ExerciseViewModel.exercises)
+                    }
+
+                    override fun onRegularError(e: Throwable) {
+                        exerciseListLiveData.value = Error(errorBundleBuilder.build(e, GET_BUFFEROOS))
+                    }
+                }
+        )
+
     }
 }

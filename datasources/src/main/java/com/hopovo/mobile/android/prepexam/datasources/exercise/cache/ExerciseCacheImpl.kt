@@ -16,11 +16,19 @@ import io.reactivex.Single
  * [BufferooCache] from the Data layer as it is that layers responsibility for defining the
  * operations in which data store implementation layers can carry out.
  */
-class BufferooCacheImpl constructor(
+class ExerciseCacheImpl constructor(
         val bufferoosDatabase: BufferoosDatabase,
         private val entityMapper: BufferooEntityMapper,
         private val preferencesHelper: PreferencesHelper
 ) : BufferooDataStore {
+    override fun saveExercise(exercise: Exercise): Completable {
+        return Completable.defer {
+            bufferoosDatabase.cachedBufferooDao().insertExercise(
+                    entityMapper.mapToCached(exercise)
+            )
+            Completable.complete()
+        }
+    }
 
     companion object {
         private const val EXPIRATION_TIME = (60 * 10 * 1000).toLong()
@@ -51,7 +59,7 @@ class BufferooCacheImpl constructor(
         return Completable.defer {
             exercises.forEach {
                 bufferoosDatabase.cachedBufferooDao().insertExercise(
-                    entityMapper.mapToCached(it)
+                        entityMapper.mapToCached(it)
                 )
             }
             setLastCacheTime(System.currentTimeMillis())

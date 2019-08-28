@@ -22,7 +22,7 @@ open class ExerciseDataRepositoryTest {
     private val bufferooCacheDataStore = mock<BufferooDataStore>()
     private val bufferooRemoteDataStore = mock<BufferooDataStore>()
 
-    private val bufferooDataRepository = BufferooDataRepository(bufferooDataStoreFactory)
+    private val bufferooDataRepository = ExerciseDataRepository(bufferooDataStoreFactory)
 
     @Before
     fun setUp() {

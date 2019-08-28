@@ -96,6 +96,8 @@ dependencies {
     implementation appDependencies.glide
     implementation appDependencies.timber
     implementation appDependencies.cardView
+    implementation appDependencies.navigationFragment
+    implementation appDependencies.navigationUi
 
     // Unit test dependencies
     testImplementation appTestDependencies.kotlinJUnit
@@ -139,4 +141,5 @@ dependencies {
 
     //Development
     debugImplementation developmentDependencies.leakCanary
+
 }

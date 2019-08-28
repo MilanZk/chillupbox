@@ -1,4 +1,4 @@
-package com.hopovo.mobile.android.prepexam.app.exerciselist
+package com.hopovo.mobile.android.prepexam.app.exercise.master
 
 
 import android.os.Bundle
@@ -38,7 +38,7 @@ class ExerciseListFragment : BaseFragment(), ErrorDialogFragmentListener {
     }
 
     private val exercisesAdapter: ExerciseListAdapter by inject()
-    private val exerciseViewModel: ExerciseListViewModel by sharedViewModel()
+    private val exerciseViewModel: ExerciseViewModel by sharedViewModel()
     private val adapterListener = object : ExerciseListAdapter.ExerciseListItemListener {
         override fun onItemClicked(position: Long) {
             Timber.d("Selected position $position")
@@ -62,6 +62,7 @@ class ExerciseListFragment : BaseFragment(), ErrorDialogFragmentListener {
 
         setupExercisesRecycler()
         setupViewListeners()
+        setupAddExerciseButton()
     }
 
     override fun initializeContents(savedInstanceState: Bundle?) {
@@ -115,6 +116,7 @@ class ExerciseListFragment : BaseFragment(), ErrorDialogFragmentListener {
             updateListView(data)
         } else {
             ev_bufferoos_empty_view.visibility = View.VISIBLE
+            fab_add_exercise.show()
         }
     }
 
@@ -141,6 +143,12 @@ class ExerciseListFragment : BaseFragment(), ErrorDialogFragmentListener {
     private fun setupViewListeners() {
         ev_bufferoos_empty_view.emptyListener = emptyListener
         ev_bufferoos_error_view.errorListener = errorListener
+    }
+
+    private fun setupAddExerciseButton(){
+        fab_add_exercise.setOnClickListener {
+            exerciseViewModel.openAddExercise()
+        }
     }
 
     private val emptyListener = object : EmptyListener {
@@ -177,28 +185,29 @@ class ExerciseListFragment : BaseFragment(), ErrorDialogFragmentListener {
                 val previousDialogFragment = fragmentManager.findFragmentByTag(tag) as? DialogFragment
 
                 // Check that error dialog is not already shown after a screen rotation
-                if (previousDialogFragment != null
-                        && previousDialogFragment.dialog != null
-                        && previousDialogFragment.dialog.isShowing
-                        && !previousDialogFragment.isRemoving
-                ) {
-                    // Error dialog is shown
-                    Timber.w("Error dialog is already shown")
-                } else {
-                    // Error dialog is not shown
-                    val errorDialogFragment = ErrorDialogFragment.newInstance(
-                            ErrorUtils.buildErrorMessageForDialog(activity, errorBundle),
-                            true
-                    )
-                    if (!fragmentManager.isDestroyed && !fragmentManager.isStateSaved) {
-                        // Sets the target fragment for using later when sending results
-                        errorDialogFragment.setTargetFragment(this@ExerciseListFragment, ERROR_DIALOG_REQUEST_CODE)
-                        // Fragment contains the dialog and dialog should be controlled from fragment interface.
-                        // See: https://stackoverflow.com/a/8921129/5189200
-                        errorDialogFragment.isCancelable = false
-                        errorDialogFragment.show(fragmentManager, tag)
-                    }
-                }
+
+//                if (previousDialogFragment != null
+//                        && previousDialogFragment.dialog != null
+//                        && previousDialogFragment.dialog?.isShowing
+//                        && !previousDialogFragment.isRemoving
+//                ) {
+//                    // Error dialog is shown
+//                    Timber.w("Error dialog is already shown")
+//                } else {
+//                    // Error dialog is not shown
+//                    val errorDialogFragment = ErrorDialogFragment.newInstance(
+//                            ErrorUtils.buildErrorMessageForDialog(activity, errorBundle),
+//                            true
+//                    )
+//                    if (!fragmentManager.isDestroyed && !fragmentManager.isStateSaved) {
+//                        // Sets the target fragment for using later when sending results
+//                        errorDialogFragment.setTargetFragment(this@ExerciseListFragment, ERROR_DIALOG_REQUEST_CODE)
+//                        // Fragment contains the dialog and dialog should be controlled from fragment interface.
+//                        // See: https://stackoverflow.com/a/8921129/5189200
+//                        errorDialogFragment.isCancelable = false
+//                        errorDialogFragment.show(fragmentManager, tag)
+//                    }
+//                }
             } ?: Timber.e("Support fragment manager is null")
         } ?: Timber.e("Activity is null")
     }

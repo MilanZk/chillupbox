@@ -1,4 +1,4 @@
-package com.hopovo.mobile.android.prepexam.app.exerciselist
+package com.hopovo.mobile.android.prepexam.app.exercise.master
 
 import com.hopovo.mobile.android.prepexam.app.R
 import com.hopovo.mobile.android.prepexam.app.common.errorhandling.AppAction

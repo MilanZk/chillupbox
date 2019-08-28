@@ -1,14 +1,11 @@
-package com.hopovo.mobile.android.prepexam.app.exerciselist
+package com.hopovo.mobile.android.prepexam.app.exercise.master
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.NonNull
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.hopovo.mobile.android.prepexam.app.R
 import com.hopovo.mobile.android.prepexam.app.common.view.OnSingleClickListener
 import com.hopovo.mobile.android.prepexam.model.exercise.Exercise
@@ -27,13 +24,14 @@ class ExerciseListAdapter : RecyclerView.Adapter<ExerciseListAdapter.ViewHolder>
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val exercise = exercises[position]
-        holder.nameText.text = exercise.description
-        holder.titleText.text = exercise.title
+        holder.wordText.text = exercise.word
+        holder.descriptionText.text = exercise.description
+        holder.translationText.text = exercise.translation
 
-        Glide.with(holder.itemView.context)
+  /*      Glide.with(holder.itemView.context)
                 .load(exercise.image)
                 .apply(RequestOptions.circleCropTransform())
-                .into(holder.avatarImage)
+                .into(holder.avatarImage)*/
 
         // On click listener
         holder.itemView.setOnClickListener(
@@ -59,14 +57,9 @@ class ExerciseListAdapter : RecyclerView.Adapter<ExerciseListAdapter.ViewHolder>
     }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        var avatarImage: ImageView
-        var nameText: TextView
-        var titleText: TextView
-
-        init {
-            avatarImage = view.findViewById(R.id.iv_exercise_item)
-            nameText = view.findViewById(R.id.tv_title_exercise_item)
-            titleText = view.findViewById(R.id.tv_exercise_description)
-        }
+        var wordText: TextView = view.findViewById(R.id.tv_title_exercise_item)
+        var descriptionText: TextView = view.findViewById(R.id.tv_exercise_description)
+        var translationText: TextView = view.findViewById(R.id.tv_exercise_translation)
     }
+
 }

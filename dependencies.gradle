@@ -26,10 +26,12 @@ ext {
     okHttpVersion = '4.0.0'
     retrofitVersion = '2.6.0'
     lifecycleExtensionsVersion = '2.0.0'
-    roomVersion = '2.0.0'
+    roomVersion = '2.2.0-alpha02'
     timberVersion = '4.7.1'
     glideVersion = '4.9.0'
     cardViewVersion = '1.0.0'
+    navigationFragmentVersion = '2.1.0-rc01'
+    navigationUiVersion = '2.1.0-rc01'
 
     // Testing
     testCoreVersion = '1.2.0'
@@ -42,6 +44,7 @@ ext {
     mockitoInlineVersion = '3.0.0'
     mockitoAndroidVersion = '3.0.0'
     runnerVersion = '1.2.0'
+
 
     //Development
     leakCanaryVersion = '2.0-alpha-2'
@@ -65,6 +68,8 @@ ext {
             glide               : "com.github.bumptech.glide:glide:${glideVersion}",
             timber              : "com.jakewharton.timber:timber:${timberVersion}",
             cardView            : "com.jakewharton.timber:timber:${cardViewVersion}",
+            navigationFragment  : "androidx.navigation:navigation-fragment-ktx:${navigationFragmentVersion}",
+            navigationUi        : "androidx.navigation:navigation-ui-ktx:${navigationUiVersion}"
     ]
 
     appTestDependencies = [

@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "54fe9a0a5340d9f333e1255d223e69de",
+    "identityHash": "2b9b4689f4f6c63ae2aa511c7881b681",
     "entities": [
       {
         "tableName": "exercise",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `description` TEXT NOT NULL, `title` TEXT NOT NULL, `image` TEXT NOT NULL, `level` TEXT NOT NULL, `time` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `description` TEXT NOT NULL, `word` TEXT NOT NULL, `image` TEXT NOT NULL, `translation` TEXT NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -21,8 +21,8 @@
             "notNull": true
           },
           {
-            "fieldPath": "title",
-            "columnName": "title",
+            "fieldPath": "word",
+            "columnName": "word",
             "affinity": "TEXT",
             "notNull": true
           },
@@ -33,14 +33,8 @@
             "notNull": true
           },
           {
-            "fieldPath": "level",
-            "columnName": "level",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "time",
-            "columnName": "time",
+            "fieldPath": "translation",
+            "columnName": "translation",
             "affinity": "TEXT",
             "notNull": true
           }
@@ -49,15 +43,16 @@
           "columnNames": [
             "id"
           ],
-          "autoGenerate": false
+          "autoGenerate": true
         },
         "indices": [],
         "foreignKeys": []
       }
     ],
+    "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"54fe9a0a5340d9f333e1255d223e69de\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '2b9b4689f4f6c63ae2aa511c7881b681')"
     ]
   }
 }

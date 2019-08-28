@@ -64,7 +64,7 @@ class ErrorDialogFragment : DialogFragment() {
         return builder.create()
     }
 
-    override fun onDismiss(dialog: DialogInterface?) {
+    override fun onDismiss(dialog: DialogInterface) {
         super.onDismiss(dialog)
 
         sendResultBack()
@@ -79,7 +79,7 @@ class ErrorDialogFragment : DialogFragment() {
                 accepted -> listener.onErrorDialogAccepted(errorMessageForDialog.actionCode, retry)
                 cancelled -> {
                     listener.onErrorDialogCancelled(errorMessageForDialog.actionCode)
-                    dialog.cancel()
+                    dialog?.cancel()
                 }
                 else -> // The used has dismissed the dialog with the back button or clicking outside the dialog
                     listener.onErrorDialogCancelled(errorMessageForDialog.actionCode)

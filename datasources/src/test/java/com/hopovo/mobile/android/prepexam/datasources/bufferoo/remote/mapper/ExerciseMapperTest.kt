@@ -18,7 +18,7 @@ class ExerciseMapperTest {
         val bufferooEntity = bufferooEntityMapper.mapFromRemote(bufferooResponse)
 
         assertEquals(bufferooResponse.description, bufferooEntity.description)
-        assertEquals(bufferooResponse.title, bufferooEntity.title)
+        assertEquals(bufferooResponse.title, bufferooEntity.word)
         assertEquals(bufferooResponse.image, bufferooEntity.image)
     }
 }

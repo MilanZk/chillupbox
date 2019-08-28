@@ -69,7 +69,7 @@ class ExerciseListFragmentTest : KoinTest {
         onView(RecyclerViewMatcher.withRecyclerView(R.id.rv_bufferoos).atPosition(position))
             .check(matches(hasDescendant(withText(exercise.description))))
         onView(RecyclerViewMatcher.withRecyclerView(R.id.rv_bufferoos).atPosition(position))
-            .check(matches(hasDescendant(withText(exercise.title))))
+            .check(matches(hasDescendant(withText(exercise.word))))
     }
 
     private fun stubBufferooRepositoryGetBufferoos(single: Single<List<Exercise>>) {

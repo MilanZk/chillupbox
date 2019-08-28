@@ -205,28 +205,28 @@ class SignInFragment : BaseFragment(), ErrorDialogFragmentListener {
                 val previousDialogFragment = fragmentManager.findFragmentByTag(tag) as? DialogFragment
 
                 // Check that error dialog is not already shown after a screen rotation
-                if (previousDialogFragment != null
-                    && previousDialogFragment.dialog != null
-                    && previousDialogFragment.dialog.isShowing
-                    && !previousDialogFragment.isRemoving
-                ) {
-                    // Error dialog is shown
-                    Timber.w("Error dialog is already shown")
-                } else {
-                    // Error dialog is not shown
-                    val errorDialogFragment = ErrorDialogFragment.newInstance(
-                        ErrorUtils.buildErrorMessageForDialog(activity, errorBundle),
-                        true
-                    )
-                    if (!fragmentManager.isDestroyed && !fragmentManager.isStateSaved) {
-                        // Sets the target fragment for using later when sending results
-                        errorDialogFragment.setTargetFragment(this@SignInFragment, ERROR_DIALOG_REQUEST_CODE)
-                        // Fragment contains the dialog and dialog should be controlled from fragment interface.
-                        // See: https://stackoverflow.com/a/8921129/5189200
-                        errorDialogFragment.isCancelable = false
-                        errorDialogFragment.show(fragmentManager, tag)
-                    }
-                }
+//                if (previousDialogFragment != null
+//                    && previousDialogFragment.dialog != null
+//                    && previousDialogFragment.dialog.isShowing
+//                    && !previousDialogFragment.isRemoving
+//                ) {
+//                    // Error dialog is shown
+//                    Timber.w("Error dialog is already shown")
+//                } else {
+//                    // Error dialog is not shown
+//                    val errorDialogFragment = ErrorDialogFragment.newInstance(
+//                        ErrorUtils.buildErrorMessageForDialog(activity, errorBundle),
+//                        true
+//                    )
+//                    if (!fragmentManager.isDestroyed && !fragmentManager.isStateSaved) {
+//                        // Sets the target fragment for using later when sending results
+//                        errorDialogFragment.setTargetFragment(this@SignInFragment, ERROR_DIALOG_REQUEST_CODE)
+//                        // Fragment contains the dialog and dialog should be controlled from fragment interface.
+//                        // See: https://stackoverflow.com/a/8921129/5189200
+//                        errorDialogFragment.isCancelable = false
+//                        errorDialogFragment.show(fragmentManager, tag)
+//                    }
+//                }
             } ?: Timber.e("Support fragment manager is null")
         } ?: Timber.e("Activity is null")
     }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_margin="8dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -12,19 +13,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/iv_exercise_item"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_alignParentStart="true"
-                android:src="@mipmap/landscape" />
-
             <TextView
                 android:id="@+id/tv_title_exercise_item"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/iv_exercise_item"
+                android:layout_alignParentTop="true"
+                android:gravity="center"
                 android:textSize="@dimen/text_title"
+                android:layout_margin="8dp"
                 tools:text="Title exercise" />
 
             <TextView
@@ -32,31 +28,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_title_exercise_item"
-                android:layout_alignStart="@+id/tv_title_exercise_item"
                 android:textSize="@dimen/text_body"
+                android:layout_margin="8dp"
                 tools:text="A short description of the exercise. The exercise consist of several
                 different questions which are prepared for this occasion" />
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/tv_exercise_description">
-
                 <TextView
-                    android:id="@+id/tv_exercise_level"
+                    android:gravity="center"
+                    android:layout_below="@id/tv_exercise_translation"
+                    android:layout_margin="8dp"
+                    android:id="@+id/tv_exercise_translation"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="start"
-                    tools:text="A1" />
-
-                <TextView
-                    android:id="@+id/tv_exercise_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toEndOf="@+id/tv_exercise_level"
                     tools:text="0 - 5 min" />
-
-            </RelativeLayout>
 
         </RelativeLayout>
     </androidx.cardview.widget.CardView>

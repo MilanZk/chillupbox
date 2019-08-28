@@ -11,8 +11,8 @@ import com.hopovo.mobile.android.prepexam.app.bufferoos.master.BufferoosNavigati
 import com.hopovo.mobile.android.prepexam.app.common.BaseActivity
 import com.hopovo.mobile.android.prepexam.app.common.viewmodel.CommonEvent
 import com.hopovo.mobile.android.prepexam.app.common.viewmodel.SingleLiveEvent
-import com.hopovo.mobile.android.prepexam.app.exerciselist.ExerciseListFragment
-import com.hopovo.mobile.android.prepexam.app.exerciselist.ExerciseListViewModel
+import com.hopovo.mobile.android.prepexam.app.exercise.detail.ExerciseDetailFragment
+import com.hopovo.mobile.android.prepexam.app.exercise.master.ExerciseViewModel
 import kotlinx.android.synthetic.main.navigation_drawer_main_app_bar.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -26,15 +26,14 @@ class MainActivity : BaseActivity() {
         }
     }
 
-    private val exerciseListViewModel: ExerciseListViewModel by viewModel()
+    private val mExerciseViewModel: ExerciseViewModel by viewModel()
     private val commonLiveEvent = SingleLiveEvent<CommonEvent>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_navigation_drawer_main)
+        setContentView(R.layout.activity_main)
 
         initializeViews(savedInstanceState)
-        initializeState(savedInstanceState)
         initializeContents(savedInstanceState)
     }
 
@@ -43,23 +42,18 @@ class MainActivity : BaseActivity() {
             // First time initialization
         }
 
-        exerciseListViewModel.exerciseListNavigationLiveEvent.observe(this, Observer { command ->
+        mExerciseViewModel.exerciseListNavigationLiveEvent.observe(this, Observer { command ->
             when (command) {
                 GoToDetailsView -> {
+                    supportFragmentManager.beginTransaction()
+                            .replace(R.id.fl_main_container, ExerciseDetailFragment.newInstance())
+                            .commitNow()
                 }
             }
         })
 
         // Set commonLiveEvent channel in every view model used by this activity that inherits from CommonEventsViewModel
-        exerciseListViewModel.commonLiveEvent = commonLiveEvent
-    }
-
-    private fun initializeState(@Suppress("UNUSED_PARAMETER") savedInstanceState: Bundle?) {
-        if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction()
-                    .replace(R.id.fl_main_container, ExerciseListFragment.newInstance())
-                    .commitNow()
-        }
+        mExerciseViewModel.commonLiveEvent = commonLiveEvent
     }
 
     private fun initializeViews(@Suppress("UNUSED_PARAMETER") savedInstanceState: Bundle?) {
