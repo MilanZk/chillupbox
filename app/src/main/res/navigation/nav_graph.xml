@@ -1,18 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_graph"
-    app:startDestination="@id/exerciseListFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/exercise_list_fragment">
 
     <fragment
-        android:id="@+id/exerciseListFragment"
+        android:id="@+id/exercise_list_fragment"
         android:name="com.hopovo.mobile.android.prepexam.app.exercise.master.ExerciseListFragment"
-        android:label="ExerciseListFragment" >
+        android:label="ExerciseListFragment"
+        tools:layout="@layout/fragment_exercise_list">
         <action
             android:id="@+id/action_exerciseListFragment_to_exerciseDetailFragment"
-            app:destination="@id/exerciseDetailFragment" />
+            app:destination="@id/exercise_detail_fragment" />
     </fragment>
     <fragment
-        android:id="@+id/exerciseDetailFragment"
+        android:id="@+id/exercise_detail_fragment"
         android:name="com.hopovo.mobile.android.prepexam.app.exercise.detail.ExerciseDetailFragment"
-        android:label="ExerciseDetailFragment" />
+        android:label="ExerciseDetailFragment"
+        tools:layout="@layout/fragment_execrcise_detail"/>
+
+    <fragment
+        android:id="@+id/takePhotoFragment"
+        android:name="com.hopovo.mobile.android.prepexam.app.take_photo.TakePhotoFragment"
+        android:label="TakePhotoFragment"
+        tools:layout="@layout/fragment_take_photo"/>
+
+    <fragment
+        android:id="@+id/photoListFragment"
+        android:name="com.hopovo.mobile.android.prepexam.app.take_photo.PhotoListFragment"
+        android:label="PhotoListFragment"
+        tools:layout="@layout/fragment_photo_list"/>
 </navigation>

@@ -16,7 +16,7 @@ class ExerciseListAdapter : RecyclerView.Adapter<ExerciseListAdapter.ViewHolder>
 
     interface ExerciseListItemListener {
 
-        fun onItemClicked(position: Long)
+        fun onItemClicked(position: Int)
     }
 
     var exercises: List<Exercise> = arrayListOf()

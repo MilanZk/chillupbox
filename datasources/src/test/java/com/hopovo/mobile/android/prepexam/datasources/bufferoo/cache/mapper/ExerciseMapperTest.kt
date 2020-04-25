@@ -2,7 +2,7 @@ package com.hopovo.mobile.android.prepexam.datasources.bufferoo.cache.mapper
 
 import com.hopovo.mobile.android.prepexam.datasources.exercise.cache.model.ExerciseDbModel
 import com.hopovo.mobile.android.prepexam.datasources.bufferoo.cache.test.factory.BufferooFactory
-import com.hopovo.mobile.android.prepexam.datasources.exercise.cache.mapper.BufferooEntityMapper
+import com.hopovo.mobile.android.prepexam.datasources.exercise.cache.mapper.ExerciseMapper
 import com.hopovo.mobile.android.prepexam.model.exercise.Exercise
 import org.junit.*
 import org.junit.runner.*
@@ -12,7 +12,7 @@ import kotlin.test.assertEquals
 @RunWith(JUnit4::class)
 class ExerciseMapperTest {
 
-    private val bufferooEntityMapper = BufferooEntityMapper()
+    private val bufferooEntityMapper = ExerciseMapper()
 
     @Test
     fun mapToCachedMapsData() {

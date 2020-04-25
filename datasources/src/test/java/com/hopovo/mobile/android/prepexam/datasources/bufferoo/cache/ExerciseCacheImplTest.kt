@@ -1,13 +1,14 @@
-package com.hopovo.mobile.android.prepexam.datasources.bufferoo.cache
 
+package com.hopovo.mobile.android.prepexam.datasources.bufferoo.cache
+/*
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.hopovo.mobile.android.prepexam.datasources.exercise.cache.db.BufferoosDatabase
-import com.hopovo.mobile.android.prepexam.datasources.exercise.cache.mapper.BufferooEntityMapper
+import com.hopovo.mobile.android.prepexam.datasources.exercise.cache.db.ExerciseDatabase
+import com.hopovo.mobile.android.prepexam.datasources.exercise.cache.mapper.ExerciseMapper
 import com.hopovo.mobile.android.prepexam.datasources.exercise.cache.model.ExerciseDbModel
 import com.hopovo.mobile.android.prepexam.datasources.bufferoo.cache.test.factory.BufferooFactory
-import com.hopovo.mobile.android.prepexam.datasources.exercise.cache.ExerciseCacheImpl
+import com.hopovo.mobile.android.prepexam.datasources.exercise.cache.BufferooCacheImpl
 import com.hopovo.mobile.android.prepexam.datasources.exercise.cache.PreferencesHelper
 import org.junit.*
 import org.junit.runner.*
@@ -18,12 +19,12 @@ class ExerciseCacheImplTest {
 
     private var bufferoosDatabase = Room.inMemoryDatabaseBuilder(
         ApplicationProvider.getApplicationContext(),
-        BufferoosDatabase::class.java
+        ExerciseDatabase::class.java
     ).allowMainThreadQueries().build()
-    private var entityMapper = BufferooEntityMapper()
+    private var entityMapper = ExerciseMapper()
     private var preferencesHelper = PreferencesHelper(ApplicationProvider.getApplicationContext())
 
-    private val databaseHelper = ExerciseCacheImpl(
+    private val databaseHelper = BufferooCacheImpl(
             bufferoosDatabase,
             entityMapper, preferencesHelper
     )
@@ -80,12 +81,12 @@ class ExerciseCacheImplTest {
 
     private fun insertBufferoos(exerciseDbModels: List<ExerciseDbModel>) {
         exerciseDbModels.forEach {
-            bufferoosDatabase.cachedBufferooDao().insertExercise(it)
+            bufferoosDatabase.exerciseDao().insertExercise(it)
         }
     }
 
     private fun checkNumRowsInBufferoosTable(expectedRows: Int) {
-        val numberOfRows = bufferoosDatabase.cachedBufferooDao().getExercises().size
+        val numberOfRows = bufferoosDatabase.exerciseDao().getExercises().size
         assertEquals(expectedRows, numberOfRows)
     }
-}
+}*/

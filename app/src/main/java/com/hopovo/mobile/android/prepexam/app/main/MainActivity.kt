@@ -4,14 +4,11 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.ActionBar
-import androidx.lifecycle.Observer
 import com.hopovo.mobile.android.prepexam.app.BuildConfig
 import com.hopovo.mobile.android.prepexam.app.R
-import com.hopovo.mobile.android.prepexam.app.bufferoos.master.BufferoosNavigationCommand.GoToDetailsView
 import com.hopovo.mobile.android.prepexam.app.common.BaseActivity
 import com.hopovo.mobile.android.prepexam.app.common.viewmodel.CommonEvent
 import com.hopovo.mobile.android.prepexam.app.common.viewmodel.SingleLiveEvent
-import com.hopovo.mobile.android.prepexam.app.exercise.detail.ExerciseDetailFragment
 import com.hopovo.mobile.android.prepexam.app.exercise.master.ExerciseViewModel
 import kotlinx.android.synthetic.main.navigation_drawer_main_app_bar.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -41,19 +38,6 @@ class MainActivity : BaseActivity() {
         if (savedInstanceState == null) {
             // First time initialization
         }
-
-        mExerciseViewModel.exerciseListNavigationLiveEvent.observe(this, Observer { command ->
-            when (command) {
-                GoToDetailsView -> {
-                    supportFragmentManager.beginTransaction()
-                            .replace(R.id.fl_main_container, ExerciseDetailFragment.newInstance())
-                            .commitNow()
-                }
-            }
-        })
-
-        // Set commonLiveEvent channel in every view model used by this activity that inherits from CommonEventsViewModel
-        mExerciseViewModel.commonLiveEvent = commonLiveEvent
     }
 
     private fun initializeViews(@Suppress("UNUSED_PARAMETER") savedInstanceState: Bundle?) {

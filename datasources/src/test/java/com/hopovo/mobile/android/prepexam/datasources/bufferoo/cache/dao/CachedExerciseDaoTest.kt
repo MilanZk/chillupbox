@@ -3,7 +3,7 @@ package com.hopovo.mobile.android.prepexam.datasources.bufferoo.cache.dao
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.hopovo.mobile.android.prepexam.datasources.exercise.cache.db.BufferoosDatabase
+import com.hopovo.mobile.android.prepexam.datasources.exercise.cache.db.ExerciseDatabase
 import com.hopovo.mobile.android.prepexam.datasources.bufferoo.cache.test.factory.BufferooFactory
 import org.junit.*
 import org.junit.runner.*
@@ -11,13 +11,13 @@ import org.junit.runner.*
 @RunWith(AndroidJUnit4::class)
 open class CachedExerciseDaoTest {
 
-    private lateinit var bufferoosDatabase: BufferoosDatabase
+    private lateinit var bufferoosDatabase: ExerciseDatabase
 
     @Before
     fun initDb() {
         bufferoosDatabase = Room.inMemoryDatabaseBuilder(
             ApplicationProvider.getApplicationContext(),
-            BufferoosDatabase::class.java
+            ExerciseDatabase::class.java
         )
             .allowMainThreadQueries()
             .build()
@@ -31,9 +31,9 @@ open class CachedExerciseDaoTest {
     @Test
     fun insertBufferoosSavesData() {
         val cachedBufferoo = BufferooFactory.makeCachedBufferoo()
-        bufferoosDatabase.cachedBufferooDao().insertExercise(cachedBufferoo)
+        bufferoosDatabase.exerciseDao().insertExercise(cachedBufferoo)
 
-        val bufferoos = bufferoosDatabase.cachedBufferooDao().getExercises()
+        val bufferoos = bufferoosDatabase.exerciseDao().getExercises()
         assert(bufferoos.isNotEmpty())
     }
 
@@ -42,10 +42,10 @@ open class CachedExerciseDaoTest {
         val cachedBufferoos = BufferooFactory.makeCachedBufferooList(5)
 
         cachedBufferoos.forEach {
-            bufferoosDatabase.cachedBufferooDao().insertExercise(it)
+            bufferoosDatabase.exerciseDao().insertExercise(it)
         }
 
-        val retrievedBufferoos = bufferoosDatabase.cachedBufferooDao().getExercises()
+        val retrievedBufferoos = bufferoosDatabase.exerciseDao().getExercises()
         assert(retrievedBufferoos == cachedBufferoos.sortedWith(compareBy({ it.id }, { it.id })))
     }
 }

@@ -6,10 +6,8 @@ import com.hopovo.mobile.android.prepexam.datasources.exercise.remote.mapper.Exe
 import com.hopovo.mobile.android.prepexam.datasources.exercise.remote.model.PostCredentialsRequest
 import com.hopovo.mobile.android.prepexam.datasources.remote.errorhandling.RemoteExceptionMapper
 import com.hopovo.mobile.android.prepexam.model.exercise.Credentials
-import com.hopovo.mobile.android.prepexam.model.exercise.Exercise
 import com.hopovo.mobile.android.prepexam.model.exercise.SignedInBufferoo
 import com.hopovo.mobile.android.prepexam.model.exercise.SignedOutBufferoo
-import io.reactivex.Completable
 import io.reactivex.Single
 import java.lang.ref.WeakReference
 
@@ -23,9 +21,6 @@ class BufferooRemoteImpl constructor(
         private val exerciseRemoteMapper: ExerciseRemoteMapper,
         _context: Context
 ) : BufferooDataStore {
-    override fun saveExercise(exercise: Exercise): Completable {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
 
     private val contextWeakReference = WeakReference<Context>(_context)
 
@@ -81,24 +76,6 @@ class BufferooRemoteImpl constructor(
         }
     }
 
-    /**
-     * Retrieve a list of [Exercise] instances from the [BufferooService].
-     */
-    override fun getBufferoos(): Single<List<Exercise>> {
-        return bufferooService.getBufferoos()
-            .onErrorResumeNext { throwable ->
-                // If remote request fails, use remote exception mapper to transform Retrofit exception to an app exception
-                Single.error(RemoteExceptionMapper.getException(throwable))
-            }
-            .map { it.items }
-            .map { bufferoos ->
-                val entities = mutableListOf<Exercise>()
-                bufferoos.forEach { bufferoo ->
-                    entities.add(exerciseRemoteMapper.mapFromRemote(bufferoo))
-                }
-                entities
-            }
-    }
 
     /**
      * Signs out deleting all user credentials and access token.
@@ -111,14 +88,6 @@ class BufferooRemoteImpl constructor(
                 Single.just(SignedOutBufferoo(id))
             } ?: Single.error(IllegalStateException("Context is null! Credentials cannot be deleted."))
         }
-    }
-
-    override fun clearBufferoos(): Completable {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun saveBufferoos(exercises: List<Exercise>): Completable {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun isValidCache(): Single<Boolean> {

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hopovo.mobile.android.prepexam.app.R
 import com.hopovo.mobile.android.prepexam.app.common.BaseFragment
@@ -18,29 +19,23 @@ import com.hopovo.mobile.android.prepexam.app.common.errorhandling.ErrorBundle
 import com.hopovo.mobile.android.prepexam.app.common.errorhandling.ErrorDialogFragment
 import com.hopovo.mobile.android.prepexam.app.common.errorhandling.ErrorDialogFragment.ErrorDialogFragmentListener
 import com.hopovo.mobile.android.prepexam.app.common.errorhandling.ErrorUtils
+import com.hopovo.mobile.android.prepexam.app.common.gone
 import com.hopovo.mobile.android.prepexam.app.common.model.ResourceState.*
+import com.hopovo.mobile.android.prepexam.app.common.visible
 import com.hopovo.mobile.android.prepexam.app.common.widget.empty.EmptyListener
 import com.hopovo.mobile.android.prepexam.app.common.widget.error.ErrorListener
 import com.hopovo.mobile.android.prepexam.model.exercise.Exercise
-import kotlinx.android.synthetic.main.fragment_bufferoos.*
+import kotlinx.android.synthetic.main.fragment_exercise_list.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import timber.log.Timber
 
 class ExerciseListFragment : BaseFragment(), ErrorDialogFragmentListener {
 
-    companion object {
-
-        val TAG = ExerciseListFragment::class.java.canonicalName
-        private const val ERROR_DIALOG_REQUEST_CODE = 0
-
-        fun newInstance() = ExerciseListFragment()
-    }
-
     private val exercisesAdapter: ExerciseListAdapter by inject()
     private val exerciseViewModel: ExerciseViewModel by sharedViewModel()
     private val adapterListener = object : ExerciseListAdapter.ExerciseListItemListener {
-        override fun onItemClicked(position: Long) {
+        override fun onItemClicked(position: Int) {
             Timber.d("Selected position $position")
             exerciseViewModel.select(position)
         }
@@ -48,7 +43,7 @@ class ExerciseListFragment : BaseFragment(), ErrorDialogFragmentListener {
 
     // region Lifecycle methods
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        return inflater.inflate(R.layout.fragment_bufferoos, container, false)
+        return inflater.inflate(R.layout.fragment_exercise_list, container, false)
     }
 
     override fun onResume() {
@@ -68,20 +63,13 @@ class ExerciseListFragment : BaseFragment(), ErrorDialogFragmentListener {
     override fun initializeContents(savedInstanceState: Bundle?) {
         super.initializeContents(savedInstanceState)
 
-        // Link the fragment and the model view with "viewLifecycleOwner", so that observers
-        // can be subscribed in onActivityCreated() and can be automatically unsubscribed
-        // in onDestroyView().
-        // IMPORTANT: Never use "this" as lifecycle owner.
-        // See: https://medium.com/@BladeCoder/architecture-components-pitfalls-part-1-9300dd969808
         exerciseViewModel.getExercises().observe(viewLifecycleOwner,
-                Observer<ExerciseListState> {
-                    if (it != null) this.handleDataState(it)
+                Observer {
+                    handleDataState(it)
                 }
         )
 
-        // Check if the view model has data
         if (exerciseViewModel.getExercises().value == null) {
-            // Fetch data only if the view model doesn't have data
             exerciseViewModel.fetchExercises()
         }
     }
@@ -95,27 +83,27 @@ class ExerciseListFragment : BaseFragment(), ErrorDialogFragmentListener {
     //endregion
 
     //region Handling state
-    private fun handleDataState(bufferoosState: ExerciseListState) {
-        when (bufferoosState) {
+    private fun handleDataState(exerciseList: ExerciseListState) {
+        when (exerciseList) {
             is Loading -> setupScreenForLoadingState()
-            is Success -> setupScreenForSuccess(bufferoosState.data)
-            is Error -> setupScreenForError(bufferoosState.errorBundle)
+            is Success -> setupScreenForSuccess(exerciseList.data)
+            is Error -> setupScreenForError(exerciseList.errorBundle)
         }
     }
 
     private fun setupScreenForLoadingState() {
-        lv_bufferoos_loading_view.visibility = View.VISIBLE
-        ev_bufferoos_empty_view.visibility = View.GONE
-        ev_bufferoos_error_view.visibility = View.GONE
+        lv_bufferoos_loading_view.visible()
+        ev_bufferoos_empty_view.gone()
+        ev_bufferoos_error_view.gone()
     }
 
     private fun setupScreenForSuccess(data: List<Exercise>?) {
-        ev_bufferoos_error_view.visibility = View.GONE
-        lv_bufferoos_loading_view.visibility = View.GONE
+        ev_bufferoos_error_view.gone()
+        lv_bufferoos_loading_view.gone()
         if (data != null && data.isNotEmpty()) {
             updateListView(data)
         } else {
-            ev_bufferoos_empty_view.visibility = View.VISIBLE
+            ev_bufferoos_empty_view.visible()
             fab_add_exercise.show()
         }
     }
@@ -126,8 +114,8 @@ class ExerciseListFragment : BaseFragment(), ErrorDialogFragmentListener {
     }
 
     private fun setupScreenForError(errorBundle: ErrorBundle) {
-        lv_bufferoos_loading_view.visibility = View.GONE
-        ev_bufferoos_empty_view.visibility = View.GONE
+        lv_bufferoos_loading_view.gone()
+        ev_bufferoos_empty_view.gone()
 
         if (errorBundle.appError == NO_INTERNET || errorBundle.appError == TIMEOUT) {
             // Example of using a custom error view as part of the fragment view
@@ -147,7 +135,11 @@ class ExerciseListFragment : BaseFragment(), ErrorDialogFragmentListener {
 
     private fun setupAddExerciseButton(){
         fab_add_exercise.setOnClickListener {
-            exerciseViewModel.openAddExercise()
+            findNavController().navigate(R.id.photoListFragment)
+        }
+
+        fab_add.setOnClickListener{
+            findNavController().navigate(R.id.takePhotoFragment)
         }
     }
 
@@ -172,7 +164,7 @@ class ExerciseListFragment : BaseFragment(), ErrorDialogFragmentListener {
 
     private fun showErrorView(errorBundle: ErrorBundle) {
         activity?.let { activity ->
-            ev_bufferoos_error_view.visibility = View.VISIBLE
+            ev_bufferoos_error_view.visible()
             ev_bufferoos_error_view.errorBundle = errorBundle
             ev_bufferoos_error_view.setErrorMessage(ErrorUtils.buildErrorMessageForDialog(activity, errorBundle).message)
         } ?: Timber.e("Activity is null")

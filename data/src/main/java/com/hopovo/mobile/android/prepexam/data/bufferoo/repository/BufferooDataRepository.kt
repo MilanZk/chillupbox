@@ -13,11 +13,7 @@ import io.reactivex.Single
  * Provides an implementation of the [BufferooRepository] interface for communicating to and from
  * data sources
  */
-class ExerciseDataRepository(private val factory: BufferooDataStoreFactory) : BufferooRepository {
-
-    override fun saveExercise(exercise: Exercise): Completable {
-        return factory.retrieveCacheDataStore().saveExercise(exercise)
-    }
+class BufferooDataRepository(private val factory: BufferooDataStoreFactory) : BufferooRepository {
 
     override fun signIn(username: String, password: String): Single<SignedInBufferoo> {
         return factory.retrieveRemoteDataStore().signIn(username, password)
@@ -25,18 +21,6 @@ class ExerciseDataRepository(private val factory: BufferooDataStoreFactory) : Bu
 
     override fun getCredentials(): Single<Credentials> {
         return factory.retrieveRemoteDataStore().getCredentials()
-    }
-
-    override fun getBufferoos(): Single<List<Exercise>> {
-        return factory.retrieveCacheDataStore().getBufferoos()
-    }
-
-    override fun saveBufferoos(exercises: List<Exercise>): Completable {
-        return factory.retrieveCacheDataStore().saveBufferoos(exercises)
-    }
-
-    override fun clearBufferoos(): Completable {
-        return factory.retrieveCacheDataStore().clearBufferoos()
     }
 
     override fun signOut(): Single<SignedOutBufferoo> {

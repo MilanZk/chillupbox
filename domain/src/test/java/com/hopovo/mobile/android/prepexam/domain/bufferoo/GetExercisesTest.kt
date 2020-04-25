@@ -1,6 +1,5 @@
 package com.hopovo.mobile.android.prepexam.domain.bufferoo
 
-import com.hopovo.mobile.android.prepexam.domain.bufferoo.interactor.GetExercises
 import com.hopovo.mobile.android.prepexam.domain.bufferoo.repository.BufferooRepository
 import com.hopovo.mobile.android.prepexam.domain.executor.PostExecutionThread
 import com.hopovo.mobile.android.prepexam.domain.executor.ThreadExecutor

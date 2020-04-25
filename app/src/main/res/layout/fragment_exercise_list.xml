@@ -35,6 +35,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_add"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="100dp"
+            android:src="@drawable/ic_add_circle_24dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
     </RelativeLayout>
 
     <!-- region Loading, error and empty views -->

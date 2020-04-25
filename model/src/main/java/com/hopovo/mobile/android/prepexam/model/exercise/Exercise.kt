@@ -3,7 +3,7 @@ package com.hopovo.mobile.android.prepexam.model.exercise
 /**
  * Representation for a [Exercise] fetched from an external layer data source
  */
-data class Exercise(val id: Long,
+data class Exercise(val id: Int,
                     val word: String,
                     val description: String,
                     val image: String,

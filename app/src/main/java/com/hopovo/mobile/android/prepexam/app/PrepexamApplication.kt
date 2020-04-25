@@ -16,7 +16,8 @@ class PrepexamApplication : Application() {
             // Android context
             androidContext(this@PrepexamApplication)
             // modules
-            modules(listOf(applicationModule, splashModule, signInModule, mainModule, exerciseListModule))
+            modules(listOf(applicationModule, splashModule, signInModule,
+                    mainModule, exerciseListModule, takePhotoModule))
         }
 
         setupTimber()

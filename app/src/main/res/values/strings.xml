@@ -78,5 +78,12 @@
     <!-- region Empty -->
     <string name="empty_default_message">Oops, there are no results to display</string>
     <string name="empty_check_again">Check again</string>
+    <string name="hint_new_word">Enter your new word</string>
+    <string name="your_new_word_to_remember_title">Your new word to remember</string>
+    <string name="add_phrase_example_title">Add phrase example</string>
+    <string name="add_translation_title">Add a translation</string>
+    <string name="save_button">Save</string>
+    <string name="take_photo">Take photo</string>
+    <string name="save_photo">Save photo</string>
     <!-- endregion -->
 </resources>

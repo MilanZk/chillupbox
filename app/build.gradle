@@ -93,11 +93,12 @@ dependencies {
     implementation appDependencies.rxJava
     implementation appDependencies.rxAndroid
     implementation appDependencies.rxKotlin
-    implementation appDependencies.glide
+    implementation appDependencies.picasso
     implementation appDependencies.timber
     implementation appDependencies.cardView
     implementation appDependencies.navigationFragment
     implementation appDependencies.navigationUi
+    implementation appDependencies.cameraX
 
     // Unit test dependencies
     testImplementation appTestDependencies.kotlinJUnit
@@ -140,6 +141,6 @@ dependencies {
     }
 
     //Development
-    debugImplementation developmentDependencies.leakCanary
+ //   debugImplementation developmentDependencies.leakCanary
 
 }

@@ -4,13 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Observer
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.hopovo.mobile.android.prepexam.app.R
 import com.hopovo.mobile.android.prepexam.app.common.BaseFragment
 import com.hopovo.mobile.android.prepexam.app.exercise.master.ExerciseViewModel
-import com.hopovo.mobile.android.prepexam.model.exercise.Exercise
 import kotlinx.android.synthetic.main.fragment_bufferoo_details.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
@@ -45,26 +41,8 @@ class BufferooDetailsFragment : BaseFragment() {
         // in onDestroyView().
         // IMPORTANT: Never use "this" as lifecycle owner.
         // See: https://medium.com/@BladeCoder/architecture-components-pitfalls-part-1-9300dd969808
-        mExerciseViewModel.getSelectedExercise().observe(viewLifecycleOwner,
-            Observer<Exercise> {
-                this.handleData(it)
-            }
-        )
+
     }
 
-    private fun handleData(data: Exercise?) {
-        if (data == null) {
-            // TODO: Show error
-        } else {
-            // Map data to UI
-            tv_bufferoo_details_name.text = data.description
-            tv_bufferoo_details_title.text = data.word
-            context?.let {
-                Glide.with(it)
-                    .load(data.image)
-                    .apply(RequestOptions.circleCropTransform())
-                    .into(iv_bufferoo_details_avatar_image)
-            }
-        }
-    }
+
 }

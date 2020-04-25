@@ -26,12 +26,13 @@ ext {
     okHttpVersion = '4.0.0'
     retrofitVersion = '2.6.0'
     lifecycleExtensionsVersion = '2.0.0'
-    roomVersion = '2.2.0-alpha02'
+    roomVersion = '2.2.0'
     timberVersion = '4.7.1'
-    glideVersion = '4.9.0'
+    picassoVersion = '2.71828'
     cardViewVersion = '1.0.0'
     navigationFragmentVersion = '2.1.0-rc01'
     navigationUiVersion = '2.1.0-rc01'
+    cameraXVersion = "1.0.0-beta02"
 
     // Testing
     testCoreVersion = '1.2.0'
@@ -65,11 +66,12 @@ ext {
             rxJava              : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
             rxAndroid           : "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
             rxKotlin            : "io.reactivex.rxjava2:rxkotlin:${rxKotlinVersion}",
-            glide               : "com.github.bumptech.glide:glide:${glideVersion}",
+            picasso               : "com.squareup.picasso:picasso:${picassoVersion}",
             timber              : "com.jakewharton.timber:timber:${timberVersion}",
             cardView            : "com.jakewharton.timber:timber:${cardViewVersion}",
             navigationFragment  : "androidx.navigation:navigation-fragment-ktx:${navigationFragmentVersion}",
-            navigationUi        : "androidx.navigation:navigation-ui-ktx:${navigationUiVersion}"
+            navigationUi        : "androidx.navigation:navigation-ui-ktx:${navigationUiVersion}",
+            cameraX             : "androidx.camera:camera-camera2:${cameraXVersion}"
     ]
 
     appTestDependencies = [

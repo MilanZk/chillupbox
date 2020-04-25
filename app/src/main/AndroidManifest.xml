@@ -3,7 +3,9 @@
     package="com.hopovo.mobile.android.prepexam.app">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name="com.hopovo.mobile.android.prepexam.app.PrepexamApplication"
@@ -17,27 +19,30 @@
         <activity
             android:name="com.hopovo.mobile.android.prepexam.app.splash.SplashActivity"
             android:theme="@style/SplashTheme">
+        </activity>
+        <activity
+            android:name="com.hopovo.mobile.android.prepexam.app.account.SignInActivity"
+            android:theme="@style/SplashTheme" />
+        <activity
+            android:name="com.hopovo.mobile.android.prepexam.app.main.MainActivity"
+            android:theme="@style/SplashTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="com.hopovo.mobile.android.prepexam.app.choosenavigation.ChooseNavigationActivity"
-            android:theme="@style/SplashTheme" />
-        <activity
-            android:name="com.hopovo.mobile.android.prepexam.app.account.SignInActivity"
-            android:theme="@style/SplashTheme" />
-        <activity
-            android:name="com.hopovo.mobile.android.prepexam.app.main.navigationdrawer.NavigationDrawerMainActivity"
-            android:theme="@style/SplashTheme" />
-        <activity
-            android:name="com.hopovo.mobile.android.prepexam.app.main.MainActivity"
-            android:theme="@style/SplashTheme" />
-        <activity
-            android:name="com.hopovo.mobile.android.prepexam.app.main.nonavigation.NoNavigationMainActivity"
-            android:theme="@style/SplashTheme" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.hopovo.mobile.android.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"/>
+        </provider>
+
     </application>
 
 </manifest>
